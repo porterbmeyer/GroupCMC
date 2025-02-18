@@ -34,7 +34,7 @@ public class SystemController {
 		User theUser = new User(userData[2], userData[3], userData[4].charAt(0), userData[0],
 				userData[1]);
 		
-		if (theUser.activated != 'Y' || !theUser.password.equals(password)) {
+		if (userData[4].charAt(0) != 'Y' || !userData[3].equals(password)) {
 			return null;
 		}
 		else {
