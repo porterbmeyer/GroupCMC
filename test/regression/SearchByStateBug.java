@@ -22,9 +22,10 @@ public class SearchByStateBug {
 	}
 
 	@Test
-	public void test() {
+	public void searchByStatetest() {
 
 		SystemController sc = new SystemController();
 		List<String[]> result1 = sc.search("");
 		Assert.assertTrue(result1.size() > 0);
 	}
+}
