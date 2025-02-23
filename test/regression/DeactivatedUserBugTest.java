@@ -33,5 +33,4 @@ public class DeactivatedUserBugTest {
 		User result = teste.login("username9947", "password1234322");
 		Assert.assertNull(result);
 	}
-
 }
