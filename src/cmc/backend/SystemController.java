@@ -8,7 +8,6 @@ import cmc.CMCException;
 
 public class SystemController {
 	private DatabaseController myDBController;
-	
 	// Construct a SystemController using the basic (no parameter)
 	// DatabaseController as the underlying database access.
 	public SystemController() {
@@ -78,12 +77,17 @@ public class SystemController {
 	// this REGULAR USER ONLY method searches for schools in the database
 	// based on provided criteria (just state for now)
 	public List<String[]> search(String state) {
+		
 		List<String[]> schoolList = this.myDBController.getAllSchools();
 		
+		if(state == null || state.trim().isEmpty()) {
+			return schoolList;
+		}
+		
 		List<String[]> filteredList = new ArrayList<String[]>();
-		for (int i = 0; i < schoolList.size(); i++) {
-			String[] school = schoolList.get(i);
-			if (school[1].equals(state) || school[1] == "")
+		
+		for (String[] school : schoolList) {
+			if (school[1].equalsIgnoreCase(state))
 				filteredList.add(school);
 		}
 		
@@ -93,6 +97,14 @@ public class SystemController {
 	// this REGULAR USER ONLY method attempts to add the provided school
 	// to the list of saved schools for the provided username
 	public boolean saveSchool(String user, String school) {
+		
+		List<String> schoolsSaved1 = getSavedSchools(user);
+		
+		for(String schol: schoolsSaved1) {			
+			if(schol.equals(school)) {
+				new IllegalArgumentException("School Already Saved");
+			}
+		}
 		return this.myDBController.saveSchool(user, school);
 	}
 	
