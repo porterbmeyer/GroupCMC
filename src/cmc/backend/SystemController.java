@@ -27,18 +27,14 @@ public class SystemController {
 	 */
 	public User login(String username, String password) {
 		String[] userData = this.myDBController.getUser(username);
-		if (userData == null)
-			return null;
 		
 		User theUser = new User(userData[2], userData[3], userData[4].charAt(0), userData[0],
 				userData[1]);
 		
-		if (userData[4].charAt(0) != 'Y' || !userData[3].equals(password)) {
+		if (!theUser.password.equals(password) || theUser.activated != 'Y'){
 			return null;
 		}
-		else {
-			return theUser;
-		}
+		return theUser;
 	}
 
 	// this ADMIN ONLY method returns the list of all the users (and their data)
