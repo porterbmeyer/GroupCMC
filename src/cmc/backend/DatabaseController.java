@@ -79,14 +79,13 @@ public class DatabaseController {
 	}
 	
 	// get the list of all the universities in the DB
-	public List<String[]> getAllSchools() {
+	public List<University> getAllUniversities() {
 		String[][] dbUniversityList = this.database.university_getUniversities();
 
-		ArrayList<String[]> result = new ArrayList<String[]>();
-		for (String[] school : dbUniversityList) {
-			result.add(school);
+		ArrayList<University> result = new ArrayList<University>();
+		for (University  university: dbUniversityList) {
+			result.add(university);
 		}
-
 		return result;
 	}
 	
@@ -140,7 +139,16 @@ public class DatabaseController {
 		else {
 			return true;
 		}
+			
+	}
+	//TODO
+	public boolean removeUniversity(University u) {
+		return false;
 	}
 	
+	//TODO
+	public boolean addUniversity(University u) {
+		return false;
+	}
 	
 }
