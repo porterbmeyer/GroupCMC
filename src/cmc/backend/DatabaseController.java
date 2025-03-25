@@ -207,14 +207,30 @@ public class DatabaseController {
 	    return true;
 	}
 
-	//TODO
-	public boolean addAccount(Account acc) {
-		return false;
+	public boolean addAccount(Account acc) throws CMCException {
+	    int result = this.database.user_addUser(
+	        acc.getFirstName(),
+	        acc.getLastName(),
+	        acc.getUsername(),
+	        acc.getPassword(),
+	        acc.getType()
+	    );
+	    
+	    if (result == -1) {
+	        throw new CMCException("Error adding account to the DB");
+	    } else {
+	        return true;
+	    }
 	}
 	
-	//TODO
-	public boolean deleteAccount(Account acc) {
-		return false;
+	public boolean deleteAccount(Account acc) throws CMCException {
+	    int result = this.database.user_deleteUser(acc.getUsername());
+
+	    if (result != 1) {
+	        throw new CMCException("Error deleting account from the DB. Account not found.");
+	    } else {
+	        return true;
+	    }
 	}
 
 	public Account getAccount(String username) {
