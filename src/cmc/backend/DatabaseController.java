@@ -21,7 +21,7 @@ public class DatabaseController {
 	// UniversityDBLibrary object using your team's info.
 	public DatabaseController() {
 		// TODO: we'll need to update this to our team's actual database someday!
-		this.database = new UniversityDBLibrary("csci230", "Csci230$");
+		this.database = new UniversityDBLibrary("pmrpmd", "Csci230$");
 	}
 
 	// add a user to the db
@@ -79,14 +79,13 @@ public class DatabaseController {
 	}
 	
 	// get the list of all the universities in the DB
-	public List<String[]> getAllSchools() {
+	public List<University> getAllUniversities() {
 		String[][] dbUniversityList = this.database.university_getUniversities();
 
-		ArrayList<String[]> result = new ArrayList<String[]>();
-		for (String[] school : dbUniversityList) {
-			result.add(school);
+		ArrayList<University> result = new ArrayList<University>();
+		for (University  university: dbUniversityList) {
+			result.add(university);
 		}
-
 		return result;
 	}
 	
@@ -140,7 +139,16 @@ public class DatabaseController {
 		else {
 			return true;
 		}
+			
+	}
+	//TODO
+	public boolean removeUniversity(University u) {
+		return false;
 	}
 	
+	//TODO
+	public boolean addUniversity(University u) {
+		return false;
+	}
 	
 }

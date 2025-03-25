@@ -1,0 +1,119 @@
+package cmc.backend;
+
+import java.time.LocalDateTime;
+
+public class Account {
+	private int accountID;
+	private String username;
+	private String email;
+	private String password;
+	private LocalDateTime lastLoginTime;
+	private char type;
+	private char active;
+	/**
+	 * @param accountID
+	 * @param username
+	 * @param email
+	 * @param password
+	 * @param lastLoginTime
+	 * @param type
+	 * @param active
+	 */
+	public Account(int accountID, String username, String email, String password, LocalDateTime lastLoginTime,
+			char type, char active) {
+		super();
+		this.accountID = accountID;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.lastLoginTime = lastLoginTime;
+		this.type = type;
+		this.active = active;
+	}
+	/**
+	 * @return the accountID
+	 */
+	public int getAccountID() {
+		return accountID;
+	}
+	/**
+	 * @param accountID the accountID to set
+	 */
+	public void setAccountID(int accountID) {
+		this.accountID = accountID;
+	}
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+	/**
+	 * @param username the username to set
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	/**
+	 * @return the lastLoginTime
+	 */
+	public LocalDateTime getLastLoginTime() {
+		return lastLoginTime;
+	}
+	/**
+	 * @param lastLoginTime the lastLoginTime to set
+	 */
+	public void setLastLoginTime(LocalDateTime lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
+	/**
+	 * @return the type
+	 */
+	public char getType() {
+		return type;
+	}
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(char type) {
+		this.type = type;
+	}
+	/**
+	 * @return the active
+	 */
+	public char getActive() {
+		return active;
+	}
+	/**
+	 * @param active the active to set
+	 */
+	public void setActive(char active) {
+		this.active = active;
+	}
+	
+	
+}
