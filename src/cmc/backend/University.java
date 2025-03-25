@@ -68,6 +68,7 @@ public class University {
 		this.socialScale = socialScale;
 		this.qualityScale = qualityScale;
 	}
+	
 	public University(String name, String location, String state, String population, String tuition, String control,
 			String percentFemale, String satVerbal, String satMath, String expenses, String percentFinancialAid,
 			String numberApplicants, String acceptanceRate, String enrollmentRate, String academicScale, String socialScale,
@@ -331,7 +332,9 @@ public class University {
 		this.tuition = tuition;
 	}
 	
-	
+	public String toString() {
+		return "Name: " + this.name + "\n" + "Location: " + this.location + "State: " + this.state + "Population: " + this.population + "Tuition: " + this.tuition;
+	}
 	
 	
 }

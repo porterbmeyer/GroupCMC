@@ -51,8 +51,7 @@ public class Account {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	
+
 	/**
 	 * @return the accountID
 	 */

@@ -89,17 +89,6 @@ public class UserInteraction {
 		return this.theSystemController.search(state);
 	}
 	
-	// ask for a school name to save, and attempt to save that school
-	// to the list for the currently-logged-in user
-	public boolean saveSchool(Scanner s) {
-		System.out.print("School Name: ");
-		String schoolName = s.nextLine();
-
-		if (this.loggedInUser == null)
-			return false;
-		else
-			return this.theSystemController.saveSchool(this.loggedInUser.username, schoolName);
-	}
 	
 	// get the list of saved school names for the currently-logged-in user
 	public List<String> getSavedSchools() {
