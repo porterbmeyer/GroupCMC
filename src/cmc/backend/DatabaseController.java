@@ -87,7 +87,7 @@ public class DatabaseController {
 		
 		ArrayList<University> result = new ArrayList<University>();
 		for (String[] university: dbUniversityList) {
-			result.add(new University(university[0],university[1],university[2],university[3],university[4],university[5],university[6],university[7],university[8],university[9],university[10], university[11], university[12], university[13], university[14], university[15], university[16]));
+			result.add(new University(university[0],university[1],university[2],university[3],university[4],university[5],university[6],university[7],university[8],university[9],university[10], university[11], university[12], university[13], university[14], university[15]));
 		}
 		return result;
 	}
@@ -96,7 +96,7 @@ public class DatabaseController {
 		String[][] dbUniversityList  = this.database.university_getUniversities();
 		for (String[] university: dbUniversityList) {
 			if (university[2].equals(name))
-				return new University(university[0],university[1],university[2],university[3],university[4],university[5],university[6],university[7],university[8],university[9],university[10], university[11], university[12], university[13], university[14], university[15], university[16]);
+				return new University(university[0],university[1],university[2],university[3],university[4],university[5],university[6],university[7],university[8],university[9],university[10], university[11], university[12], university[13], university[14], university[15]);
 		}
 		throw new CMCException("Was not able to find specific University specified");
 	}
@@ -250,20 +250,11 @@ public class DatabaseController {
 	    return true;
 	}
 	
+	//TODO fix this
 	public List<University> searchUniversities(String state) {
 	    String[][] dbUniversityList = this.database.university_getUniversities();
 	    List<University> result = new ArrayList<>();
 
-	    for (String[] university : dbUniversityList) {
-	        if (!state.isEmpty() && university[3].equalsIgnoreCase(state)) {
-	            result.add(new University(
-	                university[0], university[1], university[2], university[3], university[4], 
-	                university[5], university[6], university[7], university[8], university[9],
-	                university[10], university[11], university[12], university[13], university[14],
-	                university[15], university[16]
-	            ));
-	        }
-	    }
 	    return result;
 	}
 }

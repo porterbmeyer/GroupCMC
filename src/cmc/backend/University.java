@@ -6,12 +6,11 @@ public class University {
 	private String location;
 	private String state;
 	private int population;
-	private double tuition;
 	private String control;
 	private double percentFemale;
 	private int satVerbal;
 	private int satMath;
-	private double expenses;
+	private int expenses;
 	private double percentFinancialAid;
 	private int numberApplicants;
 	private double acceptanceRate;
@@ -27,7 +26,6 @@ public class University {
 	 * @param location
 	 * @param state
 	 * @param population
-	 * @param tuition
 	 * @param control
 	 * @param percentFemale
 	 * @param satVerbal
@@ -45,13 +43,11 @@ public class University {
 	
 	/** This is a test comment
 	 */
-	public University(String name, String state, String location, String control, int population, int percentFemale, int satVerbal, int satMath, int tuition, int percentFinancialAid, int numberApplicants, int percAdmit, int enrollmentRate, int academicScale, int socialScale, int qualOfLife) {
-		super();
+	public University(String name, String state, String location, String control, int population, double percentFemale, int satVerbal, int satMath, int expenses, double percentFinancialAid, int numberApplicants, double acceptanceRate, double enrollmentRate, int academicScale, int socialScale, int qualityScale) {
 		this.name = name;
 		this.location = location;
 		this.state = state;
 		this.population = population;
-		this.tuition = tuition;
 		this.control = control;
 		this.percentFemale = percentFemale;
 		this.satVerbal = satVerbal;
@@ -66,21 +62,17 @@ public class University {
 		this.qualityScale = qualityScale;
 	}
 	
-	public University(String name, String location, String state, String population, String tuition, String control,
-			String percentFemale, String satVerbal, String satMath, String expenses, String percentFinancialAid,
-			String numberApplicants, String acceptanceRate, String enrollmentRate, String academicScale, String socialScale,
-			String qualityScale) {
-		super();
+	public University(String name, String state, String location, String control, String population, String percentFemale, String satVerbal, String satMath, String expenses, String percentFinancialAid, String numberApplicants, String acceptanceRate, String enrollmentRate, String academicScale, String socialScale, String qualityScale) {
+		
 		this.name = name;
 		this.location = location;
 		this.state = state;
-		this.population = Integer.parseInt(population);
-		this.tuition = Double.parseDouble(tuition);
+		this.population = Integer.parseInt(population);	
 		this.control = control;
 		this.percentFemale = Double.parseDouble(percentFemale);
 		this.satVerbal = Integer.parseInt(satVerbal);
 		this.satMath = Integer.parseInt(satMath);
-		this.expenses = Double.parseDouble(expenses);
+		this.expenses = Integer.parseInt(expenses);
 		this.percentFinancialAid = Double.parseDouble(percentFinancialAid);
 		this.numberApplicants = Integer.parseInt(numberApplicants);
 		this.acceptanceRate = Double.parseDouble(acceptanceRate);
@@ -169,7 +161,7 @@ public class University {
 	/**
 	 * @param expenses the expenses to set
 	 */
-	public void setExpenses(double expenses) {
+	public void setExpenses(int expenses) {
 		this.expenses = expenses;
 	}
 
@@ -315,23 +307,4 @@ public class University {
 		this.population = population;
 	}
 
-	/**
-	 * @return the tuition
-	 */
-	public double getTuition() {
-		return tuition;
-	}
-
-	/**
-	 * @param tuition the tuition to set
-	 */
-	public void setTuition(double tuition) {
-		this.tuition = tuition;
-	}
-	
-	public String toString() {
-		return "Name: " + this.name + "\n" + "Location: " + this.location + "State: " + this.state + "Population: " + this.population + "Tuition: " + this.tuition;
-	}
-	
-	
 }
