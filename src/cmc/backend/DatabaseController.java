@@ -67,11 +67,11 @@ public class DatabaseController {
 	}
 	
 	// get the list of all the users in the DB
-	public List<User> getAllUsers() {
-		User[] dbUserList = this.database.user_getUsers();
+	public List<String[]> getAllUsers() {
+		String[][] dbUserList = this.database.user_getUsers();
 		
-		List<User> result = new List<User>();
-		for (User user : dbUserList) {
+		ArrayList<String[]> result = new ArrayList<String[]>();
+		for (String[] user : dbUserList) {
 			result.add(user);
 		}
 		
@@ -80,16 +80,15 @@ public class DatabaseController {
 	
 	// get the list of all the universities in the DB
 	public List<University> getAllUniversities() {
-		University[][] dbUniversityList = this.database.university_getUniversities();
-
+		String[][] dbUniversityList  = this.database.university_getUniversities();
+		
 		ArrayList<University> result = new ArrayList<University>();
-		for (University[]  university: dbUniversityList) {
-			result.add(university);
+		for (String[] university: dbUniversityList) {
+			result.add(new University(university[0],university[1],university[2],university[3],university[4],university[5],university[6],university[7],university[8],university[9],university[10], university[11], university[12], university[13], university[14], university[15], university[16]));
 		}
 		return result;
 	}
 	
-	List<University> universityList = this.myDBcontroller.getAllUniversities();
 	// save a school to a particular user's list
 	// TODO: It feels like we should be able to do this as part of
 	//       "updating" a user in the DB.
@@ -142,50 +141,14 @@ public class DatabaseController {
 		}
 			
 	}
-	
-	public boolean removeUniversity(University u) throws CMCException {
-	    if (u == null) {
-	        throw new CMCException("Cannot remove a null university.");
-	    }
-
-	    int result = this.database.university_deleteUniversity(u.getName());
-
-	    if (result != 1) {
-	        throw new CMCException("Error removing university from the database. It may not exist.");
-	    }
-
-	    return true;
+	//TODO
+	public boolean removeUniversity(University u) {
+		return false;
 	}
 	
-	public boolean addUniversity(University u) throws CMCException {
-	    if (u == null) {
-	        throw new CMCException("Cannot add a null university.");
-	    }
-
-	    int result = this.database.university_addUniversity(
-	        u.getName(),
-	        u.getState(),
-	        u.getLocation(),
-	        u.getControl(),
-	        u.getPopulation(),
-	        u.getPercentFemale(),
-	        u.getSatVerbal(),
-	        u.getSatMath(),
-	        u.getExpenses(),
-	        u.getPercentFinancialAid(),
-	        u.getNumberApplicants(),
-	        u.getAcceptanceRate(),
-	        u.getEnrollmentRate(),
-	        u.getAcademicScale(),
-	        u.getSocialScale(),
-	        u.getQualityScale()
-	    );
-
-	    if (result == -1) {
-	        throw new CMCException("Error adding university to the database.");
-	    }
-
-	    return true;
+	//TODO
+	public boolean addUniversity(University u) {
+		return false;
 	}
 
 	//TODO
