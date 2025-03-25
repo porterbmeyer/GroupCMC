@@ -1,7 +1,8 @@
 package cmc.backend;
 
-import java.time.LocalDateTime;
-import java.util.List;
+
+
+import cmc.CMCException;
 
 public class AccountController {
 	
@@ -21,30 +22,52 @@ public class AccountController {
 	}
 	
 	public boolean deleteAccount(String username) {
-		List<Account> loopUnis = this.myDBcontroller.getAllaccounts();
-		
-		for(Account acc : loopUnis) {
-			if( acc.getUsername() == username) {
-				return this.myDBcontroller.deleteAccount(acc);
-			}
+		Account acc = this.myDBcontroller.getAccount(username);
+		if (acc != null) {
+			return this.myDBcontroller.deleteAccount(acc);
 		}
 		return false;
 	}
 	
-	public Account updateAccountDetails(String firstname, String lastname, String username, String Password, char type, char active) {
+	public Account updateAccountDetails(String firstname, String lastname, String username, String password, char type, char active) throws CMCException {
+		Account acc = this.myDBcontroller.getAccount(username);
+		if (acc != null) {
+			acc.setFirstName(firstname);
+			acc.setLastName(lastname);
+			acc.setPassword(password);
+			acc.setType(type);
+			acc.setActive(active);
+			this.myDBcontroller.updateAccount(acc);
+			return acc;
+		}
 		return null;
 	}
 	
-	public String changePassword(String username, String oldPassword, String newPassword) {
-		return null;
+	public String changePassword(String username, String oldPassword, String newPassword) throws CMCException {
+		Account acc = this.myDBcontroller.getAccount(username);
+		if (acc != null) {
+			if (acc.getPassword().equals(oldPassword)) {
+				acc.setPassword(newPassword);
+				this.myDBcontroller.updateAccount(acc);
+				return "Password changed successfully.";
+			} else {
+				return "Old password is incorrect.";
+			}
+		}
+		return "Account not found.";
 	}
 	
 	public Account login(String userName, String password) {
+		Account acc = this.myDBcontroller.getAccount(userName);
+		if (acc != null && acc.getPassword().equals(password) && acc.getActive() == 'Y') {
+			return acc;
+		}
 		return null;
 	}
 	
 	public boolean logOut() {
-		return false;
+		return true;
 	}
-	
 }
+	
+

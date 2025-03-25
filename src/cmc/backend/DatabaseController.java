@@ -44,7 +44,6 @@ public class DatabaseController {
 	public boolean removeUser(String username) throws CMCException {
 		int result = this.database.user_deleteUser(username);
 		if (result != 1) {
-			// TODO: How can we tell the difference?
 			throw new CMCException("Error removing user from the DB.  Not present?  DB error?");
 		}
 		else {
@@ -208,9 +207,39 @@ public class DatabaseController {
 		return false;
 	}
 
-	//TODO
-	public List<Account> getAllaccounts() {
-		return null;
+	public Account getAccount(String username) {
+	    String[] userData = getUser(username);
+	    
+	    if (userData != null) {
+	        return new Account(
+	            userData[0],
+	            userData[1],
+	            userData[2],
+	            userData[3],
+	            userData[4].charAt(0),
+	            userData[5].charAt(0)
+	        );
+	    }
+	    return null;
 	}
-		
+	public boolean updateAccount(Account acc) throws CMCException {
+	    if (acc == null) {
+	        throw new CMCException("Cannot update a null account.");
+	    }
+
+	    int result = this.database.user_editUser(
+	        acc.getUsername(),
+	        acc.getFirstName(),
+	        acc.getFirstName(),
+	        acc.getPassword(),
+	        acc.getType(),
+	        acc.getActive()
+	    );
+
+	    if (result == -1) {
+	        throw new CMCException("Error updating account in the database.");
+	    }
+	    
+	    return true;
+	}
 }
