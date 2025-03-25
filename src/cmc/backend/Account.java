@@ -50,6 +50,17 @@ public class Account {
 		this.type = type;
 		this.active = active;
 	}
+	
+	public Account(String accountID, String username, String email, String password, String type, String active) {
+		super();
+		this.accountID = Integer.parseInt(accountID);
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.type = type.charAt(0);
+		this.active = active.charAt(0);
+	}
+	
 	public Account(String username, String password, char type, String firstName, String lastName) {
 		// TODO Auto-generated constructor stub
 	}

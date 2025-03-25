@@ -39,7 +39,7 @@ public class UniversityController {
 		return universityList;
 	}
 	
-	public boolean editUniversity(String name) {
+	public int editUniversity(String name) {
 		University newUni = getUniversityByName(name);
 		
 		if(newUni == null) {

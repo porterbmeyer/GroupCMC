@@ -26,7 +26,7 @@ public class AdminInteraction {
 			return this.myDBcontroller.removeUniversity(u);
 		}
 	}
+	
 
 	}
 	
-}
