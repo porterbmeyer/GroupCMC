@@ -68,7 +68,29 @@ public class University {
 		this.socialScale = socialScale;
 		this.qualityScale = qualityScale;
 	}
-
+	public University(String name, String location, String state, String population, String tuition, String control,
+			String percentFemale, String satVerbal, String satMath, String expenses, String percentFinancialAid,
+			String numberApplicants, String acceptanceRate, String enrollmentRate, String academicScale, String socialScale,
+			String qualityScale) {
+		super();
+		this.name = name;
+		this.location = location;
+		this.state = state;
+		this.population = Integer.parseInt(population);
+		this.tuition = Double.parseDouble(tuition);
+		this.control = control;
+		this.percentFemale = Double.parseDouble(percentFemale);
+		this.satVerbal = Integer.parseInt(satVerbal);
+		this.satMath = Integer.parseInt(satMath);
+		this.expenses = Double.parseDouble(expenses);
+		this.percentFinancialAid = Double.parseDouble(percentFinancialAid);
+		this.numberApplicants = Integer.parseInt(numberApplicants);
+		this.acceptanceRate = Double.parseDouble(acceptanceRate);
+		this.enrollmentRate = Double.parseDouble(enrollmentRate);
+		this.academicScale = Integer.parseInt(academicScale);
+		this.socialScale = Integer.parseInt(socialScale);
+		this.qualityScale = Integer.parseInt(qualityScale);
+	}
 	/**
 	 * @return the qualityScale
 	 */
