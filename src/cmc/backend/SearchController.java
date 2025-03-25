@@ -7,6 +7,6 @@ public class SearchController {
 
 	public SearchController() {
 		// TODO: we'll need to update this to our team's actual database someday!
-		this.database = new UniversityDBLibrary("csci230", "Csci230$");
+		this.database = new UniversityDBLibrary("pmrpmd", "Csci230$");
 	}
 }

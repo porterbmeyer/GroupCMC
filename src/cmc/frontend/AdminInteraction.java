@@ -2,17 +2,19 @@ package cmc.frontend;
 
 import java.util.List;
 
+import cmc.CMCException;
 import cmc.backend.AccountController;
 import cmc.backend.Admin;
 import cmc.backend.DatabaseController;
 import cmc.backend.University;
+import cmc.backend.UniversityController;
 
-java.util.*;
 
 public class AdminInteraction {
 	
 	private AccountController accountController;
 	private DatabaseController databaseController;
+	private UniversityController universityController;
 	private Admin loggedInAdmin;
 	
 	public boolean createUser(String firstname, String lastname, String username, String password, char type, char active) {
@@ -20,22 +22,16 @@ public class AdminInteraction {
 	}
 	
 	
-	public List<User> getAllUsers{
-		List<University> universityList = this.AccountController.getAllUniversities();
-		return 
+	public List<String[]> getAllUsers(){
+		return this.databaseController.getAllUsers();
 	}
 	
-	public boolean deleteUser(int userID) {
-		Admin u = getUniversityByName(userID);
-		
-		if(u == null) {
-			return false;
-		}
-		else {
-			return this.myDBcontroller.removeUniversity(u);
-		}
+	public boolean deleteUser(String username) throws CMCException {
+		return this.databaseController.removeUser(username);
 	}
 	
-
+	public boolean addUniversity(University u) throws CMCException {
+		return this.databaseController.addUniversity(u);
 	}
+}
 	
