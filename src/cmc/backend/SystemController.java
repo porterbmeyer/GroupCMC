@@ -25,10 +25,10 @@ public class SystemController {
 	 * @return the matching User object if the username and password match
 	 * a database entry, or null otherwise
 	 */
-	public User login(String username, String password) {
+	public Account login(String username, String password) {
 		String[] userData = this.myDBController.getUser(username);
 		
-		User theUser = new User(userData[2], userData[3], userData[4].charAt(0), userData[0],
+		Account theUser = new Account(userData[2], userData[3], userData[4].charAt(0), userData[0],
 				userData[1]);
 		
 		if (!theUser.password.equals(password) || theUser.activated != 'Y'){

@@ -5,6 +5,7 @@ import java.util.List;
 public class User{
 	
 	private List<University> savedSchoolList;
+	
 
 	/**
 	 * @param savedSchoolList
@@ -13,6 +14,8 @@ public class User{
 		super();
 		this.savedSchoolList = savedSchoolList;
 	}
+
+	
 
 	/**
 	 * @return the savedSchoolList

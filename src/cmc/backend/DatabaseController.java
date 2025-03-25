@@ -67,11 +67,11 @@ public class DatabaseController {
 	}
 	
 	// get the list of all the users in the DB
-	public List<String[]> getAllUsers() {
-		String[][] dbUserList = this.database.user_getUsers();
+	public List<User> getAllUsers() {
+		User[] dbUserList = this.database.user_getUsers();
 		
-		ArrayList<String[]> result = new ArrayList<String[]>();
-		for (String[] user : dbUserList) {
+		List<User> result = new List<User>();
+		for (User user : dbUserList) {
 			result.add(user);
 		}
 		
@@ -80,15 +80,16 @@ public class DatabaseController {
 	
 	// get the list of all the universities in the DB
 	public List<University> getAllUniversities() {
-		String[][] dbUniversityList = this.database.university_getUniversities();
+		University[][] dbUniversityList = this.database.university_getUniversities();
 
 		ArrayList<University> result = new ArrayList<University>();
-		for (University  university: dbUniversityList) {
+		for (University[]  university: dbUniversityList) {
 			result.add(university);
 		}
 		return result;
 	}
 	
+	List<University> universityList = this.myDBcontroller.getAllUniversities();
 	// save a school to a particular user's list
 	// TODO: It feels like we should be able to do this as part of
 	//       "updating" a user in the DB.
@@ -141,14 +142,50 @@ public class DatabaseController {
 		}
 			
 	}
-	//TODO
-	public boolean removeUniversity(University u) {
-		return false;
+	
+	public boolean removeUniversity(University u) throws CMCException {
+	    if (u == null) {
+	        throw new CMCException("Cannot remove a null university.");
+	    }
+
+	    int result = this.database.university_deleteUniversity(u.getName());
+
+	    if (result != 1) {
+	        throw new CMCException("Error removing university from the database. It may not exist.");
+	    }
+
+	    return true;
 	}
 	
-	//TODO
-	public boolean addUniversity(University u) {
-		return false;
+	public boolean addUniversity(University u) throws CMCException {
+	    if (u == null) {
+	        throw new CMCException("Cannot add a null university.");
+	    }
+
+	    int result = this.database.university_addUniversity(
+	        u.getName(),
+	        u.getState(),
+	        u.getLocation(),
+	        u.getControl(),
+	        u.getPopulation(),
+	        u.getPercentFemale(),
+	        u.getSatVerbal(),
+	        u.getSatMath(),
+	        u.getExpenses(),
+	        u.getPercentFinancialAid(),
+	        u.getNumberApplicants(),
+	        u.getAcceptanceRate(),
+	        u.getEnrollmentRate(),
+	        u.getAcademicScale(),
+	        u.getSocialScale(),
+	        u.getQualityScale()
+	    );
+
+	    if (result == -1) {
+	        throw new CMCException("Error adding university to the database.");
+	    }
+
+	    return true;
 	}
 	
 }

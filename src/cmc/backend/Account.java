@@ -10,6 +10,32 @@ public class Account {
 	private LocalDateTime lastLoginTime;
 	private char type;
 	private char active;
+	private String firstName;
+	private String lastName;
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	/**
 	 * @param accountID
 	 * @param username
@@ -29,6 +55,9 @@ public class Account {
 		this.lastLoginTime = lastLoginTime;
 		this.type = type;
 		this.active = active;
+	}
+	public Account(String username, String password, char type, String firstName, String lastName) {
+		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * @return the accountID
