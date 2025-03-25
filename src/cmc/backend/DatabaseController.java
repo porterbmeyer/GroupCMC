@@ -177,9 +177,7 @@ public class DatabaseController {
 	}
 	
 	public boolean addUniversity(String name, String state, String location, String control, int numOfStudents, int percFemale, int SATVerbal, int SATMath, int expenses, int percFinAId, int numOfApps, int percAdmit, int percEnroll, int academicScale, int socialScale, int qualOfLife) throws CMCException {
-	    if (u == null) {
-	        throw new CMCException("Cannot add a null university.");
-	    }
+	   
 
 	    int result = this.database.university_addUniversity(name, state, location, control, numOfStudents, percFemale, SATVerbal, SATMath, expenses, percFinAId, numOfApps, percAdmit, percEnroll, academicScale, socialScale, qualOfLife);
 

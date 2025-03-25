@@ -17,11 +17,8 @@ public class AdminInteraction {
 	private AccountController accountController;
 	private UniversityController universityController;
 	private Admin loggedInAdmin;
+	private DatabaseController databaseController;
 	
-<<<<<<< Updated upstream
-	public boolean createUser(String firstname, String lastname, String username, String password, char type, char active) throws CMCException {
-		return this.accountController.createAccount(firstname, lastname, username, password, type, active);
-=======
 	public boolean createUser(Scanner s) throws CMCException {
 		
 		System.out.print("First Name: ");
@@ -37,21 +34,22 @@ public class AdminInteraction {
 		String active = "Y";
 		
 		return this.accountController.createAccount(firstname, lastname, userName, Password, type.charAt(0), active.charAt(0));
->>>>>>> Stashed changes
 	}
 	
 	
 	public List<User> getAllUsers(){
 		return this.databaseController.getAllUsers();
+		
 	}
 	
 	public boolean deleteUser(Scanner s) throws CMCException {
 		String username = s.nextLine();
-		return this.databaseController.removeUser(username);
+		return this.accountController.deleteAccount(username);
 	}
 	
 	public boolean addUniversity(Scanner s) throws CMCException {
-		return this.universityController.addUniversity(u);
+		return false;
+		//return this.universityController.addUniversity(u);
 	}
 }
 	
