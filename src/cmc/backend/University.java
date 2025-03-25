@@ -45,10 +45,7 @@ public class University {
 	
 	/** This is a test comment
 	 */
-	public University(String name, String location, String state, int population, double tuition, String control,
-			double percentFemale, int satVerbal, int satMath, double expenses, double percentFinancialAid,
-			int numberApplicants, double acceptanceRate, double enrollmentRate, int academicScale, int socialScale,
-			int qualityScale) {
+	public University(String name, String state, String location, String control, int population, int percentFemale, int satVerbal, int satMath, int tuition, int percentFinancialAid, int numberApplicants, int percAdmit, int enrollmentRate, int academicScale, int socialScale, int qualOfLife) {
 		super();
 		this.name = name;
 		this.location = location;

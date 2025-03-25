@@ -15,12 +15,29 @@ import cmc.backend.User;
 public class AdminInteraction {
 	
 	private AccountController accountController;
-	private DatabaseController databaseController;
 	private UniversityController universityController;
 	private Admin loggedInAdmin;
 	
+<<<<<<< Updated upstream
 	public boolean createUser(String firstname, String lastname, String username, String password, char type, char active) throws CMCException {
 		return this.accountController.createAccount(firstname, lastname, username, password, type, active);
+=======
+	public boolean createUser(Scanner s) throws CMCException {
+		
+		System.out.print("First Name: ");
+		String firstname = s.nextLine();
+		System.out.print("Last Name: ");
+		String lastname = s.nextLine();
+		System.out.print("Username Name: ");
+		String userName = s.nextLine();
+		System.out.print("Password: ");
+		String Password = s.nextLine();
+		System.out.print("Admin? (A or U): ");
+		String type = s.nextLine();
+		String active = "Y";
+		
+		return this.accountController.createAccount(firstname, lastname, userName, Password, type.charAt(0), active.charAt(0));
+>>>>>>> Stashed changes
 	}
 	
 	
@@ -33,8 +50,8 @@ public class AdminInteraction {
 		return this.databaseController.removeUser(username);
 	}
 	
-	public boolean addUniversity(University u) throws CMCException {
-		return this.databaseController.addUniversity(u);
+	public boolean addUniversity(Scanner s) throws CMCException {
+		return this.universityController.addUniversity(u);
 	}
 }
 	
