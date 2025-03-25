@@ -170,9 +170,35 @@ public class DatabaseController {
 		return false;
 	}
 	
-	//TODO
-	public boolean addUniversity(University u) {
-		return false;
+	public boolean addUniversity(University u) throws CMCException {
+	    if (u == null) {
+	        throw new CMCException("Cannot add a null university.");
+	    }
+
+	    int result = this.database.university_addUniversity(
+	        u.getName(),
+	        u.getState(),
+	        u.getLocation(),
+	        u.getControl(),
+	        u.getPopulation(),
+	        u.getPercentFemale(),
+	        u.getSatVerbal(),
+	        u.getSatMath(),
+	        u.getExpenses(),
+	        u.getPercentFinancialAid(),
+	        u.getNumberApplicants(),
+	        u.getAcceptanceRate(),
+	        u.getEnrollmentRate(),
+	        u.getAcademicScale(),
+	        u.getSocialScale(),
+	        u.getQualityScale()
+	    );
+
+	    if (result == -1) {
+	        throw new CMCException("Error adding university to the database.");
+	    }
+
+	    return true;
 	}
 
 	//TODO
