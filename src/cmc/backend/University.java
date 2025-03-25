@@ -332,7 +332,9 @@ public class University {
 		this.tuition = tuition;
 	}
 	
-	
+	public String toString() {
+		return "Name: " + this.name + "\n" + "Location: " + this.location + "State: " + this.state + "Population: " + this.population + "Tuition: " + this.tuition;
+	}
 	
 	
 }
