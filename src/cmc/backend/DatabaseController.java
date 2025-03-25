@@ -165,9 +165,19 @@ public class DatabaseController {
 		}
 			
 	}
-	//TODO
-	public boolean removeUniversity(University u) {
-		return false;
+
+	public boolean removeUniversity(University u) throws CMCException {
+	    if (u == null) {
+	        throw new CMCException("Cannot remove a null university.");
+	    }
+
+	    int result = this.database.university_deleteUniversity(u.getName());
+
+	    if (result != 1) {
+	        throw new CMCException("Error removing university from the database. It may not exist.");
+	    }
+
+	    return true;
 	}
 	
 	public boolean addUniversity(University u) throws CMCException {
