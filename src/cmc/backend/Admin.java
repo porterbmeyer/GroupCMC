@@ -7,18 +7,19 @@ public class Admin extends Account{
 	private List<University> schoolList;
 	
 	/**
-	 * @param accountID
+	 * @param firstname
+	 * @param lastname
 	 * @param username
-	 * @param email
 	 * @param password
 	 * @param type
 	 * @param active
 	 */
-	public Admin(int accountID, String username, String email, String password, char type, char active) {
-		super(accountID, username, email, password, type, active);
+	public Admin(String firstname, String lastname, String username, String password, char type, char active) {
+		super(firstname, lastname, username, password, type, active);
 		this.userList = new ArrayList<User>();
 		this.schoolList = new ArrayList<University>();
 	}
+	
 	/**
 	 * @return the userList
 	 */

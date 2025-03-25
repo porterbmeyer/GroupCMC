@@ -1,9 +1,7 @@
 package cmc.backend;
 
 public class Account {
-	private int accountID;
 	private String username;
-	private String email;
 	private String password;
 	private char type;
 	private char active;
@@ -11,20 +9,20 @@ public class Account {
 	private String lastName;
 	
 	/**
-	 * @param accountID
 	 * @param username
-	 * @param email
+	 * @param lastname
+	 * @param firstname
 	 * @param password
 	 * @param type
 	 * @param active
 	 */
-	public Account(int accountID, String username, String email, String password, char type, char active) {
-		this.accountID = accountID;
+	public Account(String firstname, String lastname, String username, String password, char type, char active) {
 		this.username = username;
-		this.email = email;
 		this.password = password;
 		this.type = type;
 		this.active = active;
+		this.firstName = firstname;
+		this.lastName = lastname;
 	}
 	
 	/**
@@ -53,18 +51,6 @@ public class Account {
 	}
 
 	/**
-	 * @return the accountID
-	 */
-	public int getAccountID() {
-		return accountID;
-	}
-	/**
-	 * @param accountID the accountID to set
-	 */
-	public void setAccountID(int accountID) {
-		this.accountID = accountID;
-	}
-	/**
 	 * @return the username
 	 */
 	public String getUsername() {
@@ -76,18 +62,7 @@ public class Account {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 	/**
 	 * @return the password
 	 */

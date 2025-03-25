@@ -8,15 +8,15 @@ public class User extends Account{
 	private List<University> savedSchoolList;
 
 	/**
-	 * @param accountID
+	 * @param firstname
+	 * @param lastname
 	 * @param username
-	 * @param email
 	 * @param password
 	 * @param type
 	 * @param active
 	 */
-	public User(int accountID, String username, String email, String password, char type, char active) {
-		super(accountID, username, email, password, type, active);
+	public User(String firstname, String lastname, String username, String password, char type, char active) {
+		super(firstname, lastname, username, password, type, active);
 		this.savedSchoolList = new ArrayList<University>();
 	}
 

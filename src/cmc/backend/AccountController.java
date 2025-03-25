@@ -14,17 +14,17 @@ public class AccountController {
 		this.myDBcontroller = myDBcontroller;
 	}
 	
-	public boolean createAccount(int accountID, String username, String email, String password, char type, char active) {
-		Account newacc = new Account(accountID, username, email, password, 'U', 'Y');
+	public boolean createAccount(String firstname, String lastname, String username, String password, char type, char active) {
+		Account newacc = new Account(firstname, lastname, username, password, 'U', 'Y');
 		
 		return this.myDBcontroller.addAccount(newacc);
 	}
 	
-	public boolean deleteAccount(int accountID) {
+	public boolean deleteAccount(String username) {
 		List<Account> loopUnis = this.myDBcontroller.getAllaccounts();
 		
 		for(Account acc : loopUnis) {
-			if( acc.getAccountID() == accountID) {
+			if( acc.getUsername() == username) {
 				return this.myDBcontroller.deleteAccount(acc);
 			}
 		}
