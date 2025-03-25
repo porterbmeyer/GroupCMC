@@ -39,6 +39,7 @@ public class UniversityController {
 		return universityList;
 	}
 	
+	//TODO finish this enhancement
 	public boolean editUniversity(String name) {
 		University newUni = getUniversityByName(name);
 		

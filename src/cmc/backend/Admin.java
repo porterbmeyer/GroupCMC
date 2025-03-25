@@ -2,17 +2,22 @@ package cmc.backend;
 
 import java.util.*;
 
-public class Admin {
+public class Admin extends Account{
 	private List<User> userList;
 	private List<University> schoolList;
+	
 	/**
-	 * @param userList
-	 * @param schoolList
+	 * @param accountID
+	 * @param username
+	 * @param email
+	 * @param password
+	 * @param type
+	 * @param active
 	 */
-	public Admin(List<User> userList, List<University> schoolList) {
-		super();
-		this.userList = userList;
-		this.schoolList = schoolList;
+	public Admin(int accountID, String username, String email, String password, char type, char active) {
+		super(accountID, username, email, password, type, active);
+		this.userList = new ArrayList<User>();
+		this.schoolList = new ArrayList<University>();
 	}
 	/**
 	 * @return the userList

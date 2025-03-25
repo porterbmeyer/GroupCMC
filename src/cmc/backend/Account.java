@@ -9,6 +9,24 @@ public class Account {
 	private char active;
 	private String firstName;
 	private String lastName;
+	
+	/**
+	 * @param accountID
+	 * @param username
+	 * @param email
+	 * @param password
+	 * @param type
+	 * @param active
+	 */
+	public Account(int accountID, String username, String email, String password, char type, char active) {
+		this.accountID = accountID;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.type = type;
+		this.active = active;
+	}
+	
 	/**
 	 * @return the firstName
 	 */
@@ -33,26 +51,8 @@ public class Account {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	/**
-	 * @param accountID
-	 * @param username
-	 * @param email
-	 * @param password
-	 * @param type
-	 * @param active
-	 */
-	public Account(int accountID, String username, String email, String password, char type, char active) {
-		super();
-		this.accountID = accountID;
-		this.username = username;
-		this.email = email;
-		this.password = password;
-		this.type = type;
-		this.active = active;
-	}
-	public Account(String username, String password, char type, String firstName, String lastName) {
-		// TODO Auto-generated constructor stub
-	}
+	
+	
 	/**
 	 * @return the accountID
 	 */

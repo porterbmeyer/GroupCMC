@@ -1,21 +1,24 @@
 package cmc.backend;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class User{
+public class User extends Account{
 	
 	private List<University> savedSchoolList;
-	
 
 	/**
-	 * @param savedSchoolList
+	 * @param accountID
+	 * @param username
+	 * @param email
+	 * @param password
+	 * @param type
+	 * @param active
 	 */
-	public User(List<University> savedSchoolList) {
-		super();
-		this.savedSchoolList = savedSchoolList;
+	public User(int accountID, String username, String email, String password, char type, char active) {
+		super(accountID, username, email, password, type, active);
+		this.savedSchoolList = new ArrayList<University>();
 	}
-
-	
 
 	/**
 	 * @return the savedSchoolList

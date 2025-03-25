@@ -53,6 +53,7 @@ public class DatabaseController {
 	}
 	
 	// get a user; null if not in DB
+	//TODO make a user object and return the user object
 	public String[] getUser(String username) {
 		String[][] databaseUserStrings = this.database.user_getUsers();
 		
@@ -67,6 +68,7 @@ public class DatabaseController {
 	}
 	
 	// get the list of all the users in the DB
+	//TODO make a list of user objects and return it
 	public List<String[]> getAllUsers() {
 		String[][] dbUserList = this.database.user_getUsers();
 		

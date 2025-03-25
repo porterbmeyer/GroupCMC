@@ -28,8 +28,7 @@ public class SystemController {
 	public Account login(String username, String password) {
 		String[] userData = this.myDBController.getUser(username);
 		
-		Account theUser = new Account(userData[2], userData[3], userData[4].charAt(0), userData[0],
-				userData[1]);
+		Account theUser = new Account(userData[2], userData[3], userData[4].charAt(0), userData[0],userData[1]);
 		
 		if (!theUser.password.equals(password) || theUser.activated != 'Y'){
 			return null;
