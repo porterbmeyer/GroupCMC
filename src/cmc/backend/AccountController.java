@@ -31,12 +31,11 @@ public class AccountController {
 		return false;
 	}
 	
-	
-	public Account updateAccountDetails(String username, String email, String Password, int accountID) {
+	public Account updateAccountDetails(String firstname, String lastname, String username, String Password, char type, char active) {
 		return null;
 	}
 	
-	public String changePassword(int accountID, String oldPassword, String newPassword) {
+	public String changePassword(String username, String oldPassword, String newPassword) {
 		return null;
 	}
 	
@@ -44,7 +43,7 @@ public class AccountController {
 		return null;
 	}
 	
-	public boolean logOut(int accountID) {
+	public boolean logOut() {
 		return false;
 	}
 	

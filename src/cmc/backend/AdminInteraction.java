@@ -7,7 +7,7 @@ java.util.*;
 public class AdminInteraction {
 	
 	private AccountController accountController;
-	private User loggedInAdmin;
+	private Admin loggedInAdmin;
 	
 	
 	

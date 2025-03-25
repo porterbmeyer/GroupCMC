@@ -67,19 +67,6 @@ public class DatabaseController {
 		return null;
 	}
 	
-	//consider plans to replace getUser with this code. this return Account object instead of String Array
-	public Account getUserObject(String username) throws CMCException {
-		String[][] databaseUserStrings = this.database.user_getUsers();
-		
-		for (String[] singleUser : databaseUserStrings) {
-			String thisUsername = singleUser[2];
-			if (thisUsername.equals(username)) {
-				return new Account(singleUser[0], singleUser[1], singleUser[2], singleUser[3], singleUser[4], singleUser[5]);
-			}
-		}
-		throw new CMCException("Was not able to get Username");
-	}
-	
 	// get the list of all the users in the DB
 	//TODO make a list of user objects and return it
 	public List<String[]> getAllUsers() {

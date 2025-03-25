@@ -2,6 +2,8 @@ package cmc.backend;
 
 import java.util.List;
 
+import cmc.CMCException;
+
 public class UniversityController {
 
 	private DatabaseController myDBcontroller;
@@ -19,7 +21,7 @@ public class UniversityController {
 	 * @return boolean
 	 * @throws CMCException
 	 */
-	public boolean deleteUniversity(String uniName) {
+	public boolean deleteUniversity(String uniName) throws CMCException {
 		University u = getUniversityByName(uniName);
 		
 		if(u == null) {
@@ -56,7 +58,7 @@ public class UniversityController {
 	 * @return boolean
 	 * @throws CMCException
 	 */
-	public boolean addUniversity(University newUni) {
+	public boolean addUniversity(University newUni) throws CMCException {
 		List<University> loopUnis = getAllUniversities();
 		
 		for(University u : loopUnis) {
