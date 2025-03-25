@@ -56,10 +56,11 @@ public class DatabaseController {
 	public User getUser(String username) {
 		String[][] databaseUserStrings = this.database.user_getUsers();
 		
-		for (String[] singleUser : databaseUserStrings) {
-			String thisUsername = singleUser[2];
+		for (String[] user : databaseUserStrings) {
+			String thisUsername = user[2];
 			if (thisUsername.equals(username)) {
-				return singleUser;
+				User user1 = new User(user[0], user[1], user[2], user[3], user[4].charAt(0), user[5].charAt(0));
+				return user1;
 			}
 		}
 		
@@ -71,10 +72,10 @@ public class DatabaseController {
 	public List<User> getAllUsers() {
 		String[][] dbUserList = this.database.user_getUsers();
 		
-		ArrayList<String[]> result = new ArrayList<String[]>();
+		ArrayList<User> result = new ArrayList<User>();
 		for (String[] user : dbUserList){
-			User user = new User(user[0], user[1], user[2], user[3], user[4], user[5]);
-			result.add(user);
+			User user1 = new User(user[0], user[1], user[2], user[3], user[4].charAt(0), user[5].charAt(0));
+			result.add(user1);
 		}
 		
 		return result;
