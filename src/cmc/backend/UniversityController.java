@@ -52,18 +52,9 @@ public class UniversityController {
 	 * @return boolean
 	 * @throws CMCException
 	 */
-	public boolean addUniversity(String name, String location, String state, int population, double tuition, String control,
-			double percentFemale, int satVerbal, int satMath, double expenses, double percentFinancialAid,
-			int numberApplicants, double acceptanceRate, double enrollmentRate, int academicScale, int socialScale,
-			int qualityScale) throws CMCException {
-		List<University> loopUnis = getAllUniversities();
+	public boolean addUniversity(String name, String state, String location, String control, int numOfStudents, int percFemale, int SATVerbal, int SATMath, int expenses, int percFinAId, int numOfApps, int percAdmit, int percEnroll, int academicScale, int socialScale, int qualOfLife) throws CMCException {
 		
-		for(University u : loopUnis) {
-			if(u == newUni) {
-				return false;
-			}
-		}
-		return this.myDBcontroller.addUniversity(name,location, state, population, tuition, control, percentFemale, satVerbal, satMath, expenses, percentFinancialAid, numberApplicants, acceptanceRate, enrollmentRate, academicScale, socialScale,qualityScale);
+		return this.myDBcontroller.addUniversity(name, state, location, control, numOfStudents, percFemale, SATVerbal, SATMath, expenses, percFinAId, numOfApps, percAdmit, percEnroll, academicScale, socialScale, qualOfLife);
 	}
 	
 	/**
