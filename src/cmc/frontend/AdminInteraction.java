@@ -19,33 +19,18 @@ public class AdminInteraction {
 	private UniversityController universityController;
 	private Admin loggedInAdmin;
 	
-	public boolean createUser(Scanner s) {
-		
-		System.out.print("First Name: ");
-		String firstname = s.nextLine();
-		System.out.print("Last Name: ");
-		String lastname = s.nextLine();
-		System.out.print("Username Name: ");
-		String userName = s.nextLine();
-		System.out.print("Password: ");
-		String Password = s.nextLine();
-		System.out.print("Admin? (A or U): ");
-		String type = s.nextLine();
-		String active = "Y";
-		
-		return this.accountController.createAccount(firstname, lastname, userName, Password, type.charAt(0), active.charAt(0));
+	public boolean createUser(String firstname, String lastname, String username, String password, char type, char active) throws CMCException {
+		return this.accountController.createAccount(firstname, lastname, username, password, type, active);
 	}
+	
 	
 	public List<User> getAllUsers(){
-		return this.loggedInAdmin.getUserList();
+		return this.databaseController.getAllUsers();
 	}
 	
-	public boolean deleteUser(Scanner username) throws CMCException {
-		
-		System.out.println("Username: ");
-		
-		String user = username.nextLine();
-		return this.accountController.deleteAccount(user);
+	public boolean deleteUser(Scanner s) throws CMCException {
+		String username = s.nextLine();
+		return this.databaseController.removeUser(username);
 	}
 	
 	public boolean addUniversity(University u) throws CMCException {

@@ -8,12 +8,8 @@ public class AccountController {
 	
 	private DatabaseController myDBcontroller;
 
-	/**
-	 * @param myDBcontroller
-	 */
-	public AccountController(DatabaseController myDBcontroller) {
-		this.myDBcontroller = myDBcontroller;
-	}
+
+
 	
 	public boolean createAccount(String firstname, String lastname, String username, String password, char type, char active) throws CMCException {
 		Account newacc = new Account(firstname, lastname, username, password, 'U', 'Y');

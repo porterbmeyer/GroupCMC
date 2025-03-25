@@ -8,13 +8,7 @@ public class UniversityController {
 
 	private DatabaseController myDBcontroller;
 
-	/**
-	 * @param myDBcontroller
-	 */
-	public UniversityController(DatabaseController myDBcontroller) {
-		this.myDBcontroller = myDBcontroller;
-	}
-	
+
 	/**
 	 * method deleteUniversity removes university from the DB
 	 * @param uniName

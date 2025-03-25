@@ -1,5 +1,6 @@
 package cmc.frontend;
 
+import cmc.backend.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,7 +11,8 @@ public class UserInteraction {
 	
 	private User loggedInUser;
 	
-	private SystemController theSystemController;
+	private AccountController accountController;
+	private DatabaseController databaseControllerl
 	
 	// Construct a UserInteraction using the basic (no parameter)
 	// SystemController as the single underlying controller object.
@@ -104,5 +106,7 @@ public class UserInteraction {
 	public User getLoggedInUser() {
 		return this.loggedInUser;
 	}
+	
+	
 
 }
