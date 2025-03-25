@@ -100,5 +100,9 @@ public class Account {
 		this.active = active;
 	}
 	
-	
+    private boolean isAdmin;
+
+    public boolean isAdmin() {
+        return this.isAdmin;
+    }
 }

@@ -34,6 +34,6 @@ public class User extends Account{
 		this.savedSchoolList = savedSchoolList;
 	}
 
-
+	
 	
 }

@@ -5,7 +5,7 @@ import cmc.backend.*;
 import java.util.List;
 import java.util.Scanner;
 
-import cmc.backend.SystemController;
+
 import cmc.backend.User;
 
 public class UserInteraction {
@@ -93,7 +93,6 @@ public class UserInteraction {
 	    System.out.print("State (leave blank to not search by this criterion): ");
 	    String state = s.nextLine().trim();
 
-	    // Use DatabaseController to get the search results
 	    List<University> universities = this.databaseController.searchUniversities(state);
 	    
 	    if (universities.isEmpty()) {
