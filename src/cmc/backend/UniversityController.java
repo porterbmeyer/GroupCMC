@@ -17,6 +17,7 @@ public class UniversityController {
 	 * method deleteUniversity removes university from the DB
 	 * @param uniName
 	 * @return boolean
+	 * @throws CMCException
 	 */
 	public boolean deleteUniversity(String uniName) {
 		University u = getUniversityByName(uniName);
@@ -52,6 +53,7 @@ public class UniversityController {
 	 * method addUniversity add university to the DB
 	 * @param newUni
 	 * @return boolean
+	 * @throws CMCException
 	 */
 	public boolean addUniversity(University newUni) {
 		List<University> loopUnis = getAllUniversities();

@@ -1,13 +1,10 @@
 package cmc.backend;
 
-import java.time.LocalDateTime;
-
 public class Account {
 	private int accountID;
 	private String username;
 	private String email;
 	private String password;
-	private LocalDateTime lastLoginTime;
 	private char type;
 	private char active;
 	private String firstName;
@@ -41,18 +38,15 @@ public class Account {
 	 * @param username
 	 * @param email
 	 * @param password
-	 * @param lastLoginTime
 	 * @param type
 	 * @param active
 	 */
-	public Account(int accountID, String username, String email, String password, LocalDateTime lastLoginTime,
-			char type, char active) {
+	public Account(int accountID, String username, String email, String password, char type, char active) {
 		super();
 		this.accountID = accountID;
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.lastLoginTime = lastLoginTime;
 		this.type = type;
 		this.active = active;
 	}
@@ -106,18 +100,6 @@ public class Account {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	/**
-	 * @return the lastLoginTime
-	 */
-	public LocalDateTime getLastLoginTime() {
-		return lastLoginTime;
-	}
-	/**
-	 * @param lastLoginTime the lastLoginTime to set
-	 */
-	public void setLastLoginTime(LocalDateTime lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
 	}
 	/**
 	 * @return the type

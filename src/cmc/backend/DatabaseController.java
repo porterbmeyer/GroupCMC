@@ -187,5 +187,20 @@ public class DatabaseController {
 
 	    return true;
 	}
+
+	//TODO
+	public boolean addAccount(Account acc) {
+		return false;
+	}
 	
+	//TODO
+	public boolean deleteAccount(Account acc) {
+		return false;
+	}
+
+	//TODO
+	public List<Account> getAllaccounts() {
+		return null;
+	}
+		
 }
