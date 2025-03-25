@@ -249,4 +249,21 @@ public class DatabaseController {
 	    
 	    return true;
 	}
+	
+	public List<University> searchUniversities(String state) {
+	    String[][] dbUniversityList = this.database.university_getUniversities();
+	    List<University> result = new ArrayList<>();
+
+	    for (String[] university : dbUniversityList) {
+	        if (!state.isEmpty() && university[3].equalsIgnoreCase(state)) {
+	            result.add(new University(
+	                university[0], university[1], university[2], university[3], university[4], 
+	                university[5], university[6], university[7], university[8], university[9],
+	                university[10], university[11], university[12], university[13], university[14],
+	                university[15], university[16]
+	            ));
+	        }
+	    }
+	    return result;
+	}
 }

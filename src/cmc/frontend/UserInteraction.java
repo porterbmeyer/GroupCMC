@@ -1,5 +1,6 @@
 package cmc.frontend;
 
+import cmc.CMCException;
 import cmc.backend.*;
 import java.util.List;
 import java.util.Scanner;
@@ -9,23 +10,24 @@ import cmc.backend.User;
 
 public class UserInteraction {
 	
-	private User loggedInUser;
+	private Account loggedInUser;
 	
 	private AccountController accountController;
-	private DatabaseController databaseControllerl
+	private DatabaseController databaseController;
 	
 	// Construct a UserInteraction using the basic (no parameter)
 	// SystemController as the single underlying controller object.
 	// TODO: Someday, we should refactor the single SystemController class
 	//       into multiple classes for better organization of functionalities.
 	public UserInteraction() {
-		this.theSystemController = new SystemController();
+		this.accountController = new AccountController();
+		this.databaseController = new DatabaseController();
 		this.loggedInUser = null;
 	}
 
 	// attempt to login, print message, and return success or failure
 	public boolean login(String username, String password) {
-		User result = this.theSystemController.login(username, password);
+		Account result = this.accountController.login(username, password);
 		if (result != null) {
 			System.out.println("Login successful!");
 			this.loggedInUser = result;
@@ -50,13 +52,13 @@ public class UserInteraction {
 	}
 	
 	// for admins, this gets the list of all users in the system
-	public List<String[]> getAllUsers() {
-		return this.theSystemController.getAllUsers();
+	public List<User> getAllUsers() {
+		return this.databaseController.getAllUsers();
 	}
 	
 	// ask the admin for details and then attempt to add a user to the
 	// database
-	public boolean addUser(Scanner s) {
+	public boolean addUser(Scanner s) throws CMCException {
 		System.out.print("Username: ");
 		String username = s.nextLine();
 		System.out.print("Password: ");
@@ -70,31 +72,48 @@ public class UserInteraction {
 		if (s.nextLine().trim().equalsIgnoreCase("y"))
 			isAdmin = true;
 		
-		return this.theSystemController.addUser(username, password, firstName, lastName, isAdmin);
+		Account newAccount = new Account(firstName, lastName, username, password, isAdmin ? 'A' : 'U','Y'); 
+		return this.accountController.createAccount(username, password, firstName, lastName, isAdmin ? 'A' : 'U', 'Y');
 	}
 	
 	// ask the admin for a username and then remove that user from the
 	// database
-	public boolean removeUser(Scanner s) {
+	public boolean removeUser(Scanner s) throws CMCException {
 		System.out.print("Username: ");
 		String username = s.nextLine();
 
-		return this.theSystemController.removeUser(username);
+		Account acc = this.databaseController.getAccount(username);
+		if (acc != null) {
+			return this.accountController.deleteAccount(username);
+		}
+		return false;
 	}
 	
-	public List<String[]> search(Scanner s) {
-		// TODO: in the future, we would like to support searching by various
-		//       criteria, but we'll settle for just state for now
-		System.out.print("State (leave blank to not search by this criterion): ");
-		String state = s.nextLine();
-		
-		return this.theSystemController.search(state);
+	public List<University> search(Scanner s) {
+	    System.out.print("State (leave blank to not search by this criterion): ");
+	    String state = s.nextLine().trim();
+
+	    // Use DatabaseController to get the search results
+	    List<University> universities = this.databaseController.searchUniversities(state);
+	    
+	    if (universities.isEmpty()) {
+	        System.out.println("No universities found with the given search criteria.");
+	    } else {
+	        System.out.println("Universities found:");
+	        for (University university : universities) {
+	            System.out.println("Name: " + university.getName() + ", Location: " + university.getLocation() +
+	                ", State: " + university.getState());
+	        }
+	    }
+
+	    return universities;
 	}
 	
 	
 	// get the list of saved school names for the currently-logged-in user
+	@SuppressWarnings("unchecked")
 	public List<String> getSavedSchools() {
-		return this.theSystemController.getSavedSchools(this.loggedInUser.username);
+		return (List<String>) this.databaseController.getUserSavedSchoolMap();
 	}
 
 	/**
@@ -103,7 +122,7 @@ public class UserInteraction {
 	 * 
 	 * @return the username for the logged in user
 	 */
-	public User getLoggedInUser() {
+	public Account getLoggedInUser() {
 		return this.loggedInUser;
 	}
 	
