@@ -67,7 +67,7 @@ public class DatabaseController {
 	}
 	
 	//consider plans to replace getUser with this code. this return Account object instead of String Array
-	public Account getUserObject(String username) {
+	public Account getUserObject(String username) throws CMCException {
 		String[][] databaseUserStrings = this.database.user_getUsers();
 		
 		for (String[] singleUser : databaseUserStrings) {
@@ -76,7 +76,7 @@ public class DatabaseController {
 				return new Account(singleUser[0], singleUser[1], singleUser[2], singleUser[3], singleUser[4], singleUser[5]);
 			}
 		}
-		return null;
+		throw new CMCException("Was not able to get Username");
 	}
 	
 	// get the list of all the users in the DB
@@ -100,6 +100,15 @@ public class DatabaseController {
 			result.add(new University(university[0],university[1],university[2],university[3],university[4],university[5],university[6],university[7],university[8],university[9],university[10], university[11], university[12], university[13], university[14], university[15], university[16]));
 		}
 		return result;
+	}
+	
+	public University getUniversities(String name) throws CMCException {
+		String[][] dbUniversityList  = this.database.university_getUniversities();
+		for (String[] university: dbUniversityList) {
+			if (university[2].equals(name))
+				return new University(university[0],university[1],university[2],university[3],university[4],university[5],university[6],university[7],university[8],university[9],university[10], university[11], university[12], university[13], university[14], university[15], university[16]);
+		}
+		throw new CMCException("Was not able to find specific University specified");
 	}
 	
 	// save a school to a particular user's list
