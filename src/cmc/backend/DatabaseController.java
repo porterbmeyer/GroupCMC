@@ -140,18 +140,26 @@ public class DatabaseController {
 	// This is messy, and it would be much cleaner to do
 	// an editUser with an updated User object!
 	public boolean deactivateUser(String username) throws CMCException {
-		String[] theUser = getUser(username);
-		if (theUser == null)
-			return false;
-		int result = this.database.user_editUser(theUser[2], theUser[0], theUser[1],
-				theUser[3], theUser[4].charAt(0), 'N');
-		if (result == -1) {
-			throw new CMCException("Error editing user (to deactivate) in the DB");
-		}
-		else {
-			return true;
-		}
-			
+	    User user = getUser(username); 
+
+	    if (user == null) {
+	        return false;
+	    }
+
+	    int result = this.database.user_editUser(
+	        user.getUsername(),
+	        user.getFirstName(),
+	        user.getLastName(),
+	        user.getPassword(),
+	        user.getType(),
+	        'N' 
+	    );
+
+	    if (result == -1) {
+	        throw new CMCException("Error editing user (to deactivate) in the DB");
+	    }
+
+	    return true;
 	}
 
 	public boolean removeUniversity(University u) throws CMCException {
@@ -210,16 +218,16 @@ public class DatabaseController {
 	}
 
 	public Account getAccount(String username) {
-	    String[] userData = getUser(username);
-	    
-	    if (userData != null) {
+	    User user = getUser(username);
+
+	    if (user != null) {
 	        return new Account(
-	            userData[0],
-	            userData[1],
-	            userData[2],
-	            userData[3],
-	            userData[4].charAt(0),
-	            userData[5].charAt(0)
+	            user.getFirstName(),
+	            user.getLastName(),
+	            user.getUsername(),
+	            user.getPassword(),
+	            user.getType(),
+	            user.getActive()
 	        );
 	    }
 	    return null;
