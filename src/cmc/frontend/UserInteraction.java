@@ -130,7 +130,20 @@ public class UserInteraction {
 	public Account getLoggedInUser() {
 		return this.loggedInUser;
 	}
-	
+
+	public boolean saveSchool(Scanner s) {
+		/*
+		List<String> schoolsSaved1 = getSavedSchools(username);
+
+		for(String schol: schoolsSaved1) {			
+			if(schol.equals(name)) {
+				new IllegalArgumentException("School Already Saved");
+			}
+		}
+		return this.databaseController.saveSchool(username, name);
+		*/
+		return false;
+	}
 	
 
 }
