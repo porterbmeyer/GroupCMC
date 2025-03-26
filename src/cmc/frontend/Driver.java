@@ -195,7 +195,7 @@ public class Driver {
 		}
 	}
 
-	private static void topMenu(Scanner s) {
+	private static void topMenu(Scanner s) throws CMCException {
 		printHeader("Welcome to Choose My College (CMC)!");
 		System.out.println("Please log in.");
 		/*

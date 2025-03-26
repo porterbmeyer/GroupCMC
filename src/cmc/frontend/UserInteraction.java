@@ -26,23 +26,22 @@ public class UserInteraction {
 	}
 
 	// attempt to login, print message, and return success or failure
-	public boolean login(Scanner s) {
+	public boolean login(Scanner s) throws CMCException {
 		System.out.println("Enter Username: ");
 		String username = s.nextLine();
 		
 		System.out.println("Enter Password: ");
 		String password = s.nextLine();
-		
-		Account result = this.accountController.login(username, password);
-		if (result != null) {
+		Account result = null;
+		result = this.databaseController.getUser(username);
+		if (result == null || ! result.getPassword().equals(password)) {
+			System.out.println("Incorrect user or password");
+			return false;
+		}
+		else  {
 			System.out.println("Login successful!");
 			this.loggedInUser = result;
 			return true;
-		}
-		else {
-			System.out.println("Login failed!  Incorrect username or password.");
-			this.loggedInUser = null;
-			return false;
 		}
 	}
 	
@@ -88,7 +87,7 @@ public class UserInteraction {
 		System.out.print("Username: ");
 		String username = s.nextLine();
 
-		Account acc = this.databaseController.getAccount(username);
+		Account acc = this.databaseController.getUser(username);
 		if (acc != null) {
 			return this.accountController.deleteAccount(username);
 		}

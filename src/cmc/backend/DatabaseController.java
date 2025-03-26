@@ -53,13 +53,13 @@ public class DatabaseController {
 	
 	// get a user; null if not in DB
 	//TODO make a user object and return the user object
-	public User getUser(String username) {
+	public Account getUser(String username) {
 		String[][] databaseUserStrings = this.database.user_getUsers();
 		
 		for (String[] user : databaseUserStrings) {
 			String thisUsername = user[2];
 			if (thisUsername.equals(username)) {
-				User user1 = new User(user[0], user[1], user[2], user[3], user[4].charAt(0), user[5].charAt(0));
+				Account user1 = new User(user[0], user[1], user[2], user[3], user[4].charAt(0), user[5].charAt(0));
 				return user1;
 			}
 		}
@@ -140,7 +140,7 @@ public class DatabaseController {
 	// This is messy, and it would be much cleaner to do
 	// an editUser with an updated User object!
 	public boolean deactivateUser(String username) throws CMCException {
-	    User user = getUser(username); 
+	    Account user = getUser(username); 
 
 	    if (user == null) {
 	        return false;
@@ -163,7 +163,7 @@ public class DatabaseController {
 	}
 	
 	public boolean reActivateUser(String username) throws CMCException {
-	    User user = getUser(username); 
+	    Account user = getUser(username); 
 
 	    if (user == null) {
 	        return false;
@@ -237,21 +237,6 @@ public class DatabaseController {
 	    }
 	}
 
-	public Account getAccount(String username) {
-	    User user = getUser(username);
-
-	    if (user != null) {
-	        return new Account(
-	            user.getFirstName(),
-	            user.getLastName(),
-	            user.getUsername(),
-	            user.getPassword(),
-	            user.getType(),
-	            user.getActive()
-	        );
-	    }
-	    return null;
-	}
 	public boolean updateAccount(Account acc) throws CMCException {
 	    if (acc == null) {
 	        throw new CMCException("Cannot update a null account.");

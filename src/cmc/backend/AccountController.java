@@ -18,7 +18,7 @@ public class AccountController {
 	}
 	
 	public boolean deleteAccount(String username) throws CMCException {
-		Account acc = this.myDBcontroller.getAccount(username);
+		Account acc = this.myDBcontroller.getUser(username);
 		if (acc != null) {
 			return this.myDBcontroller.deleteAccount(acc);
 		}
@@ -26,7 +26,7 @@ public class AccountController {
 	}
 	
 	public Account updateAccountDetails(String firstname, String lastname, String username, String password, char type, char active) throws CMCException {
-		Account acc = this.myDBcontroller.getAccount(username);
+		Account acc = this.myDBcontroller.getUser(username);
 		if (acc != null) {
 			acc.setFirstName(firstname);
 			acc.setLastName(lastname);
@@ -40,7 +40,7 @@ public class AccountController {
 	}
 	
 	public String changePassword(String username, String oldPassword, String newPassword) throws CMCException {
-		Account acc = this.myDBcontroller.getAccount(username);
+		Account acc = this.myDBcontroller.getUser(username);
 		if (acc != null) {
 			if (acc.getPassword().equals(oldPassword)) {
 				acc.setPassword(newPassword);
@@ -53,8 +53,9 @@ public class AccountController {
 		return "Account not found.";
 	}
 	
-	public Account login(String userName, String password) {
-		Account acc = this.myDBcontroller.getAccount(userName);
+	public Account login(String userName, String password) throws CMCException {
+		Account acc = this.myDBcontroller.getUser(userName);
+		System.out.println(acc);
 		if (acc != null && acc.getPassword().equals(password) && acc.getActive() == 'Y') {
 			return acc;
 		}
