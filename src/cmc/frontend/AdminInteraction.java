@@ -7,6 +7,7 @@ import cmc.CMCException;
 import cmc.backend.AccountController;
 import cmc.backend.Admin;
 import cmc.backend.DatabaseController;
+import cmc.backend.University;
 import cmc.backend.UniversityController;
 import cmc.backend.User;
 
@@ -39,6 +40,25 @@ public class AdminInteraction {
 	public List<User> getAllUsers(){
 		return this.databaseController.getAllUsers();
 		
+	}
+	
+	public List<University> getAllUniversities(){
+		return this.databaseController.getAllUniversities();
+		
+	}
+	
+	public boolean deactivateUser(Scanner s) throws CMCException { 
+		System.out.println("Enter username to deactivate: ");
+		String username = s.nextLine();
+		
+		return this.databaseController.deactivateUser(username);
+	}
+	
+	public boolean reActivateUser(Scanner s) throws CMCException { 
+		System.out.println("Enter username to reactivate: ");
+		String username = s.nextLine();
+		
+		return this.databaseController.reActivateUser(username);
 	}
 	
 	// returns true if there is a user to log out, otherwise false
