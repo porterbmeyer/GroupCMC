@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 
-import cmc.backend.User;
 
 public class UserInteraction {
 	
@@ -56,10 +55,6 @@ public class UserInteraction {
 		}
 	}
 	
-	// for admins, this gets the list of all users in the system
-	public List<User> getAllUsers() {
-		return this.databaseController.getAllUsers();
-	}
 	
 	// ask the admin for details and then attempt to add a user to the
 	// database
@@ -77,7 +72,6 @@ public class UserInteraction {
 		if (s.nextLine().trim().equalsIgnoreCase("y"))
 			isAdmin = true;
 		
-		Account newAccount = new Account(firstName, lastName, username, password, isAdmin ? 'A' : 'U','Y'); 
 		return this.accountController.createAccount(username, password, firstName, lastName, isAdmin ? 'A' : 'U', 'Y');
 	}
 	

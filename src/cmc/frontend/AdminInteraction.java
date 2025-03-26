@@ -137,5 +137,7 @@ public class AdminInteraction {
         
 		return this.universityController.addUniversity(name, state, location, control, population, percentFemale, satVerbal, satMath, expenses, percentFinancialAid, numberApplicants, acceptanceRate, enrollmentRate, academicScale, socialScale, qualityScale);
 	}
+	
+	
 }
 	
