@@ -18,6 +18,7 @@ public class User extends Account{
 	public User(String firstname, String lastname, String username, String password, char type, char active) {
 		super(firstname, lastname, username, password, type, active);
 		this.savedSchoolList = new ArrayList<University>();
+		//this.savedSchoolList =  functio to grab saved school
 	}
 
 	/**
@@ -33,7 +34,16 @@ public class User extends Account{
 	public void setSavedSchoolList(List<University> savedSchoolList) {
 		this.savedSchoolList = savedSchoolList;
 	}
+	
+	
+	public  boolean addSavedSchool(String school) {
+		 return DatabaseController.saveSchool(this, school);
+	}
 
+	public  boolean removeSavedSchool(String school) {
+		
+		return DatabaseController.removeSavedSchool(this, school);
+	}
 	
 	
 }
