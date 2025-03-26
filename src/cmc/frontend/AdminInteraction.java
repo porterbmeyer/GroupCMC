@@ -7,7 +7,6 @@ import cmc.CMCException;
 import cmc.backend.AccountController;
 import cmc.backend.Admin;
 import cmc.backend.DatabaseController;
-import cmc.backend.University;
 import cmc.backend.UniversityController;
 import cmc.backend.User;
 
@@ -16,8 +15,8 @@ public class AdminInteraction {
 	
 	private AccountController accountController;
 	private UniversityController universityController;
-	private Admin loggedInAdmin;
 	private DatabaseController databaseController;
+	private Admin loggedInAdmin;
 	
 	public boolean createUser(Scanner s) throws CMCException {
 		
@@ -42,13 +41,31 @@ public class AdminInteraction {
 		
 	}
 	
+	// returns true if there is a user to log out, otherwise false
+		public boolean logout() {
+			if (this.loggedInAdmin == null) {
+				return false;
+			}
+			else {
+				this.loggedInAdmin = null;
+				return true;
+			}
+		}
+
 	public boolean deleteUser(Scanner s) throws CMCException {
-		
-		System.out.print("Enter university name to delete: ");
+
+		System.out.print("Enter User name to delete: ");
 		String username = s.nextLine();
 		return this.accountController.deleteAccount(username);
 	}
-	
+
+	public boolean deleteUniversity(Scanner s) throws CMCException {
+
+		System.out.print("Enter university name to delete: ");
+		String username = s.nextLine();
+		return this.universityController.deleteUniversity(username);
+	}
+
 	public boolean addUniversity(Scanner scanner) throws CMCException {
 		System.out.print("Enter university name: ");
         String name = scanner.nextLine();

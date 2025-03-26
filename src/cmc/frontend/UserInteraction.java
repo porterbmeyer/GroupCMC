@@ -26,7 +26,13 @@ public class UserInteraction {
 	}
 
 	// attempt to login, print message, and return success or failure
-	public boolean login(String username, String password) {
+	public boolean login(Scanner s) {
+		System.out.println("Enter Username: ");
+		String username = s.nextLine();
+		
+		System.out.println("Enter Password: ");
+		String password = s.nextLine();
+		
 		Account result = this.accountController.login(username, password);
 		if (result != null) {
 			System.out.println("Login successful!");
