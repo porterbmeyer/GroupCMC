@@ -161,6 +161,29 @@ public class DatabaseController {
 
 	    return true;
 	}
+	
+	public boolean reActivateUser(String username) throws CMCException {
+	    User user = getUser(username); 
+
+	    if (user == null) {
+	        return false;
+	    }
+
+	    int result = this.database.user_editUser(
+	        user.getUsername(),
+	        user.getFirstName(),
+	        user.getLastName(),
+	        user.getPassword(),
+	        user.getType(),
+	        'Y' 
+	    );
+
+	    if (result == -1) {
+	        throw new CMCException("Error editing user (to deactivate) in the DB");
+	    }
+
+	    return true;
+	}
 
 	public boolean removeUniversity(University u) throws CMCException {
 	    if (u == null) {
