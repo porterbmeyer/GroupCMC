@@ -92,13 +92,13 @@ public class DatabaseController {
 		return result;
 	}
 	
-	public University getUniversities(String name) throws CMCException {
+	public University getUniversity(String name) throws CMCException {
 		String[][] dbUniversityList  = this.database.university_getUniversities();
 		for (String[] university: dbUniversityList) {
 			if (university[2].equals(name))
 				return new University(university[0],university[1],university[2],university[3],university[4],university[5],university[6],university[7],university[8],university[9],university[10], university[11], university[12], university[13], university[14], university[15]);
 		}
-		throw new CMCException("Was not able to find specific University specified");
+		return null;
 	}
 	
 	// save a school to a particular user's list
@@ -115,6 +115,58 @@ public class DatabaseController {
 		}
 	}
 	
+	public  boolean saveSchool(Account account, String schoolName) {
+		int result = database.user_saveSchool(account.getUsername(), schoolName);
+		if (result != -1) {
+			return true;
+			
+		}
+		return false;
+
+	}
+
+	public  boolean removeSavedSchool(Account account, String school) {
+		int result = database.user_removeSchool(account.getUsername(), school);
+		if (result != -1) {
+			return true;
+			
+		}
+		return false;
+	}
+	
+	private Map<String, List<String>> getUsersSavedSchoolMap() {
+		String[][] dbMapping = database.user_getUsernamesWithSavedSchools();
+
+		HashMap<String, List<String>> result = new HashMap<String, List<String>>();
+		
+		if(dbMapping == null) {
+			return result;
+		}
+		for (String[] entry : dbMapping) {
+			String user = entry[0];
+			String school = entry[1];
+			if (!result.containsKey(user))
+				result.put(user, new ArrayList<String>());
+
+			result.get(user).add(school);
+		}
+		return result;
+	}
+	
+	public List<String> getUserSavedSchoolMap(String account) {
+		Map<String, List<String>> dbMapping = getUsersSavedSchoolMap();
+		
+		List<String> value = null;
+		
+		
+		if(dbMapping.containsKey(account)) {
+			value = dbMapping.get(account);
+		}
+		
+		
+		return value;
+		
+	}
 	// get the mapping from users to their saved universities in the DB
 	// e.g., peter -> {CSBSJU, HARVARD}
 	//       juser -> {YALE, AUGSBURG, STANFORD}
@@ -140,24 +192,13 @@ public class DatabaseController {
 	// This is messy, and it would be much cleaner to do
 	// an editUser with an updated User object!
 	public boolean deactivateUser(String username) throws CMCException {
-	    Account user = getUser(username); 
+		Account user = getUser(username); 
 
 	    if (user == null) {
 	        return false;
 	    }
-
-	    int result = this.database.user_editUser(
-	        user.getUsername(),
-	        user.getFirstName(),
-	        user.getLastName(),
-	        user.getPassword(),
-	        user.getType(),
-	        'N' 
-	    );
-
-	    if (result == -1) {
-	        throw new CMCException("Error editing user (to deactivate) in the DB");
-	    }
+	    
+	    user.setActive('N');
 
 	    return true;
 	}
@@ -168,22 +209,12 @@ public class DatabaseController {
 	    if (user == null) {
 	        return false;
 	    }
-
-	    int result = this.database.user_editUser(
-	        user.getUsername(),
-	        user.getFirstName(),
-	        user.getLastName(),
-	        user.getPassword(),
-	        user.getType(),
-	        'Y' 
-	    );
-
-	    if (result == -1) {
-	        throw new CMCException("Error editing user (to deactivate) in the DB");
-	    }
+	    
+	    user.setActive('Y');
 
 	    return true;
 	}
+
 
 	public boolean removeUniversity(University u) throws CMCException {
 	    if (u == null) {

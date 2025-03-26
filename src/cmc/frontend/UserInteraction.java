@@ -37,6 +37,10 @@ public class UserInteraction {
 			System.out.println("Incorrect user or password");
 			return false;
 		}
+		else if(result.getActive() != 'Y') {
+			System.out.println("Deactivated account can not log in");
+			return false;
+		}
 		else  {
 			System.out.println("Login successful!");
 			this.loggedInUser = result;

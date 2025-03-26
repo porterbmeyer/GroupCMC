@@ -307,5 +307,56 @@ public class University {
 	public void setPopulation(int population) {
 		this.population = population;
 	}
+	
+	/*
+	public boolean equal(University university) {
+		if(!this.school.equalsIgnoreCase(university.getSchool()))
+			return false;
+		
+		if(!this.state.equalsIgnoreCase(university.getState()))
+			return false;
+		
+		if(!this.location.equalsIgnoreCase(university.getLocation()))
+			return false;
+		
+		if(!this.control.equalsIgnoreCase(university.getControl()))
+			return false;
+		
+		if(!(this.numberOfStudents==(university.getNumberOfStudents())))
+			return false;
+		
+		if(!(this.percentFemales==(university.getPercentFemales())))
+			return false;
+		
+		if(!(this.SATVerbal==(university.getSATVerbal())))
+			return false;
+
+		if(!(this.expenses==(university.getExpenses())))
+			return false;
+		
+		if(!(this.percentFinancialAid==(university.getPercentFinancialAid())))
+			return false;
+		
+		if(!(this.numberOfApplicants==(university.getNumberOfApplicants())))
+			return false;
+		
+		if(!(this.percentAdmitted==(university.getPercentAdmitted())))
+			return false;
+		
+		if(!(this.percentEnrolled==(university.getPercentEnrolled())))
+			return false;
+		
+		if(!(this.academicsScale==(university.getAcademicsScale())))
+			return false;
+		
+		if(!(this.socialScale==(university.getSocialScale())))
+			return false;
+		
+		if(!(this.qualityOfLifeScale==(university.getQualityOfLifeScale())))
+			return false;
+		 
+		return true;
+	}
+*/
 
 }
