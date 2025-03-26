@@ -107,7 +107,7 @@ public class Driver {
 		}
 	}
 	
-	private static void adminMenu(Scanner s) {
+	private static void adminMenu(Scanner s) throws CMCException {
 		printHeader("Admin Menu");
 		
 		int choice = getMenuOption(s, Arrays.asList("View List of Users", "Logout"));
