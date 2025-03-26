@@ -153,6 +153,13 @@ public class UserInteraction {
 		// TODO Auto-generated method stub
 		return this.databaseController.getAllUsers();
 	}
+
+	public boolean removeSchool(Scanner s) {
+		System.out.println("Enter the school you would like to remove:");
+		 String name = s.nextLine();
+
+		return this.databaseController.removeSavedSchool(loggedInUser, name);
+	}
 	
 
 }
