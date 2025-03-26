@@ -137,6 +137,11 @@ public class UserInteraction {
 		*/
 		return false;
 	}
+
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return this.databaseController.getAllUsers();
+	}
 	
 
 }
