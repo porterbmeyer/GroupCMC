@@ -3,6 +3,7 @@ package cmc.frontend;
 import cmc.CMCException;
 import cmc.backend.*;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -117,8 +118,8 @@ public class UserInteraction {
 	
 	// get the list of saved school names for the currently-logged-in user
 	@SuppressWarnings("unchecked")
-	public List<String> getSavedSchools() {
-		return (List<String>) this.databaseController.getUserSavedSchoolMap();
+	public Map<String, List<String>> getSavedSchools() {
+		return this.databaseController.getUserSavedSchoolMap();
 	}
 
 	/**

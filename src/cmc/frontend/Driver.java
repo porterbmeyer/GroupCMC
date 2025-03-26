@@ -2,6 +2,7 @@ package cmc.frontend;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import cmc.CMCException;
@@ -148,34 +149,44 @@ public class Driver {
 			System.exit(1);
 		}
 	}
-	
+	// consulted OpenAI's ChatGPT
 	private static void userSavedSchoolListMenu(Scanner s) {
-		printHeader("User Saved School List");
-		
-		// TODO: it would be nice if this was refactored into a list of objects
-		//       so we can display some data about the school...
-		List<String> schools = ui.getSavedSchools();
-		if(schools != null) {
-		for (String school : schools) {
-			System.out.println(school);
-		}
-		}
-		else {
-			System.out.println("No saved Schools");
-		}
-		
-		System.out.println();
-		
-		int choice = getMenuOption(s, Arrays.asList("Go Back"));
-		
-		switch(choice) {
-		case 1:
-			return;
-		default:
-			System.err.println("Internal error: Unsupported option.");
-			System.exit(1);
-		}
+	    printHeader("User Saved School List");
+
+	    // Get the saved schools
+	    Map<String, List<String>> schools = ui.getSavedSchools(); // Assuming ui.getSavedSchools() returns a Map<String, List<String>>
+	    
+	    // Check if schools is not null
+	    if (schools != null && !schools.isEmpty()) {
+	        for (Map.Entry<String, List<String>> entry : schools.entrySet()) {
+	            String username = entry.getKey(); // User who saved the school
+	            List<String> savedSchools = entry.getValue(); // List of schools saved by the user
+
+	            // Print the username and their saved schools
+	            System.out.println("User: " + username);
+	            for (String school : savedSchools) {
+	                System.out.println("  - " + school);
+	            }
+	        }
+	    } else {
+	        // Print message if no schools are saved or the Map is null
+	        System.out.println("No schools saved yet.");
+	    }
+
+	    System.out.println();  // Blank line for formatting
+
+	    // Provide the option to go back
+	    int choice = getMenuOption(s, Arrays.asList("Go Back"));
+
+	    switch (choice) {
+	        case 1:
+	            return;  // Go back
+	        default:
+	            System.err.println("Internal error: Unsupported option.");
+	            System.exit(1);
+	    }
 	}
+
 	
 	private static void regularUserMenu(Scanner s) {
 		printHeader("User Menu");
