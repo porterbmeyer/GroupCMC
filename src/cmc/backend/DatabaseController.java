@@ -125,7 +125,7 @@ public class DatabaseController {
 
 	}
 
-	public  boolean removeSavedSchool(Account account, String school) {
+	public static boolean removeSavedSchool(Account account, String school) {
 		int result = database.user_removeSchool(account.getUsername(), school);
 		if (result != -1) {
 			return true;

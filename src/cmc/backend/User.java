@@ -21,7 +21,7 @@ public class User extends Account{
 		//this.savedSchoolList =  functio to grab saved school
 	}
 	
-	
+
 	private void setSavedSchool() {
 		this.savedSchoolList = DatabaseController.getUserSavedSchoolMap(this.getUsername());
 	}

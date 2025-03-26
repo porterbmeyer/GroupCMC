@@ -142,7 +142,10 @@ public class UserInteraction {
 		}
 		return this.databaseController.saveSchool(username, name);
 		*/
-		return false;
+		System.out.println("Enter the school you would like to save:");
+		 String name = s.nextLine();
+		
+		return this.databaseController.saveSchool(loggedInUser, name);
 	}
 
 	public List<User> getAllUsers() {

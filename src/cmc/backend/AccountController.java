@@ -12,7 +12,7 @@ public class AccountController {
 
 	
 	public boolean createAccount(String firstname, String lastname, String username, String password, char type, char active) throws CMCException {
-		Account newacc = new Account(firstname, lastname, username, password, 'U', 'Y');
+		Account newacc = new User(firstname, lastname, username, password, 'U', 'Y');
 		
 		return this.myDBcontroller.addAccount(newacc);
 	}
