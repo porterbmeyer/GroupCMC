@@ -52,9 +52,9 @@ public class UniversityController {
 	 * @return boolean
 	 * @throws CMCException
 	 */
-	public boolean addUniversity(String name, String state, String location, String control, int numOfStudents, int percFemale, int SATVerbal, int SATMath, int expenses, int percFinAId, int numOfApps, int percAdmit, int percEnroll, int academicScale, int socialScale, int qualOfLife) throws CMCException {
+	public boolean addUniversity(String name, String state, String location, String control, int numOfStudents, double percentFemale, int SATVerbal, int SATMath, int expenses, double percentFinancialAid, int numOfApps, double acceptanceRate, double enrollmentRate, int academicScale, int socialScale, int qualOfLife) throws CMCException {
 		
-		return this.myDBcontroller.addUniversity(name, state, location, control, numOfStudents, percFemale, SATVerbal, SATMath, expenses, percFinAId, numOfApps, percAdmit, percEnroll, academicScale, socialScale, qualOfLife);
+		return this.myDBcontroller.addUniversity(name, state, location, control, numOfStudents, percentFemale, SATVerbal, SATMath, expenses, percentFinancialAid, numOfApps, acceptanceRate, enrollmentRate, academicScale, socialScale, qualOfLife);
 	}
 	
 	/**

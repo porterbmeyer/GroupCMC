@@ -97,6 +97,7 @@ public class University {
 
 	/**
 	 * @return the control
+	public List<Un
 	 */
 	public String getControl() {
 		return control;
