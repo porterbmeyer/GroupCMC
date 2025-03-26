@@ -62,24 +62,29 @@ public class University {
 		this.qualityScale = qualityScale;
 	}
 	
-	public University(String name, String state, String location, String control, String population, String percentFemale, String satVerbal, String satMath, String expenses, String percentFinancialAid, String numberApplicants, String acceptanceRate, String enrollmentRate, String academicScale, String socialScale, String qualityScale) {
+	private University(String[] university) {
+		 new University(university[0],university[1],university[2],university[3],university[4],university[5],university[6],university[7],university[8],university[9],university[10], university[11], university[12], university[13], university[14], university[15]);
 		
+	}
+	
+	public University(String name, String state, String location, String control, String population, String percentFemale, String satVerbal, String satMath, String expenses, String percentFinancialAid, String numberApplicants, String acceptanceRate, String enrollmentRate, String academicScale, String socialScale, String qualityScale) {
+		// taking all as double, casting what should be int to int from double to handle error cases
 		this.name = name;
 		this.location = location;
 		this.state = state;
-		this.population = Integer.parseInt(population);	
+		this.population = (int)Double.parseDouble(population);	
 		this.control = control;
 		this.percentFemale = Double.parseDouble(percentFemale);
-		this.satVerbal = Integer.parseInt(satVerbal);
-		this.satMath = Integer.parseInt(satMath);
-		this.expenses = Integer.parseInt(expenses);
+		this.satVerbal = (int)Double.parseDouble(satVerbal);
+		this.satMath = (int)Double.parseDouble(satMath);
+		this.expenses = (int)Double.parseDouble(expenses);
 		this.percentFinancialAid = Double.parseDouble(percentFinancialAid);
-		this.numberApplicants = Integer.parseInt(numberApplicants);
+		this.numberApplicants = (int)Double.parseDouble(numberApplicants);
 		this.acceptanceRate = Double.parseDouble(acceptanceRate);
 		this.enrollmentRate = Double.parseDouble(enrollmentRate);
-		this.academicScale = Integer.parseInt(academicScale);
-		this.socialScale = Integer.parseInt(socialScale);
-		this.qualityScale = Integer.parseInt(qualityScale);
+		this.academicScale = (int)Double.parseDouble(academicScale);
+		this.socialScale = (int)Double.parseDouble(socialScale);
+		this.qualityScale = (int)Double.parseDouble(qualityScale);
 	}
 	/**
 	 * @return the qualityScale

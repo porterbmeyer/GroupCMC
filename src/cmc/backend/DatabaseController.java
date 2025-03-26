@@ -15,13 +15,13 @@ import dblibrary.project.csci230.*;
  * @author Sally Sparrow
  */
 public class DatabaseController {
-	private UniversityDBLibrary database;
+	private static UniversityDBLibrary database;
 
 	// The default constructor that connects to the underlying
 	// UniversityDBLibrary object using your team's info.
 	public DatabaseController() {
 		// TODO: we'll need to update this to our team's actual database someday!
-		this.database = new UniversityDBLibrary("pmrpmd", "Csci230$");
+		DatabaseController.database = new UniversityDBLibrary("pmrpmd", "Csci230$");
 	}
 
 	// add a user to the db
@@ -82,8 +82,8 @@ public class DatabaseController {
 	}
 	
 	// get the list of all the universities in the DB
-	public List<University> getAllUniversities() {
-		String[][] dbUniversityList  = this.database.university_getUniversities();
+	public static List<University> getAllUniversities() {
+		String[][] dbUniversityList  = database.university_getUniversities();
 		
 		ArrayList<University> result = new ArrayList<University>();
 		for (String[] university: dbUniversityList) {
@@ -115,7 +115,7 @@ public class DatabaseController {
 		}
 	}
 	
-	public  boolean saveSchool(Account account, String schoolName) {
+	public static  boolean saveSchool(Account account, String schoolName) {
 		int result = database.user_saveSchool(account.getUsername(), schoolName);
 		if (result != -1) {
 			return true;
@@ -134,7 +134,7 @@ public class DatabaseController {
 		return false;
 	}
 	
-	private Map<String, List<String>> getUsersSavedSchoolMap() {
+	private static  Map<String, List<String>> getUsersSavedSchoolMap() {
 		String[][] dbMapping = database.user_getUsernamesWithSavedSchools();
 
 		HashMap<String, List<String>> result = new HashMap<String, List<String>>();
@@ -153,7 +153,7 @@ public class DatabaseController {
 		return result;
 	}
 	
-	public List<String> getUserSavedSchoolMap(String account) {
+	public static List<String> getUserSavedSchoolMap(String account) {
 		Map<String, List<String>> dbMapping = getUsersSavedSchoolMap();
 		
 		List<String> value = null;
@@ -174,6 +174,10 @@ public class DatabaseController {
 		String[][] dbMapping = this.database.user_getUsernamesWithSavedSchools();
 
 		HashMap<String, List<String>> result = new HashMap<String, List<String>>();
+		
+		if(dbMapping == null) {
+			return null;
+		}
 		
 		for (String[] entry : dbMapping) {
 			String user = entry[0];

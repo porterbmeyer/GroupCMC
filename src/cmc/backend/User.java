@@ -5,7 +5,7 @@ import java.util.List;
 
 public class User extends Account{
 	
-	private List<University> savedSchoolList;
+	private List<String> savedSchoolList;
 
 	/**
 	 * @param firstname
@@ -17,21 +17,26 @@ public class User extends Account{
 	 */
 	public User(String firstname, String lastname, String username, String password, char type, char active) {
 		super(firstname, lastname, username, password, type, active);
-		this.savedSchoolList = new ArrayList<University>();
+		setSavedSchool();
 		//this.savedSchoolList =  functio to grab saved school
+	}
+	
+	
+	private void setSavedSchool() {
+		this.savedSchoolList = DatabaseController.getUserSavedSchoolMap(this.getUsername());
 	}
 
 	/**
 	 * @return the savedSchoolList
 	 */
-	public List<University> getSavedSchoolList() {
+	public List<String> getSavedSchoolList() {
 		return savedSchoolList;
 	}
 
 	/**
 	 * @param savedSchoolList the savedSchoolList to set
 	 */
-	public void setSavedSchoolList(List<University> savedSchoolList) {
+	public void setSavedSchoolList(List<String> savedSchoolList) {
 		this.savedSchoolList = savedSchoolList;
 	}
 	

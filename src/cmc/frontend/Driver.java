@@ -155,9 +155,15 @@ public class Driver {
 		// TODO: it would be nice if this was refactored into a list of objects
 		//       so we can display some data about the school...
 		List<String> schools = ui.getSavedSchools();
+		if(schools != null) {
 		for (String school : schools) {
 			System.out.println(school);
 		}
+		}
+		else {
+			System.out.println("No saved Schools");
+		}
+		
 		System.out.println();
 		
 		int choice = getMenuOption(s, Arrays.asList("Go Back"));

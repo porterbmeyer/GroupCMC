@@ -93,9 +93,12 @@ public class UserInteraction {
 	}
 	
 	public List<University> search(Scanner s) {
+		
 	    System.out.print("State (leave blank to not search by this criterion): ");
 	    String state = s.nextLine().trim();
-
+	    if (state == null || state.isEmpty()) {
+	    	return this.databaseController.getAllUniversities();
+	    }
 	    List<University> universities = this.databaseController.searchUniversities(state);
 	    
 	    if (universities.isEmpty()) {
