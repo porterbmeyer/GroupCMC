@@ -43,13 +43,62 @@ public class AdminInteraction {
 	}
 	
 	public boolean deleteUser(Scanner s) throws CMCException {
+		
+		System.out.print("Enter university name to delete: ");
 		String username = s.nextLine();
 		return this.accountController.deleteAccount(username);
 	}
 	
-	public boolean addUniversity(Scanner s) throws CMCException {
-		return false;
-		//return this.universityController.addUniversity(u);
+	public boolean addUniversity(Scanner scanner) throws CMCException {
+		System.out.print("Enter university name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter state: ");
+        String state = scanner.nextLine();
+
+        System.out.print("Enter location: ");
+        String location = scanner.nextLine();
+
+        System.out.print("Enter control (Public/Private): ");
+        String control = scanner.nextLine();
+
+        System.out.print("Enter population: ");
+        int population = scanner.nextInt();
+
+        System.out.print("Enter percentage of female students: ");
+        double percentFemale = scanner.nextDouble();
+
+        System.out.print("Enter SAT verbal score: ");
+        int satVerbal = scanner.nextInt();
+
+        System.out.print("Enter SAT math score: ");
+        int satMath = scanner.nextInt();
+
+        System.out.print("Enter expenses: ");
+        int expenses = scanner.nextInt();
+
+        System.out.print("Enter percentage of financial aid: ");
+        double percentFinancialAid = scanner.nextDouble();
+
+        System.out.print("Enter number of applicants: ");
+        int numberApplicants = scanner.nextInt();
+
+        System.out.print("Enter acceptance rate: ");
+        double acceptanceRate = scanner.nextDouble();
+
+        System.out.print("Enter enrollment rate: ");
+        double enrollmentRate = scanner.nextDouble();
+
+        System.out.print("Enter academic scale rating: ");
+        int academicScale = scanner.nextInt();
+
+        System.out.print("Enter social scale rating: ");
+        int socialScale = scanner.nextInt();
+
+        System.out.print("Enter quality scale rating: ");
+        int qualityScale = scanner.nextInt();
+        
+		return this.universityController.addUniversity(name, state, location, control, population, percentFemale, satVerbal, satMath, expenses, percentFinancialAid, numberApplicants, acceptanceRate, enrollmentRate, academicScale, socialScale, qualityScale);
 	}
 }
 	
