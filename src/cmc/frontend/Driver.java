@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import cmc.CMCException;
+import cmc.backend.User;
 
 public class Driver {
 	
@@ -77,13 +78,13 @@ public class Driver {
 		System.out.println(dashes);
 	}
 	
-	private static void adminUserListMenu(Scanner s) {
+	private static void adminUserListMenu(Scanner s) throws CMCException {
 		printHeader("Admin User List");
 		
 		// TODO: it would be nice if this was refactored into a list of User objects...
-		List<String[]> allUsers = ui.getAllUsers();
-		for (String[] user : allUsers) {
-			System.out.println(user[2] + " | " + user[0] + " | " + user[1]);
+		List<User> allUsers = ui.getAllUsers();
+		for (User user : allUsers) {
+			System.out.println(user.getUsername() + " | " + user.getFirstName() + " | " + user.getLastName());
 		}
 		System.out.println();
 		
