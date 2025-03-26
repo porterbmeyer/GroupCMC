@@ -125,7 +125,7 @@ public class Driver {
 			System.exit(1);
 		}
 	}
-	
+	// TODO: Figure out how this method behaves and add 
 	private static void searchResultsMenu(Scanner s, List<University> results) {
 		printHeader("Search Results");
 
@@ -198,7 +198,9 @@ public class Driver {
 	private static void topMenu(Scanner s) {
 		printHeader("Welcome to Choose My College (CMC)!");
 		System.out.println("Please log in.");
-
+		/*
+		 * 
+		 
 		String username = "";
 		while (username.trim().isEmpty()) {
 			System.out.print("Username: ");
@@ -207,14 +209,15 @@ public class Driver {
 
 		System.out.print("Password: ");
 		String password = s.nextLine();
-
 		boolean success = ui.login(username, password);
+		*/
+		boolean success = ui.login(s);
 		if (success)
 			System.out.println("Redirecting to main menu.");
 	}
 
 	// main just forever prints the relevant menu
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CMCException {
 		Scanner s = new Scanner(System.in);
 		
 		while (true) {
