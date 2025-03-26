@@ -1,6 +1,8 @@
 package cmc.backend;
 
-public class Account {
+import cmc.CMCException;
+
+public abstract class Account {
 	private String username;
 	private String password;
 	private char type;
@@ -23,6 +25,26 @@ public class Account {
 		this.active = active;
 		this.firstName = firstname;
 		this.lastName = lastname;
+	}	
+	
+	public boolean equal(Account account) {
+		if(!this.username.equalsIgnoreCase(account.getUsername()))
+			return false;
+		
+		if(!this.password.equalsIgnoreCase(account.getPassword()))
+			return false;
+		
+		if(!this.firstName.equalsIgnoreCase(account.getFirstName()))
+			return false;
+		
+		if(!this.lastName.equalsIgnoreCase(account.getLastName()))
+			return false;
+		
+		if(this.active != account.getActive())
+			return false;
+	
+		return isAdmin() == account.isAdmin();
+		
 	}
 	
 	/**
@@ -100,9 +122,9 @@ public class Account {
 		this.active = active;
 	}
 	
-    private boolean isAdmin;
+    
 
     public boolean isAdmin() {
-        return this.isAdmin;
+        return this.type == 'a';
     }
 }
