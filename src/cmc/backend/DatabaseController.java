@@ -196,6 +196,7 @@ public class DatabaseController {
 	// an editUser with an updated User object!
 	public boolean deactivateUser(String username) throws CMCException {
 		Account acc = getUser(username); 
+		acc.setActive('N');
 
 		 if (acc == null) {
 		        throw new CMCException("Cannot deactivate a null account.");
@@ -207,7 +208,7 @@ public class DatabaseController {
 		        acc.getFirstName(),
 		        acc.getPassword(),
 		        acc.getType(),
-		        acc.setActive('N')
+		        acc.getActive()
 		    );
 
 		    if (result == -1) {
@@ -219,6 +220,7 @@ public class DatabaseController {
 	
 	public boolean reActivateUser(String username) throws CMCException {
 	    Account acc = getUser(username); 
+	    acc.setActive('Y');
 
 	    if (acc == null) {
 	        throw new CMCException("Cannot reactivate a null account.");
@@ -230,7 +232,7 @@ public class DatabaseController {
 	        acc.getFirstName(),
 	        acc.getPassword(),
 	        acc.getType(),
-	        acc.setActive('Y')
+	        acc.getActive()
 	    );
 
 	    if (result == -1) {

@@ -118,8 +118,8 @@ public abstract class Account {
 	/**
 	 * @param active the active to set
 	 */
-	public char setActive(char active) {
-		return active;
+	public void setActive(char active) {
+		this.active = active;
 	}
 	
     
