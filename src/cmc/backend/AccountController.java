@@ -8,7 +8,10 @@ public class AccountController {
 	
 	private DatabaseController myDBcontroller;
 
-
+	public AccountController() {
+		this.myDBcontroller = new DatabaseController();
+	}
+	
 
 	
 	public boolean createAccount(String firstname, String lastname, String username, String password, char type, char active) throws CMCException {

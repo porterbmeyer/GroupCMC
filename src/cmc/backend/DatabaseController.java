@@ -247,12 +247,13 @@ public class DatabaseController {
 	}
 
 	public boolean addAccount(Account acc) throws CMCException {
-	    int result = this.database.user_addUser(
-	        acc.getFirstName(),
-	        acc.getLastName(),
-	        acc.getUsername(),
-	        acc.getPassword(),
-	        acc.getType()
+
+		int result = DatabaseController.database.user_addUser(
+		        acc.getFirstName(),
+		        acc.getLastName(),
+		        acc.getUsername(),
+		        acc.getPassword(),
+		        acc.getType()
 	    );
 	    
 	    if (result == -1) {
