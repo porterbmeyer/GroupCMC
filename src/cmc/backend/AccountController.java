@@ -14,10 +14,10 @@ public class AccountController {
 	
 
 	
-	public boolean createAccount(String firstname, String lastname, String username, String password, char type, char active) throws CMCException {
-		Account newacc = new User(firstname, lastname, username, password, 'U', 'Y');
+	public boolean createAccount(String firstname, String lastname, String username, String password, char type) throws CMCException {
 		
-		return this.myDBcontroller.addAccount(newacc);
+		
+		return this.myDBcontroller.addUser(firstname, lastname, username, password, type);
 	}
 	
 	public boolean deleteAccount(String username) throws CMCException {

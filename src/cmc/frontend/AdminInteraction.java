@@ -1,5 +1,6 @@
 package cmc.frontend;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,15 +32,26 @@ public class AdminInteraction {
 		String Password = s.nextLine();
 		System.out.print("Admin? (A or U): ");
 		String type = s.nextLine();
-		String active = "Y";
 		
-		return this.accountController.createAccount(firstname, lastname, userName, Password, type.charAt(0), active.charAt(0));
+		
+		return this.accountController.createAccount(firstname, lastname, userName, Password, type.charAt(0));
 	}
 	
 	
 	public List<User> getAllUsers(){
 		return this.databaseController.getAllUsers();
 		
+	}
+	
+	public List<User> getActiveUsers(){
+		List<User> userlist = this.databaseController.getAllUsers();
+		List<User> activeUsers = new ArrayList<User>();
+		for(User user : userlist) {
+			if(user.getActive()=='Y') {
+				activeUsers.add(user);
+			}
+		}
+		return activeUsers;
 	}
 	
 	public List<University> getAllUniversities(){
@@ -137,7 +149,5 @@ public class AdminInteraction {
         
 		return this.universityController.addUniversity(name, state, location, control, population, percentFemale, satVerbal, satMath, expenses, percentFinancialAid, numberApplicants, acceptanceRate, enrollmentRate, academicScale, socialScale, qualityScale);
 	}
-	
-	
 }
 	

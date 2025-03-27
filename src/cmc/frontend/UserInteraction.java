@@ -64,20 +64,20 @@ public class UserInteraction {
 	// ask the admin for details and then attempt to add a user to the
 	// database
 	public boolean addUser(Scanner s) throws CMCException {
-		System.out.print("Username: ");
-		String username = s.nextLine();
-		System.out.print("Password: ");
-		String password = s.nextLine();
-		System.out.print("First Name: ");
+		System.out.print("firstName: ");
 		String firstName = s.nextLine();
-		System.out.print("Last Name: ");
+		System.out.print("lastName: ");
 		String lastName = s.nextLine();
+		System.out.print("username: ");
+		String username = s.nextLine();
+		System.out.print("password: ");
+		String password = s.nextLine();
 		System.out.print("Admin? (Y or N): ");
 		boolean isAdmin = false;
 		if (s.nextLine().trim().equalsIgnoreCase("y"))
 			isAdmin = true;
 		
-		return this.accountController.createAccount(username, password, firstName, lastName, isAdmin ? 'A' : 'U', 'Y');
+		return this.accountController.createAccount(firstName, lastName, username, password, isAdmin ? 'A' : 'U');
 	}
 	
 	// ask the admin for a username and then remove that user from the

@@ -28,9 +28,8 @@ public class DatabaseController {
 	// TODO: it would be nice if this could take a User object instead
 	// (so "higher-abstraction" classes don't have to worry about the order
 	//  of properties)
-	public boolean addUser(String username, String password, char type,
-			String firstName, String lastName) throws CMCException {
-		int result = this.database.user_addUser(firstName, lastName, username, password, type);
+	public boolean addUser(String firstname, String lastName, String username, String password, char type) throws CMCException {
+		int result = this.database.user_addUser(firstname, lastName, username, password, type);
 		
 		if (result == -1) {
 			throw new CMCException("Error adding user to the DB");
@@ -196,27 +195,50 @@ public class DatabaseController {
 	// This is messy, and it would be much cleaner to do
 	// an editUser with an updated User object!
 	public boolean deactivateUser(String username) throws CMCException {
-		Account user = getUser(username); 
+		Account acc = getUser(username); 
 
-	    if (user == null) {
-	        return false;
-	    }
-	    
-	    user.setActive('N');
+		 if (acc == null) {
+		        throw new CMCException("Cannot deactivate a null account.");
+		    }
 
-	    return true;
+		    int result = this.database.user_editUser(
+		        acc.getUsername(),
+		        acc.getFirstName(),
+		        acc.getFirstName(),
+		        acc.getPassword(),
+		        acc.getType(),
+		        acc.setActive('N')
+		    );
+
+		    if (result == -1) {
+		        throw new CMCException("Error deactivating account in the database.");
+		    }
+		    
+		    return true;
 	}
 	
 	public boolean reActivateUser(String username) throws CMCException {
-	    Account user = getUser(username); 
+	    Account acc = getUser(username); 
 
-	    if (user == null) {
-	        return false;
+	    if (acc == null) {
+	        throw new CMCException("Cannot reactivate a null account.");
+	    }
+
+	    int result = this.database.user_editUser(
+	        acc.getUsername(),
+	        acc.getFirstName(),
+	        acc.getFirstName(),
+	        acc.getPassword(),
+	        acc.getType(),
+	        acc.setActive('Y')
+	    );
+
+	    if (result == -1) {
+	        throw new CMCException("Error reactivating account in the database.");
 	    }
 	    
-	    user.setActive('Y');
-
 	    return true;
+
 	}
 
 
