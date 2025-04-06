@@ -90,7 +90,7 @@ public class Driver {
 		}
 		System.out.println();
 		
-		int choice = getMenuOption(s, Arrays.asList("Add User", "Remove User", "Go Back"));
+		int choice = getMenuOption(s, Arrays.asList("Add User", "Edit User", "Remove User", "Go Back"));
 		
 		switch(choice) {
 		case 1:
@@ -98,10 +98,14 @@ public class Driver {
 				System.out.println("Failed to add new user.  (Username already exists?)");
 			break;
 		case 2:
+			if(!ui.editUser(s)) {
+				System.out.print("Failed to edit user (User does not exist)");
+			}
+		case 3:
 			if (!ui.removeUser(s))
 				System.out.println("Failed to remove user.  (Invalid username?)");
 			break;
-		case 3:
+		case 4:
 			return;
 		default:
 			System.err.println("Internal error: Unsupported option.");

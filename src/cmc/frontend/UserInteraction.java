@@ -161,5 +161,46 @@ public class UserInteraction {
 		return this.databaseController.removeSavedSchool(loggedInUser, name);
 	}
 	
+	//TODO: FINISH EDIT USER METHOD. MIGHT WANT TO RETHINK HOW IT WORKS TBH
+
+	public boolean editUser(Scanner s) {
+		/*
+		System.out.println("Enter the username of the user you would like to edit:");
+		String username = s.nextLine();
+		
+		if(databaseController.getUser(username) == null) {
+			return false;
+		} else {
+			Account editUser = databaseController.getUser(username);
+			System.out.println("Enter the updates you would like to make. (Leave blank if no change is wanted)");
+			System.out.println("Current Username: "+ editUser.getUsername() + "\nNew Username:");
+			String newUsername = s.nextLine();
+			System.out.println("Current Password: "+ editUser.getPassword() + "\nNew Password:");
+			String newPassword = s.nextLine();
+			System.out.println("Current First Name: "+ editUser.getFirstName() + "\nNew First Name:");
+			String newFirstName = s.nextLine();
+			System.out.println("Current Last Name: "+ editUser.getLastName() + "\nNew Last Name:");
+			String newLastName = s.nextLine();
+			boolean x = true;
+			while(x == true) {
+				System.out.println("Current Last Name: "+ editUser.getType() + "\nNew Last Name:");
+				String newType = s.nextLine();
+				if(newType.toLowerCase().equals("a")|| newType.toLowerCase().equals("u")) {
+					char newTypeC = newType.toLowerCase().charAt(0);
+					x = false;
+				} else if(newType.equals("")) {
+					x = false;
+				} else {
+					System.out.println("Invalid input. Try again.");
+				}
+			}
+			if(newUsername != "") {
+				editUser.get
+			}*/
+			return false;
+		//}
+		
+	}
+	
 
 }
