@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cmc.backend.SystemController;
+import cmc.frontend.UserInteraction;
 import junit.framework.Assert;
 
 public class SearchByStateBug {
@@ -24,7 +25,7 @@ public class SearchByStateBug {
 	@Test
 	public void searchByStatetest() {
 
-		SystemController sc = new SystemController();
+		UserInteraction sc = new UserInteraction();
 		List<String[]> result1 = sc.search("");
 		Assert.assertTrue(result1.size() > 0);
 	}
