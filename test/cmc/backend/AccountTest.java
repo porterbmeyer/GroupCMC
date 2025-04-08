@@ -1,7 +1,7 @@
 /**
  * 
  */
-package whiteBoxTesting;
+package cmc.backend;
 
 import static org.junit.Assert.*;
 
