@@ -1,4 +1,4 @@
-package cmc.backend;
+ package cmc.backend;
 
 
 
@@ -30,7 +30,7 @@ public class AccountController {
 	
 	public Account updateAccountDetails(String firstname, String lastname, String username, String password, char type, char active) throws CMCException {
 		Account acc = this.myDBcontroller.getUser(username);
-		if (acc != null) {
+		if (acc != null) {   
 			acc.setFirstName(firstname);
 			acc.setLastName(lastname);
 			acc.setPassword(password);
