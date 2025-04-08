@@ -25,7 +25,7 @@ public class DatabaseControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
-		controller.removeUser(username);
+		//controller.removeUser(username);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -41,8 +41,23 @@ public class DatabaseControllerTest {
 		Assert.assertFalse(answer2);
 		
 		//attempts to add a user without the same username but same info should work. (Write a new one before testing)
-		boolean answer3 = controller.addUser(firstName, lastName, "totallynewusernamethatnoonehas", password,type);
-		Assert.assertTrue(answer3);
+		boolean answer3 = controller.addUser(firstName, lastName, "enternewname", password,type);
+		Assert.assertTrue(answer3); 
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test 
+	public void testRemoveUser()throws CMCException{
+		
+		//test should pass if method workds correctly because this exists
+		boolean result = controller.removeUser(username);
+		Assert.assertTrue(result);
+		
+		//test case that should be false because this usernmae doesn't exist and therefore can't be removed
+		boolean result1 = controller.removeUser("Userthatdoesn'texist");
+		Assert.assertFalse(result1);
+		
+		
 	}
 
 }
