@@ -32,7 +32,8 @@ public class DatabaseController {
 		int result = this.database.user_addUser(firstname, lastName, username, password, type);
 		
 		if (result == -1) {
-			throw new CMCException("Error adding user to the DB");
+			//throw new CMCException("Error adding user to the DB");
+			return false;
 		}
 		else {
 			return true;
