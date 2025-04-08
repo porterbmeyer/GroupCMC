@@ -40,8 +40,8 @@ public class DatabaseControllerTest {
 		boolean answer2 = controller.addUser(firstName, lastName, username, password,type);
 		Assert.assertFalse(answer2);
 		
-		//attempts to add a user without the same username but same info should work
-		boolean answer3 = controller.addUser(firstName, lastName, "fwjewkjekjfjkwekjfwkjfkjwkjefkjfewkjefbjwefkjfekjwkwefbefb", password,type);
+		//attempts to add a user without the same username but same info should work. (Write a new one before testing)
+		boolean answer3 = controller.addUser(firstName, lastName, "totallynewusernamethatnoonehas", password,type);
 		Assert.assertTrue(answer3);
 	}
 
