@@ -3,14 +3,14 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="GroupCMC">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="GroupCMC1">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../../opt/eclipse/"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="GroupCMC.classpath">
+    <path id="GroupCMC1.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/csci230databaselibrary.jar"/>
         <pathelement location="lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
@@ -43,7 +43,7 @@
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <src path="test"/>
-            <classpath refid="GroupCMC.classpath"/>
+            <classpath refid="GroupCMC1.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -60,68 +60,27 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Driver">
+    <target name="Driver (2)">
         <java classname="cmc.frontend.Driver" failonerror="true" fork="yes">
-            <classpath refid="GroupCMC.classpath"/>
+            <classpath refid="GroupCMC1.classpath"/>
         </java>
     </target>
-    <target name="AccountWBTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="whiteBoxTesting.AccountWBTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="GroupCMC.classpath"/>
-        </junit>
-    </target>
-    <target name="AccountTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="cmc.backend.AccountTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="GroupCMC.classpath"/>
-        </junit>
-    </target>
-    <target name="UserTest (1)">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="cmc.backend.UserTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="GroupCMC.classpath"/>
-        </junit>
-    </target>
-    <target name="UniversityTest">
-        <java classname="cmc.backend.UniversityTest" failonerror="true" fork="yes">
-            <classpath refid="GroupCMC.classpath"/>
-        </java>
-    </target>
-    <target name="UniversityTest (1)">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="cmc.backend.UniversityTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="GroupCMC.classpath"/>
-        </junit>
-    </target>
-    <target name="AccountControllerTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="cmc.backend.AccountControllerTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="GroupCMC.classpath"/>
-        </junit>
-    </target>
-    <target name="GroupCMC">
+    <target name="AllTests">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr" haltOnFailure="yes" haltOnError="yes">
             <formatter type="xml"/>
+            <test name="AllTests" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="GroupCMC1.classpath"/>
+        </junit>
+    </target>
+    <target name="DatabaseControllerTest (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
             <test name="cmc.backend.DatabaseControllerTest" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
-            <classpath refid="GroupCMC.classpath"/>
+            <classpath refid="GroupCMC1.classpath"/>
         </junit>
     </target>
     <target name="junitreport">

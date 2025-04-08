@@ -44,7 +44,8 @@ public class DatabaseController {
 	public boolean removeUser(String username) throws CMCException {
 		int result = this.database.user_deleteUser(username);
 		if (result != 1) {
-			throw new CMCException("Error removing user from the DB.  Not present?  DB error?");
+			//throw new CMCException("Error removing user from the DB.  Not present?  DB error?");
+			return false;
 		}
 		else {
 			return true;
