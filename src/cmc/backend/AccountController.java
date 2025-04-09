@@ -68,6 +68,20 @@ public class AccountController {
 	public boolean logOut() {
 		return true;
 	}
+
+	public boolean editAccount(String username, String firstname, String lastname, String password, char type, char active) throws CMCException {
+		Account acc = this.myDBcontroller.getUser(username);
+		if (acc != null) {
+			acc.setFirstName(firstname);
+			acc.setLastName(lastname);
+			acc.setPassword(password);
+			acc.setType(type);
+			acc.setActive(active);
+			this.myDBcontroller.updateAccount(acc);
+			return true;
+		}
+		return false;
+	}
 }
 	
 
