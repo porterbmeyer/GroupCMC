@@ -101,6 +101,7 @@ public class Driver {
 			if(!ui.editUser(s)) {
 				System.out.print("Failed to edit user (User does not exist)");
 			}
+			break;
 		case 3:
 			if (!ui.removeUser(s))
 				System.out.println("Failed to remove user.  (Invalid username?)");

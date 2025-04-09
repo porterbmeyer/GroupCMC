@@ -179,21 +179,21 @@ public class UserInteraction {
 	    // Update password
 	    System.out.println("Current Password: " + editUser.getPassword() + "\nNew Password:");
 	    String newPassword = s.nextLine();
-	    if (!newPassword.equals("")) {
+	    if (newPassword.equals("")) {
 	        newPassword = editUser.getPassword();
 	    }
 
 	    // Update first name
 	    System.out.println("Current First Name: " + editUser.getFirstName() + "\nNew First Name:");
 	    String newFirstName = s.nextLine();
-	    if (!newFirstName.equals("")) {
+	    if (newFirstName.equals("")) {
 	        newFirstName = editUser.getFirstName();
 	    }
 
 	    // Update last name
 	    System.out.println("Current Last Name: " + editUser.getLastName() + "\nNew Last Name:");
 	    String newLastName = s.nextLine();
-	    if (!newLastName.equals("")) {
+	    if (newLastName.equals("")) {
 	        newLastName = editUser.getLastName();
 	    }
 
@@ -211,8 +211,25 @@ public class UserInteraction {
 	        }
 	    }
 
+		//update active status
+		System.out.println("Current Active Status: " + editUser.getActive() + "\nNew Active Status (Y or N):");
+		String newActive = s.nextLine();
+		char newActiveChar = editUser.getActive();
+		while(true){
+			if (newActive.equalsIgnoreCase("y") || newActive.equalsIgnoreCase("n")) {
+				newActiveChar = newActive.toUpperCase().charAt(0);
+				break;
+			} else if (newActive.equals("")) {
+				break;
+			} else {
+				System.out.println("Invalid input. Try again.");
+				newActive = s.nextLine();
+			}
+		}
+
 	    // Save changes to the database
-	    if (this.accountController.editAccount(newFirstName, newLastName, username, newPassword, newTypeChar, 'Y')) {
+		// String username, String firstname, String lastname, String password, char type, char active
+	    if (this.accountController.editAccount(username, newFirstName, newLastName, newPassword, newTypeChar, newActiveChar)) {
 	        System.out.println("User details updated successfully.");
 	    } else {
 	        System.out.println("Failed to update user details.");

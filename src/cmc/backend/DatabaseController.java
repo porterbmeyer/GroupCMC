@@ -307,7 +307,7 @@ public class DatabaseController {
 	    int result = this.database.user_editUser(
 	        acc.getUsername(),
 	        acc.getFirstName(),
-	        acc.getFirstName(),
+	        acc.getLastName(),
 	        acc.getPassword(),
 	        acc.getType(),
 	        acc.getActive()
