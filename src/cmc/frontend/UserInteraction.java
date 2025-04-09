@@ -179,21 +179,21 @@ public class UserInteraction {
 	    // Update password
 	    System.out.println("Current Password: " + editUser.getPassword() + "\nNew Password:");
 	    String newPassword = s.nextLine();
-	    if (!newPassword.isBlank()) {
+	    if (!newPassword.equals("")) {
 	        newPassword = editUser.getPassword();
 	    }
 
 	    // Update first name
 	    System.out.println("Current First Name: " + editUser.getFirstName() + "\nNew First Name:");
 	    String newFirstName = s.nextLine();
-	    if (!newFirstName.isBlank()) {
+	    if (!newFirstName.equals("")) {
 	        newFirstName = editUser.getFirstName();
 	    }
 
 	    // Update last name
 	    System.out.println("Current Last Name: " + editUser.getLastName() + "\nNew Last Name:");
 	    String newLastName = s.nextLine();
-	    if (!newLastName.isBlank()) {
+	    if (!newLastName.equals("")) {
 	        newLastName = editUser.getLastName();
 	    }
 
@@ -201,7 +201,7 @@ public class UserInteraction {
 	    while (true) {
 	        System.out.println("Current User Type: " + editUser.getType() + "\nNew User Type (u or a):");
 	        String newType = s.nextLine();
-	        if (newType.isBlank()) {
+	        if (newType.equals("")) {
 	            break;
 	        } else if (newType.equalsIgnoreCase("u") || newType.equalsIgnoreCase("a")) {
 	            newTypeChar = newType.toLowerCase().charAt(0);
