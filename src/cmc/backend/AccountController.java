@@ -70,7 +70,25 @@ public class AccountController {
 	}
 
 	public boolean editAccount(String username, String firstname, String lastname, String password, char type, char active) throws CMCException {
+		if(this.myDBcontroller.getUser(username) == null) {
+			throw new CMCException("User does not exist");
+		}
 		Account acc = this.myDBcontroller.getUser(username);
+		if(firstname.equals("")){
+			firstname = acc.getFirstName();
+		}
+		if(lastname.equals("")){
+			lastname = acc.getLastName();
+		}
+		if(password.equals("")){
+			password = acc.getPassword();
+		}
+		if(type == ' '){
+			type = acc.getType();
+		}
+		if(active == ' '){
+			active = acc.getActive();
+		}
 		if (acc != null) {
 			acc.setFirstName(firstname);
 			acc.setLastName(lastname);
