@@ -162,44 +162,63 @@ public class UserInteraction {
 	}
 	
 	//TODO: FINISH EDIT USER METHOD. MIGHT WANT TO RETHINK HOW IT WORKS TBH
+	// User gets prompted for username, then asked for each field they want to change. CANNOT CHANGE USERNAME.
+	public boolean editUser(Scanner s) throws CMCException {
+	    System.out.println("Enter the username of the user you would like to edit:");
+	    String username = s.nextLine();
 
-	public boolean editUser(Scanner s) {
-		/*
-		System.out.println("Enter the username of the user you would like to edit:");
-		String username = s.nextLine();
-		
-		if(databaseController.getUser(username) == null) {
-			return false;
-		} else {
-			Account editUser = databaseController.getUser(username);
-			System.out.println("Enter the updates you would like to make. (Leave blank if no change is wanted)");
-			System.out.println("Current Username: "+ editUser.getUsername() + "\nNew Username:");
-			String newUsername = s.nextLine();
-			System.out.println("Current Password: "+ editUser.getPassword() + "\nNew Password:");
-			String newPassword = s.nextLine();
-			System.out.println("Current First Name: "+ editUser.getFirstName() + "\nNew First Name:");
-			String newFirstName = s.nextLine();
-			System.out.println("Current Last Name: "+ editUser.getLastName() + "\nNew Last Name:");
-			String newLastName = s.nextLine();
-			boolean x = true;
-			while(x == true) {
-				System.out.println("Current Last Name: "+ editUser.getType() + "\nNew Last Name:");
-				String newType = s.nextLine();
-				if(newType.toLowerCase().equals("a")|| newType.toLowerCase().equals("u")) {
-					char newTypeC = newType.toLowerCase().charAt(0);
-					x = false;
-				} else if(newType.equals("")) {
-					x = false;
-				} else {
-					System.out.println("Invalid input. Try again.");
-				}
-			}
-			if(newUsername != "") {
-				editUser.get
-			}*/
-			return false;
-		//}
-		
+	    Account editUser = databaseController.getUser(username);
+	    if (editUser == null) {
+	        System.out.println("User not found.");
+	        return false;
+	    }
+		char newTypeChar = editUser.getType();
+
+	    System.out.println("Enter the updates you would like to make. (Leave blank if no change is wanted)");
+
+	    // Update password
+	    System.out.println("Current Password: " + editUser.getPassword() + "\nNew Password:");
+	    String newPassword = s.nextLine();
+	    if (!newPassword.isBlank()) {
+	        newPassword = editUser.getPassword();
+	    }
+
+	    // Update first name
+	    System.out.println("Current First Name: " + editUser.getFirstName() + "\nNew First Name:");
+	    String newFirstName = s.nextLine();
+	    if (!newFirstName.isBlank()) {
+	        newFirstName = editUser.getFirstName();
+	    }
+
+	    // Update last name
+	    System.out.println("Current Last Name: " + editUser.getLastName() + "\nNew Last Name:");
+	    String newLastName = s.nextLine();
+	    if (!newLastName.isBlank()) {
+	        newLastName = editUser.getLastName();
+	    }
+
+	    // Update user type
+	    while (true) {
+	        System.out.println("Current User Type: " + editUser.getType() + "\nNew User Type (u or a):");
+	        String newType = s.nextLine();
+	        if (newType.isBlank()) {
+	            break;
+	        } else if (newType.equalsIgnoreCase("u") || newType.equalsIgnoreCase("a")) {
+	            newTypeChar = newType.toLowerCase().charAt(0);
+	            break;
+	        } else {
+	            System.out.println("Invalid input. Try again.");
+	        }
+	    }
+
+	    // Save changes to the database
+	    if (this.accountController.editAccount(newFirstName, newLastName, username, newPassword, newTypeChar, 'Y')) {
+	        System.out.println("User details updated successfully.");
+	    } else {
+	        System.out.println("Failed to update user details.");
+	        return false;
+	    }
+	    return true;
 	}
 	
 
