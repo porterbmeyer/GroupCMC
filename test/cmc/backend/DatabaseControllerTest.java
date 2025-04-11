@@ -10,6 +10,7 @@ import cmc.CMCException;
 import junit.framework.Assert;
 
 public class DatabaseControllerTest {
+
 	private String firstName = "kfjwjejkewjkejknw";
 	private String lastName = "ewothioweoitoiwejotjetoji";
 	private String username = "kjweewkjejkfwekjckjwekjkjwef";
@@ -44,6 +45,15 @@ public class DatabaseControllerTest {
 		//attempts to add a user without the same username but same info should work. (Write a new one before testing)
 		boolean answer3 = controller.addUser(firstName, lastName, "heyyy", password,type);
 		Assert.assertTrue(answer3); 
+		
+		//attempts to add a user with a unique firstname but same username
+		boolean answer4 = controller.addUser("sonotarealfirstname", lastName, username, password,type);
+		Assert.assertFalse(answer4);
+		
+		//should fail because account exists but not with this firstname
+		boolean answer5 = controller.addUser("sonotarealname", lastName, "heyyy", password, type);
+		Assert.assertFalse(answer5);
+		
 	}
 	
 	@SuppressWarnings("deprecation")
