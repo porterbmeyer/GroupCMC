@@ -34,7 +34,7 @@ public class UniversityController {
 		List<University> universityList = this.myDBcontroller.getAllUniversities();
 		return universityList;
 	}
-	
+
 	//TODO finish this enhancement
 	public boolean editUniversity(String name) {
 		University newUni = getUniversityByName(name);
