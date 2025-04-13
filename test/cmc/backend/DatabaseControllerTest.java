@@ -26,7 +26,8 @@ public class DatabaseControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
-		//controller.removeUser(username);
+		controller.addUser("first", "last","uniqueuser","p",'a');
+		controller.addUser("firs", "las","otheruser","pass",'u');
 		controller.removeUser("heyyy");
 	}
 
@@ -69,5 +70,6 @@ public class DatabaseControllerTest {
 		Assert.assertFalse(result1);
 		
 	} 
+	
 
 }
