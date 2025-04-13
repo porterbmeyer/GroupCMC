@@ -82,12 +82,23 @@ public class AccountControllerTest extends AccountController {
         Account testnull = testac.updateAccountDetails("doesntexist", "notreal", "nouser", "nothere", 'u', 'Y');
         Assert.assertNull(testnull);
     }
-/**
-	@Test
-	public void testChangePassword() {
-		fail("Not yet implemented");
-	}
 
+	@Test
+	public void testChangePassword() throws CMCException {
+		//String firstname, String lastname, String username, String password, char type
+		//testing the null return on a username that doesn't exist
+        String testnull = testac.changePassword("nouser", "norealpassword","realpassword");
+        Assert.assertEquals("Account not found.", testnull);
+        
+        //wrong password
+        String wrongpass = testac.changePassword("testuname", "passtest", "newpass");
+        Assert.assertEquals("Old password is incorrect.", wrongpass);
+        
+      //succesful change
+        String changepass = testac.changePassword("testuname", "testpass", "newerpassword");
+        Assert.assertEquals("Password changed successfully.", changepass);
+	}
+/**
 	@Test
 	public void testLogin() {
 		fail("Not yet implemented");
