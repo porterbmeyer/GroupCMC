@@ -12,6 +12,7 @@ public class AccountControllerTest extends AccountController {
 
 	private AccountController ac = new AccountController();
 	private AccountController testac = new AccountController();
+	
 	@Before
 	public void setUp() throws Exception {
 		testac.createAccount("Test", "User", "testuname", "testpass", 'u');
@@ -98,15 +99,32 @@ public class AccountControllerTest extends AccountController {
         String changepass = testac.changePassword("testuname", "testpass", "newerpassword");
         Assert.assertEquals("Password changed successfully.", changepass);
 	}
-/**
-	@Test
-	public void testLogin() {
-		fail("Not yet implemented");
-	}
 
 	@Test
-	public void testEditAccount() {
-		fail("Not yet implemented");
-	} */
+	public void testLogin() throws CMCException {
+		Account shouldntwork = testac.login("notreal", "doesntmatter");
+		Assert.assertNull(shouldntwork);
+		
+		Account wrongpass = testac.login("testUser", "doesntmatter");
+		Assert.assertNull(wrongpass);
+		
+		Account wronguname = testac.login("dontexist", "testpass");
+		Assert.assertNull(wronguname);
+		
+		Account shouldpass = testac.login("testuname", "testpass");
+		Assert.assertEquals("testuname", shouldpass.getUsername());
+		Assert.assertEquals("testpass", shouldpass.getPassword());
+	}
+//String username, String firstname, String lastname, String password, char type, char active
+	@Test
+	public void testEditAccount() throws CMCException {
+		//edited Account's information in the database, should pass
+		boolean changedinfo = testac.editAccount("testuname", "diffFname", "lastlast", "diffPass", 'a','N');
+		Assert.assertTrue(changedinfo);
+		
+		//account doesn't exist, should be false
+		boolean dontexist = testac.editAccount("brandnewguy", "New", "Guy", "guyNew", 'a', 'Y');
+		Assert.assertFalse(dontexist);
+	} 
 
 }
