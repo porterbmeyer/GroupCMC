@@ -6,9 +6,10 @@ import org.junit.runners.Suite.SuiteClasses;
 import cmc.backend.AccountControllerTest;
 import cmc.backend.AccountTest;
 import cmc.backend.DatabaseControllerTest;
+import cmc.backend.UniversityControllerTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({AccountTest.class,DatabaseControllerTest.class, AccountControllerTest.class})
+@SuiteClasses({AccountTest.class,DatabaseControllerTest.class, AccountControllerTest.class,UniversityControllerTest.class})
 public class AllTests {
 
 }
