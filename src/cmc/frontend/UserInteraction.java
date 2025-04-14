@@ -98,9 +98,11 @@ public class UserInteraction {
 	
 	public List<University> search(Scanner s) throws CMCException {
 		
-	    System.out.print("enter text to searh by certain criteria (leave blank to not search by this criterion): ");
+	    System.out.print("enter text to searh by certain criteria (Enter 1 to not search by this criterion): ");
 	    String criteria = s.nextLine().trim();
-	    if (criteria == null || criteria.isEmpty()) {
+    	int num1 = Integer.parseInt(criteria);
+
+	    if (num1 == 1 ) {
 	    	return this.databaseController.getAllUniversities();
 	    }
 	   List<University> universities = this.databaseController.getAllUniversities();
