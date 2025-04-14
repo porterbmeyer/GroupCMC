@@ -109,7 +109,7 @@ public class DatabaseController {
 		int result = this.database.user_saveSchool(username, schoolName);
 		if (result != 1) {
 			// TODO: How can we tell the difference?
-			throw new Error("Error saving school to user in the DB.  Already present?  DB error?");
+			return false;
 		}
 		else {
 			return true;
