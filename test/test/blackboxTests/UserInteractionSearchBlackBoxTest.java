@@ -3,6 +3,7 @@ package test.blackboxTests;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import cmc.CMCException;
 import cmc.backend.University;
 import cmc.frontend.UserInteraction;
 
@@ -20,9 +21,10 @@ public class UserInteractionSearchBlackBoxTest {
     /**
      * Tests the search functionality by searching universities by state.
      * Verifies that the results are not null and that all returned universities are from the specified state.
+     * @throws CMCException 
      */
     @Test
-    public void testSearchByState() {
+    public void testSearchByState() throws CMCException {
         String testState = "Minnesota";
         String input = testState + "\n";
         InputStream originalIn = System.in;
