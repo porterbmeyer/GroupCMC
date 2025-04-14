@@ -1,4 +1,4 @@
-package cmc.backend;
+package systemtest;
 
 import cmc.CMCException;
 import cmc.backend.AccountController;

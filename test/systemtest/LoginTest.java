@@ -1,4 +1,4 @@
-package cmc.backend;
+package systemtest;
 
 import static org.junit.Assert.*;
 
