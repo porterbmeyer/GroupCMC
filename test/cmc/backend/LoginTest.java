@@ -1,4 +1,4 @@
-package test.blackboxTests;
+package cmc.backend;
 
 import static org.junit.Assert.*;
 

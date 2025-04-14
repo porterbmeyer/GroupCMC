@@ -1,4 +1,4 @@
-package test.blackboxTests;
+package cmc.backend;
 
 import cmc.CMCException;
 import cmc.backend.AccountController;
