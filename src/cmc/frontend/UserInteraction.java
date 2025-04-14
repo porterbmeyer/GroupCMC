@@ -2,6 +2,8 @@ package cmc.frontend;
 
 import cmc.CMCException;
 import cmc.backend.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,6 +14,7 @@ public class UserInteraction {
 	
 	private Account loggedInUser;
 	
+	private UniversityController universityController;
 	private AccountController accountController;
 	private DatabaseController databaseController;
 	
@@ -93,26 +96,576 @@ public class UserInteraction {
 		return false;
 	}
 	
-	public List<University> search(Scanner s) {
+	public List<University> search(Scanner s) throws CMCException {
 		
-	    System.out.print("State (leave blank to not search by this criterion): ");
-	    String state = s.nextLine().trim();
-	    if (state == null || state.isEmpty()) {
+	    System.out.print("enter text to searh by certain criteria (leave blank to not search by this criterion): ");
+	    String criteria = s.nextLine().trim();
+	    if (criteria == null || criteria.isEmpty()) {
 	    	return this.databaseController.getAllUniversities();
 	    }
-	    List<University> universities = this.databaseController.searchUniversities(state);
-	    
+	   List<University> universities = this.databaseController.getAllUniversities();
+	   List<University> selectedUnis = new ArrayList<University>();
 	    if (universities.isEmpty()) {
 	        System.out.println("No universities found with the given search criteria.");
-	    } else {
-	        System.out.println("Universities found:");
+	    } 
+	    else if(criteria.toLowerCase().equals("name")) {
+	    	System.out.println("enter name of school: ");
+	    	String name = s.nextLine();
+	    	
+	    	System.out.println("University found:");
+	    	
 	        for (University university : universities) {
-	            System.out.println("Name: " + university.getName() + ", Location: " + university.getLocation() +
-	                ", State: " + university.getState());
+	        	if(university.getName().equals(name)) {
+	        		selectedUnis.add(university);
+	        	}
+	    }
+	        return selectedUnis;
+	    }
+	    else if(criteria.toLowerCase().equals("location")) {
+	    	System.out.println("Enter location of school, SUBURBAN, URBAN, SMALL-CITY: ");
+	    	String location = s.nextLine();
+	    	
+	    	System.out.println("Universities found:");
+	    	
+	        for (University university : universities) {
+	           if(location.equals(university.getLocation())) {
+	        	   selectedUnis.add(university);
+	           }
+	        }
+	        return selectedUnis;
+	    }
+	    
+	    else if(criteria.toLowerCase().equals("state")) {
+	    	System.out.println("Enter state of schools: ");
+	    	String state = s.nextLine();
+	    	
+	        System.out.println("Universities found:");
+	        
+	        for (University university : universities) {
+	            if(state.equals(university.getState())) {
+	            	selectedUnis.add(university);
+	            }
+	        }
+	        return selectedUnis;
+	    }
+	    else if(criteria.toLowerCase().equals("control")) {
+	    	System.out.println("Enter the control of school, PRIVATE, CITY, STATE: ");
+	    	String control = s.nextLine();
+	    	
+	        System.out.println("Universities found:");
+	        
+	        for (University university : universities) {
+	            if(control.equals(university.getControl())) {
+	            	selectedUnis.add(university);
+	            }
+	        }
+	        return selectedUnis;
+	    }
+	    else if(criteria.toLowerCase().equals("population")) {
+	    	System.out.println("Enter the population of the school, ranges are 10-15k, 15-25k, 25-35k, 35-40k: ");
+	    	String population = s.nextLine();
+	    	int num = Integer.parseInt(population);
+	        System.out.println("Universities found:");
+	        
+	           if(num>=10000 && num<=15000) {
+	        	   for (University university : universities) {
+	        		   if(university.getPopulation()>= 10000 && university.getPopulation()<=15000) {
+	        			   selectedUnis.add(university);
+	        		   }
+	        	   }
+	        	   return selectedUnis;
+	           }
+	           else if(num>=15001 && num<=25000) {
+	        	   for (University university : universities) {
+	        		   if(university.getPopulation()>= 15001 && university.getPopulation()<=25000) {
+	        			   selectedUnis.add(university);
+	        		   }
+	        	   }
+	        	   return selectedUnis;
+	           }
+	           else if(num>=25001 && num<=35000) {
+	        	   for (University university : universities) {
+	        		   if(university.getPopulation()>= 25001 && university.getPopulation()<=35000) {
+	        			   selectedUnis.add(university);
+	        		   }
+	        	   }
+	        	   return selectedUnis;
+	           }
+	           else if(num>=35001 && num<=40000) {
+	        	   for (University university : universities) {
+	        		   if(university.getPopulation()>= 35001 && university.getPopulation()<=40000) {
+	        			   selectedUnis.add(university);
+	        		   }
+	        	   }
+	        	   return selectedUnis;
+	           }
+	        }
+	    
+	    else if(criteria.toLowerCase().equals("percentfemale")) {
+	    	System.out.println("Enter the percent of females in the school, ranges are 20-40, 40-60, 60-80, 80-100%: ");
+	    	String percfem = s.nextLine();
+	    	int num = Integer.parseInt(percfem);
+
+	        System.out.println("Universities found:");
+	        
+	        if(num>=20 && num <=40) {
+	        	for(University university : universities) {
+	        		if(university.getPercentFemale() >= 20 && university.getPercentFemale() <=40) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=41 && num <=60) {
+	        	for(University university : universities) {
+	        		if(university.getPercentFemale() >= 41 && university.getPercentFemale() <=60) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=61 && num <=80) {
+	        	for(University university : universities) {
+	        		if(university.getPercentFemale() >= 61 && university.getPercentFemale() <=80) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=81 && num <=100) {
+	        	for(University university : universities) {
+	        		if(university.getPercentFemale() >= 81 && university.getPercentFemale() <=100) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
 	        }
 	    }
+	    else if(criteria.toLowerCase().equals("satverbal")) {
+	    	System.out.println("Enter the SAT verbal, -1, 400-500, 500-600, 600-700: ");
+	    	String satverbal = s.nextLine();
+	    	int num = Integer.parseInt(satverbal);
+	    	
+	        System.out.println("Universities found:");
+	        if(num == -1) {
+	        	 for (University university : universities) {
+	 	            if(num == university.getSatVerbal()) {
+	 	            	selectedUnis.add(university);
+	 	            }
+	 	        }
+	        	 return selectedUnis;
+	        }
+	        else if(num >= 400 && num <= 500) {
+	        	 for (University university : universities) {
+	 	            if(num == university.getSatVerbal()) {
+	 	            	selectedUnis.add(university);
+	 	            }
+	 	        }
+	        	 return selectedUnis;
+	        }
+	        else if(num >= 501 && num <= 600) {
+	        	 for (University university : universities) {
+	 	            if(num == university.getSatVerbal()) {
+	 	            	selectedUnis.add(university);
+	 	            }
+	 	        }
+	        	 return selectedUnis;
+	        }
+	        else if(num >= 601 && num <= 700) {
+	        	 for (University university : universities) {
+	 	            if(num == university.getSatVerbal()) {
+	 	            	selectedUnis.add(university);
+	 	            }
+	 	        }
+	        	 return selectedUnis;
+	        }
+	    }
+	    else if(criteria.toLowerCase().equals("satmath")) {
+	    	System.out.println("Enter the SAT math, -1, 400-500, 500-600, 600-700, 700-800: ");
+	    	String satmath = s.nextLine();
+	    	int num = Integer.parseInt(satmath);
+	    	
+	        System.out.println("Universities found:");
+	        if(num == -1) {
+	        	 for (University university : universities) {
+	 	            if(num == university.getSatMath()) {
+	 	            	selectedUnis.add(university);
+	 	            }
+	 	        }
+	        	 return selectedUnis;
+	        }
+	        else if(num >= 400 && num <= 500) {
+	        	 for (University university : universities) {
+	 	            if(num == university.getSatMath()) {
+	 	            	selectedUnis.add(university);
+	 	            }
+	 	        }
+	        	 return selectedUnis;
+	        }
+	        else if(num >= 501 && num <= 600) {
+	        	 for (University university : universities) {
+	 	            if(num == university.getSatMath()) {
+	 	            	selectedUnis.add(university);
+	 	            }
+	 	        }
+	        	 return selectedUnis;
+	        }
+	        else if(num >= 601 && num <= 700) {
+	        	 for (University university : universities) {
+	 	            if(num == university.getSatMath()) {
+	 	            	selectedUnis.add(university);
+	 	            }
+	 	        }
+	        	 return selectedUnis;
+	        }
+	        else if(num >= 701 && num <= 800) {
+	        	 for (University university : universities) {
+	 	            if(num == university.getSatMath()) {
+	 	            	selectedUnis.add(university);
+	 	            }
+	 	        }
+	        	 return selectedUnis;
+	        }
+	    }
+	    else if(criteria.toLowerCase().equals("expenses")) {
+	    	System.out.println("Enter expenses, 10-20, 20-30, 30-40k: ");
+	    	String expenses = s.nextLine();
+	    	int num = Integer.parseInt(expenses);
 
-	    return universities;
+	        System.out.println("Universities found:");
+	        if(num >= 10000 && num <= 20000) {
+	        	for (University university : universities) {
+		           if(university.getExpenses()>=10000 && university.getExpenses()<=20000) {
+		        	   selectedUnis.add(university);
+		           }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num >= 20001 && num <= 30000) {
+	        	for (University university : universities) {
+		           if(university.getExpenses()>=20001 && university.getExpenses()<=30000) {
+		        	   selectedUnis.add(university);
+		           }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num >= 30001 && num <= 40000) {
+	        	for (University university : universities) {
+		           if(university.getExpenses()>=30001 && university.getExpenses()<=40000) {
+		        	   selectedUnis.add(university);
+		           }
+		        }
+	        	return selectedUnis;
+	        }
+	    }
+	    else if(criteria.toLowerCase().equals("percentfinancialaid")) {
+	    	System.out.println("Enter the percent of financial aid in the school, ranges are 20-40, 40-60, 60-80, 80-100%: ");
+	    	String finAid = s.nextLine();
+	    	int num = Integer.parseInt(finAid);
+
+	        System.out.println("Universities found:");
+	        
+	        if(num>=20 && num <=40) {
+	        	for(University university : universities) {
+	        		if(university.getPercentFinancialAid() >= 20 && university.getPercentFinancialAid() <=40) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=41 && num <=60) {
+	        	for(University university : universities) {
+	        		if(university.getPercentFinancialAid() >= 41 && university.getPercentFinancialAid() <=60) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=61 && num <=80) {
+	        	for(University university : universities) {
+	        		if(university.getPercentFinancialAid() >= 61 && university.getPercentFinancialAid() <=80) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=81 && num <=100) {
+	        	for(University university : universities) {
+	        		if(university.getPercentFinancialAid() >= 81 && university.getPercentFinancialAid() <=100) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }	       
+	    }
+	    else if(criteria.toLowerCase().equals("numberapplicants")) {
+	    	System.out.println("Enter the number of applicants for the school, ranges are 4-8k, 8-12k, 12-17k: ");
+	    	String numapp = s.nextLine();
+	    	int num = Integer.parseInt(numapp);
+
+	        System.out.println("Universities found:");
+	        if(num >= 4000 && num<=8000) {
+	        	for (University university : universities) {
+		            if(university.getNumberApplicants() >= 4000 && university.getNumberApplicants()<=8000) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num >= 8001 && num<=12000) {
+	        	for (University university : universities) {
+		            if(university.getNumberApplicants() >= 8001 && university.getNumberApplicants()<=12000) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num >= 12001 && num<=17000) {
+	        	for (University university : universities) {
+		            if(university.getNumberApplicants() >= 12001 && university.getNumberApplicants()<=17000) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	    }
+	    else if(criteria.toLowerCase().equals("acceptancerate")) {
+	    	System.out.println("Enter the Acceptance Rate for the school, ranges are 20-40, 40-60, 60-80, 80-100%: ");
+	    	String arate = s.nextLine();
+	    	int num = Integer.parseInt(arate);
+
+	        System.out.println("Universities found:");
+	        
+	        if(num>=20 && num <=40) {
+	        	for(University university : universities) {
+	        		if(university.getAcceptanceRate() >= 20 && university.getAcceptanceRate() <=40) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=41 && num <=60) {
+	        	for(University university : universities) {
+	        		if(university.getAcceptanceRate() >= 41 && university.getAcceptanceRate() <=60) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=61 && num <=80) {
+	        	for(University university : universities) {
+	        		if(university.getAcceptanceRate() >= 61 && university.getAcceptanceRate() <=80) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=81 && num <=100) {
+	        	for(University university : universities) {
+	        		if(university.getAcceptanceRate() >= 81 && university.getAcceptanceRate() <=100) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }	       
+	    }
+	    else if(criteria.toLowerCase().equals("enrollmentrate")) {
+	    	System.out.println("Enter the Enrollment Rate for the school, ranges are 15-20, 20-40, 40-60, 60-80, 80-100%: ");
+	    	String erate = s.nextLine();
+	    	int num = Integer.parseInt(erate);
+
+	        System.out.println("Universities found:");
+	        
+	        if(num>=15 && num <=20) {
+	        	for(University university : universities) {
+	        		if(university.getEnrollmentRate() >= 15 && university.getEnrollmentRate() <=20) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=21 && num <=40) {
+	        	for(University university : universities) {
+	        		if(university.getEnrollmentRate() >= 20 && university.getEnrollmentRate() <=40) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=41 && num <=60) {
+	        	for(University university : universities) {
+	        		if(university.getEnrollmentRate() >= 41 && university.getEnrollmentRate() <=60) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=61 && num <=80) {
+	        	for(University university : universities) {
+	        		if(university.getEnrollmentRate() >= 61 && university.getEnrollmentRate() <=80) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }
+	        else if(num>=81 && num <=100) {
+	        	for(University university : universities) {
+	        		if(university.getEnrollmentRate() >= 81 && university.getEnrollmentRate() <=100) {
+	        			selectedUnis.add(university);
+	        		}
+	        	}
+	        	return selectedUnis;
+	        }	       
+	    }
+	    else if(criteria.toLowerCase().equals("academicscale")) {
+	    	System.out.println("Enter the academic scale for the university, 1-2-3-4-5: ");
+	    	String aScale = s.nextLine();
+	    	
+	    	int num = Integer.parseInt(aScale);
+
+	        System.out.println("Universities found:");
+	        if(num==1) {
+	        	for (University university : universities) {
+		            if(university.getAcademicScale()==1) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        
+	        else if(num==2) {
+	        	for (University university : universities) {
+		            if(university.getAcademicScale()==2) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num==3) {
+	        	for (University university : universities) {
+		            if(university.getAcademicScale()==3) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num==4) {
+	        	for (University university : universities) {
+		            if(university.getAcademicScale()==4) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num==5) {
+	        	for (University university : universities) {
+		            if(university.getAcademicScale()==5) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	    }
+	    else if(criteria.toLowerCase().equals("socialscale")) {
+	    	System.out.println("Enter the social scale for the university, 1-2-3-4-5: ");
+	    	String sScale = s.nextLine();
+	    	
+	    	int num = Integer.parseInt(sScale);
+
+	        System.out.println("Universities found:");
+	        if(num==1) {
+	        	for (University university : universities) {
+		            if(university.getSocialScale()==1) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        
+	        else if(num==2) {
+	        	for (University university : universities) {
+		            if(university.getSocialScale()==2) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num==3) {
+	        	for (University university : universities) {
+		            if(university.getSocialScale()==3) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num==4) {
+	        	for (University university : universities) {
+		            if(university.getSocialScale()==4) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num==5) {
+	        	for (University university : universities) {
+		            if(university.getSocialScale()==5) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	    }
+	    else if(criteria.toLowerCase().equals("qualityscale")) {
+	    	System.out.println("Enter the quality scale for the university, 1-2-3-4-5: ");
+	    	String qScale = s.nextLine();
+	    	
+	    	int num = Integer.parseInt(qScale);
+	    	
+
+	        System.out.println("Universities found:");
+	        if(num==1) {
+	        	for (University university : universities) {
+		            if(university.getQualityScale()==1) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        
+	        else if(num==2) {
+	        	for (University university : universities) {
+		            if(university.getQualityScale()==2) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num==3) {
+	        	for (University university : universities) {
+		            if(university.getQualityScale()==3) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num==4) {
+	        	for (University university : universities) {
+		            if(university.getQualityScale()==4) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	        else if(num==5) {
+	        	for (University university : universities) {
+		            if(university.getQualityScale()==5) {
+		            	selectedUnis.add(university);
+		            }
+		        }
+	        	return selectedUnis;
+	        }
+	    }
+	    return null;
 	}
 	
 	

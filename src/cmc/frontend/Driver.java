@@ -133,25 +133,30 @@ public class Driver {
 	}
 	// TODO: Figure out how this method behaves and add 
 	private static void searchResultsMenu(Scanner s, List<University> results) {
-		printHeader("Search Results");
-
-		for (University school : results) {
-			System.out.println(school.getName() + " | " + school.getState());
+		
+		if(results == null) {
+			System.out.println("Wrong Input, you will be dircted back to User menu: ");
 		}
-		System.out.println();
+		else {
+			printHeader("Search Results");
+			for (University school : results) {
+				System.out.println(school.getName() + " | " + school.getState());
+			}
+			System.out.println();
 
-		int choice = getMenuOption(s, Arrays.asList("Save School", "Go Back"));
+			int choice = getMenuOption(s, Arrays.asList("Save School", "Go Back"));
 
-		switch(choice) {
-		case 1:
-			if (!ui.saveSchool(s))
-				System.out.println("Failed to save school.  (Already in saved list?)");
-			break;
-		case 2:
-			return;
-		default:
-			System.err.println("Internal error: Unsupported option.");
-			System.exit(1);
+			switch(choice) {
+			case 1:
+				if (!ui.saveSchool(s))
+					System.out.println("Failed to save school.  (Already in saved list?)");
+				break;
+			case 2:
+				return;
+			default:
+				System.err.println("Internal error: Unsupported option.");
+				System.exit(1);
+			}
 		}
 	}
 	// consulted OpenAI's ChatGPT
@@ -197,7 +202,7 @@ public class Driver {
 	}
 
 	
-	private static void regularUserMenu(Scanner s) {
+	private static void regularUserMenu(Scanner s) throws CMCException {
 		printHeader("User Menu");
 		
 		int choice = getMenuOption(s, Arrays.asList("Search", "View Saved Schools", "Logout"));

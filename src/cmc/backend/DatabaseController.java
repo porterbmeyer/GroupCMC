@@ -320,14 +320,6 @@ public class DatabaseController {
 	    return true;
 	}
 	
-//	//TODO fix this
-	public List<University> searchUniversities(String state) {
-	    String[][] dbUniversityList = this.database.university_getUniversities();
-	    List<University> result = new ArrayList<>();
-
-	    return result;
-	}
-	
 	public boolean editSchool(String name, String state, String location, String control, int numOfStudents, double percentFemale, int SATVerbal, int SATMath, int expenses, double percentFinancialAid, int numOfApps, double acceptanceRate, double enrollmentRate, int academicScale, int socialScale, int qualOfLife) throws CMCException {
 		int result = this.database.university_editUniversity(name, state, location, control, numOfStudents, percentFemale, SATVerbal, SATMath, expenses, percentFinancialAid, numOfApps, acceptanceRate, enrollmentRate, academicScale, socialScale, qualOfLife);
 		
