@@ -31,7 +31,7 @@ public class DatabaseControllerTest {
 		controller.addUser("firs", "las","otheruser","pass",'u');
 		controller.removeUser("heyyy");
 		
-		//controller.removeUser("johndoe123"); commented out because it doesn't ever make it to the db becasue it throws
+		//controller.removeUser("johndoe123"); commented out because it doesn't even make it to the db becasue it throws
 	}
 
 	@Test

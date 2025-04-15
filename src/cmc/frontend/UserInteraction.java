@@ -668,6 +668,48 @@ public class UserInteraction {
 	    }
 	    return null;
 	}
+	public boolean editProfile(Scanner s) throws CMCException {
+	    if (this.loggedInUser == null) {
+	        System.out.println("No user is logged in.");
+	        return false;
+	    }
+
+	    System.out.println("Enter the updates you would like to make. (Leave blank if no change is wanted)");
+
+	    // Update username
+	    System.out.println("Current Username: " + loggedInUser.getUsername());
+	    System.out.println("Username cannot be changed.");
+
+	    // Update password
+	    System.out.println("Current Password: " + loggedInUser.getPassword() + "\nNew Password:");
+	    String newPassword = s.nextLine();
+	    if (newPassword.isEmpty()) {
+	        newPassword = loggedInUser.getPassword();
+	    }
+
+	    // Update first name
+	    System.out.println("Current First Name: " + loggedInUser.getFirstName() + "\nNew First Name:");
+	    String newFirstName = s.nextLine();
+	    if (newFirstName.isEmpty()) {
+	        newFirstName = loggedInUser.getFirstName();
+	    }
+
+	    // Update last name
+	    System.out.println("Current Last Name: " + loggedInUser.getLastName() + "\nNew Last Name:");
+	    String newLastName = s.nextLine();
+	    if (newLastName.isEmpty()) {
+	        newLastName = loggedInUser.getLastName();
+	    }
+
+	    // Save changes to the database
+	    if (this.accountController.editAccount(loggedInUser.getUsername(), newFirstName, newLastName, newPassword, loggedInUser.getType(), loggedInUser.getActive())) {
+	        System.out.println("Profile updated successfully.");
+	        return true;
+	    } else {
+	        System.out.println("Failed to update profile.");
+	        return false;
+	    }
+	}
 	
 	
 	// get the list of saved school names for the currently-logged-in user

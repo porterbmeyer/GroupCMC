@@ -72,35 +72,31 @@ public class AccountController {
 //should return false if through reading the username, the account's informations was correctly changed in the database
 	//false if account is null and was not changed in database
 	public boolean editAccount(String username, String firstname, String lastname, String password, char type, char active) throws CMCException {
-		//if(this.myDBcontroller.getUser(username) == null) {
-			//throw new CMCException("User does not exist");
-		//}
-		Account acc = this.myDBcontroller.getUser(username);
-		if(firstname.equals("")){
-			firstname = acc.getFirstName();
-		}
-		if(lastname.equals("")){
-			lastname = acc.getLastName();
-		}
-		if(password.equals("")){
-			password = acc.getPassword();
-		}
-		if(type == ' '){
-			type = acc.getType();
-		}
-		if(active == ' '){
-			active = acc.getActive();
-		}
-		if (acc != null) {
-			acc.setFirstName(firstname);
-			acc.setLastName(lastname);
-			acc.setPassword(password);
-			acc.setType(type);
-			acc.setActive(active);
-			this.myDBcontroller.updateAccount(acc);
-			return true;
-		}
-		return false;
+	    Account acc = this.myDBcontroller.getUser(username);
+	    if (acc == null) {
+	        return false; // User does not exist
+	    }
+
+	    // Update fields with non-empty values
+	    if (!firstname.isEmpty()) {
+	        acc.setFirstName(firstname);
+	    }
+	    if (!lastname.isEmpty()) {
+	        acc.setLastName(lastname);
+	    }
+	    if (!password.isEmpty()) {
+	        acc.setPassword(password);
+	    }
+	    if (type != ' ') {
+	        acc.setType(type);
+	    }
+	    if (active != ' ') {
+	        acc.setActive(active);
+	    }
+
+	    // Persist changes to the database
+	    this.myDBcontroller.updateAccount(acc);
+	    return true;
 	}
 }
 	

@@ -203,27 +203,34 @@ public class Driver {
 
 	
 	private static void regularUserMenu(Scanner s) throws CMCException {
-		printHeader("User Menu");
-		
-		int choice = getMenuOption(s, Arrays.asList("Search", "View Saved Schools", "Logout"));
-		
-		switch(choice) {
-		case 1:
-			// TODO: it would be cleaner to use objects here (rather than
-			//       arrays of strings)
-			List<University> searchResult = ui.search(s);
-			searchResultsMenu(s, searchResult);
-			break;
-		case 2:
-			userSavedSchoolListMenu(s);
-			break;
-		case 3:
-			ui.logout();
-			break;
-		default:
-			System.err.println("Internal error: Unsupported option.");
-			System.exit(1);
-		}
+	    printHeader("User Menu");
+
+	    int choice = getMenuOption(s, Arrays.asList("Search", "View Saved Schools", "Edit Profile", "Logout"));
+
+	    switch (choice) {
+	        case 1:
+	            // Search functionality
+	            List<University> searchResult = ui.search(s);
+	            searchResultsMenu(s, searchResult);
+	            break;
+	        case 2:
+	            // View Saved Schools functionality
+	            userSavedSchoolListMenu(s);
+	            break;
+	        case 3:
+	            // Edit Profile functionality
+	            if (!ui.editProfile(s)) {
+	                System.out.println("Failed to edit profile.");
+	            }
+	            break;
+	        case 4:
+	            // Logout
+	            ui.logout();
+	            break;
+	        default:
+	            System.err.println("Internal error: Unsupported option.");
+	            System.exit(1);
+	    }
 	}
 
 	private static void topMenu(Scanner s) throws CMCException {
