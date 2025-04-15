@@ -100,9 +100,8 @@ public class UserInteraction {
 		
 	    System.out.print("enter text to searh by certain criteria (Enter 1 to not search by this criterion): ");
 	    String criteria = s.nextLine().trim();
-    	int num1 = Integer.parseInt(criteria);
-
-	    if (num1 == 1 ) {
+    	
+	    if (criteria.equals("1")) {
 	    	return this.databaseController.getAllUniversities();
 	    }
 	   List<University> universities = this.databaseController.getAllUniversities();
