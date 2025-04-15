@@ -1,4 +1,4 @@
-package cmc.backend;
+package systemtest;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import java.util.Scanner;
  * Black-box tests for the search functionality in the UserInteraction class.
  * This class verifies that the search method returns the expected results based on user input.
  */
-public class UserInteractionSearchBlackBoxTest {
+public class UserInteractionSearchTest {
 
     /**
      * Tests the search functionality by searching universities by state.
