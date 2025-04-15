@@ -47,11 +47,11 @@ public class LoginTest {
      */
     @Test
     public void loginTest() throws Exception {
-    	    
+    	
     	        UserInteraction loginController = new UserInteraction(); // Make sure this is your class with login()
 
     	        // === Test: Valid login ===
-    	        Scanner validScanner = new Scanner(new StringReader("pohmann\npeterword\n"));
+    	        Scanner validScanner = new Scanner(new StringReader("juser\nuser1\n"));
     	        boolean validLogin = loginController.login(validScanner);
     	        assertTrue("Login should succeed with correct credentials", validLogin);
     	        validScanner.close();
