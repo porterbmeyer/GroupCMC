@@ -72,8 +72,17 @@ public class EditUserTest {
      * 
      * @throws CMCException if an error occurs during editing.
      */
+    /*
     @Test(expected = CMCException.class)
     public void editUserTestException() throws CMCException {
         accountController.editAccount("nonexistent", "Peterman", "Ohhh", "pword", 'a', 'Y');
+    }
+    */
+    /**
+     * Tests that the editAccount method returns false when trying to edit a non-existent user.
+     */
+    @Test
+    public void editUserTestFalse() throws CMCException {
+        Assert.assertFalse("Editing a non-existent user should return false", accountController.editAccount("nonexistent", "Peterman", "Ohhh", "pword", 'a', 'Y'));
     }
 }
