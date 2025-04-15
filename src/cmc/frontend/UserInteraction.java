@@ -700,7 +700,7 @@ public class UserInteraction {
 		System.out.println("Enter the school you would like to save:");
 		 String name = s.nextLine();
 		
-		return this.databaseController.saveSchool(loggedInUser, name);
+		return this.databaseController.saveSchool1(loggedInUser, name);
 	}
 
 	public List<User> getAllUsers() {

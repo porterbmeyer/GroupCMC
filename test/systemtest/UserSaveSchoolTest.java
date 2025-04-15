@@ -25,17 +25,18 @@ public class UserSaveSchoolTest {
 
 	@Test
 	public void SaveSchoolTest() {
-		DatabaseController dbcon = new DatabaseController();	
+		DatabaseController dbcon = new DatabaseController();
+		dbcon.removeSavedSchool1("pohmann", "BARD");
 		boolean pass = dbcon.saveSchool("pohmann", "BARD");
 		
 		//test to pass added to saved list
 		Assert.assertTrue(pass);
 		
 		//test to fail already in DB
-		Assert.assertFalse(dbcon.saveSchool("Username1","BARD"));
+		Assert.assertFalse(dbcon.saveSchool("pohmann","BARD"));
 		
 		//fail school is not in Database
-		Assert.assertFalse(dbcon.saveSchool("Username1","notaschool"));
+		Assert.assertFalse(dbcon.saveSchool("pohmann","notaschool"));
 	}
 
 }

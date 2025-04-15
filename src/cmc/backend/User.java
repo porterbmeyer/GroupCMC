@@ -41,7 +41,7 @@ public class User extends Account{
 	
 	
 	public  boolean addSavedSchool(String school) {
-		 return DatabaseController.saveSchool(this, school);
+		 return DatabaseController.saveSchool1(this, school);
 	}
 
 	public  boolean removeSavedSchool(String school) {

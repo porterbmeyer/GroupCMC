@@ -116,7 +116,7 @@ public class DatabaseController {
 		}
 	}
 	
-	public static  boolean saveSchool(Account account, String schoolName) {
+	public static  boolean saveSchool1(Account account, String schoolName) {
 		int result = database.user_saveSchool(account.getUsername(), schoolName);
 		if (result != -1) {
 			return true;
@@ -128,6 +128,14 @@ public class DatabaseController {
 
 	public static boolean removeSavedSchool(Account account, String school) {
 		int result = database.user_removeSchool(account.getUsername(), school);
+		if (result != -1) {
+			return true;
+			
+		}
+		return false;
+	}
+	public static boolean removeSavedSchool1(String username, String school) {
+		int result = database.user_removeSchool(username, school);
 		if (result != -1) {
 			return true;
 			
