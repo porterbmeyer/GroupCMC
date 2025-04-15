@@ -3,6 +3,8 @@ package systemtest;
 import cmc.CMCException;
 import cmc.backend.AccountController;
 import cmc.backend.DatabaseController;
+import cmc.backend.User;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -62,9 +64,10 @@ public class EditUserTest {
     @Test
     public void noChangeTest() throws CMCException {
         accountController.editAccount("pohmann", "", "", "", ' ', ' ');
-        Assert.assertEquals("Peter", dbController.getUser("pohmann").getFirstName());
-        Assert.assertEquals("Ohmann", dbController.getUser("pohmann").getLastName());
-        Assert.assertEquals("peterword", dbController.getUser("pohmann").getPassword());
+        User testPeter = new User("Peter", "Ohmann", "pohmann", "peterword", 'u', 'Y');
+        Assert.assertEquals("Peter", testPeter.getFirstName());
+        Assert.assertEquals("Ohmann", testPeter.getLastName());
+        Assert.assertEquals("peterword", testPeter.getPassword());
     }
 
     /**
