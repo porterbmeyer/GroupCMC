@@ -7,9 +7,10 @@ import cmc.backend.AccountControllerTest;
 import cmc.backend.AccountTest;
 import cmc.backend.DatabaseControllerTest;
 import cmc.backend.UniversityControllerTest;
+import cmc.backend.UniversityTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({AccountTest.class,DatabaseControllerTest.class, AccountControllerTest.class,UniversityControllerTest.class})
+@SuiteClasses({AccountControllerTest.class,AccountTest.class,DatabaseControllerTest.class, UniversityControllerTest.class,UniversityTest.class})
 public class AllTests {
 
 }

@@ -1,6 +1,5 @@
 package cmc.backend;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class User extends Account{

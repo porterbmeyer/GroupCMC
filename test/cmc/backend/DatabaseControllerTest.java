@@ -1,7 +1,5 @@
 package cmc.backend;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +7,7 @@ import org.junit.Test;
 import cmc.CMCException;
 import junit.framework.Assert;
 
+@SuppressWarnings("deprecation")
 public class DatabaseControllerTest {
 
 	private String firstName = "kfjwjejkewjkejknw";
@@ -19,9 +18,11 @@ public class DatabaseControllerTest {
 	
 	
 	private DatabaseController controller = new DatabaseController();
-
+	University fakeUni = new University("fakename", "fakestate", "fakelo","testCon",1000,43.5,630,650, 30756,89.2,450,78.9,92.0,1,5,7);
+	private User newUser = new User("John", "Doe", "differntnamethanjohn", "pass123", 'u', 'Y');
 	@Before
 	public void setUp() throws Exception {
+		
 	}
 
 	@After
@@ -29,9 +30,10 @@ public class DatabaseControllerTest {
 		controller.addUser("first", "last","uniqueuser","p",'a');
 		controller.addUser("firs", "las","otheruser","pass",'u');
 		controller.removeUser("heyyy");
+		
+		//controller.removeUser("johndoe123"); commented out because it doesn't ever make it to the db becasue it throws
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testAddUser() throws CMCException {
 		
@@ -57,7 +59,6 @@ public class DatabaseControllerTest {
 		
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Test 
 	public void testRemoveUser()throws CMCException{
 		
@@ -70,6 +71,59 @@ public class DatabaseControllerTest {
 		Assert.assertFalse(result1);
 		
 	} 
+	
+	@Test
+	public void testAddAccountReturnTrue() throws CMCException {
+	    // Try to add the user to the system
+	    boolean result = controller.addAccount(newUser);
+
+	    // Check that it returns true if successful
+	    Assert.assertTrue(result);
+	}
+
+	//black box testing the true output for deleteaccount method
+	@Test(expected = CMCException.class)
+	public void testAddAccountThrowException() throws CMCException {
+	    User existingUserr = new User("Jane", "Doe", "johndoe123", "pass123", 'u', 'Y');
+
+	    controller.addAccount(existingUserr);
+	}
+	
+	@Test 
+	public void testDeleteAccount() throws CMCException{
+		boolean idk = controller.deleteAccount(newUser);
+		Assert.assertTrue(idk);
+		
+	}
+	//testing the throw output for delete account method
+	@Test(expected = CMCException.class)
+	public void testDeleteAccountThrowsExceptionWhenUserDoesNotExist() throws CMCException {
+	    // Assume this user was never added or was already deleted
+	    User nonExistentUser = new User("Ghost", "User", "ghost123", "pass", 'u', 'Y');
+	    
+	    // This should throw because this account never existed in the system to even be able to delete
+	    controller.deleteAccount(nonExistentUser);
+	}
+	
+	@Test
+	public void testUpdateAccount() throws CMCException{
+		User changeto = new User("Johnnyboy", "Doe", "differntnamethanjohn", "pass123", 'u', 'Y');
+		boolean bool = controller.updateAccount(changeto);
+		Assert.assertTrue(bool);
+	}
+	
+	@Test(expected = CMCException.class)
+	public void testUpdateAccountWhenThrows() throws CMCException{
+		User notindb = new User("Ghost", "User", "ghost123", "pass", 'u', 'Y');
+		controller.deleteAccount(notindb);
+	}
+	
+	@Test
+	public void testEditSchool() throws CMCException {
+	    // black box for if it edits an existing uni
+	    boolean result = controller.editSchool("fakename", "fakestate", "fakelo", "testCon", 1000, 43.5, 630, 650, 30756, 89.2, 450, 78.9, 92.0, 1, 5, 7);
+	    Assert.assertTrue("Expected editSchool to return true for a valid university", result);
+	}
 	
 
 }

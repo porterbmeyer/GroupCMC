@@ -1,7 +1,5 @@
 package cmc.backend;
 
-import cmc.CMCException;
-
 public abstract class Account {
 	private String username;
 	private String password;

@@ -289,6 +289,7 @@ public class DatabaseController {
 	    }
 	}
 	
+	//takes an account from the system and based on it reading it's name in the database, deletes that account
 	public boolean deleteAccount(Account acc) throws CMCException {
 	    int result = this.database.user_deleteUser(acc.getUsername());
 
@@ -319,7 +320,7 @@ public class DatabaseController {
 	    
 	    return true;
 	}
-	
+	//takes the name of the school in the database and readjusts the information about the school for example, number of students, SAT scores, etc
 	public boolean editSchool(String name, String state, String location, String control, int numOfStudents, double percentFemale, int SATVerbal, int SATMath, int expenses, double percentFinancialAid, int numOfApps, double acceptanceRate, double enrollmentRate, int academicScale, int socialScale, int qualOfLife) throws CMCException {
 		int result = this.database.university_editUniversity(name, state, location, control, numOfStudents, percentFemale, SATVerbal, SATMath, expenses, percentFinancialAid, numOfApps, acceptanceRate, enrollmentRate, academicScale, socialScale, qualOfLife);
 		

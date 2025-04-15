@@ -3,19 +3,16 @@
  */
 package cmc.backend;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cmc.backend.Account;
-import cmc.backend.TestAccount;
 import junit.framework.Assert;
 
 /**
  * 
  */
+@SuppressWarnings("deprecation")
 public class AccountTest {
 private static TestAccount testAccount;
 //private static TestAccount anotherAccount;
