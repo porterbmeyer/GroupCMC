@@ -48,7 +48,6 @@ public class LoginTest {
     @Test
     public void loginTest() throws Exception {
     	    
-    	        DatabaseController dbcon = new DatabaseController();
     	        UserInteraction loginController = new UserInteraction(); // Make sure this is your class with login()
 
     	        // === Test: Valid login ===

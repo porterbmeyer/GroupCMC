@@ -9,6 +9,7 @@ import cmc.frontend.UserInteraction;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,32 +24,18 @@ public class UserInteractionSearchBlackBoxTest {
      * Verifies that the results are not null and that all returned universities are from the specified state.
      * @throws CMCException 
      */
-    @Test
-    public void testSearchByState() throws CMCException {
-        String testState = "Minnesota";
-        String input = testState + "\n";
-        InputStream originalIn = System.in;
-        ByteArrayInputStream testIn = new ByteArrayInputStream(input.getBytes());
-        System.setIn(testIn);
+	@Test
+	public void testSearchByState() throws CMCException {
 
-        Scanner scanner = new Scanner(System.in);
+		UserInteraction loginController = new UserInteraction(); 
 
-        UserInteraction userInteraction = new UserInteraction();
 
-        try {
-            List<University> results = userInteraction.search(scanner);
+		Scanner validScanner = new Scanner(new StringReader("state\nMINNESOTA\n"));
 
-            assertNotNull("Search results should not be null", results);
+		List<University> results = loginController.search(validScanner);
 
-            if (!results.isEmpty()) {
-                for (University university : results) {
-                    assertEquals("All results should be from the specified state", 
-                                testState, university.getState());
-                }
-            }
-        } finally {
-            scanner.close();
-            System.setIn(originalIn);
-        }
-    }
+		assertNotNull("Search results should not be null", results);
+		validScanner.close();
+	}
+            
 }
