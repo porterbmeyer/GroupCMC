@@ -301,6 +301,7 @@ public class UserInteraction {
      * @param s the Scanner used to read user input
      * @return true if the school is saved successfully; false otherwise
      */
+    // TODO: Make this user a middle metod in account or university controller if time permits
     public boolean saveSchool(Scanner s) {
         System.out.println("Enter the school you would like to save:");
         String name = s.nextLine();
