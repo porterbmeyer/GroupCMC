@@ -102,7 +102,7 @@ public class DatabaseController {
      *
      * @return a list of University objects representing all universities
      */
-    public static List<University> getAllUniversities() {
+    public List<University> getAllUniversities() {
         String[][] dbUniversityList  = database.university_getUniversities();
 
         ArrayList<University> result = new ArrayList<University>();
@@ -172,9 +172,9 @@ public class DatabaseController {
      * @param school the name of the school to remove
      * @return true if the school was removed successfully; false otherwise
      */
-    public static boolean removeSavedSchool(Account account, String school) {
+    public boolean removeSavedSchool(Account account, String school) {
         int result = database.user_removeSchool(account.getUsername(), school);
-        if (result != -1) {
+        if (result == 1) { // Assuming 1 indicates successful removal
             return true;
         }
         return false;
@@ -189,7 +189,7 @@ public class DatabaseController {
      */
     public static boolean removeSavedSchool1(String username, String school) {
         int result = database.user_removeSchool(username, school);
-        if (result != -1) {
+        if (result == 1) {
             return true;
         }
         return false;
