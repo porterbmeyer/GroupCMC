@@ -160,4 +160,7 @@ public class UniversityController {
                                                SATMath, expenses, percentFinancialAid, numOfApps, acceptanceRate, enrollmentRate, 
                                                academicScale, socialScale, qualOfLife);
     }
+    public void injectMock(DatabaseController mockDBController) {
+        this.myDBcontroller = mockDBController;
+    }
 }
