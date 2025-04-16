@@ -176,14 +176,15 @@ public class Driver {
 
     /**
      * Displays the menu for viewing saved schools for a user.
-     * It shows the list of saved schools for each user, then allows removal of a school.
+     * It shows the list of saved schools for logged in user, then allows removal of a school.
      *
      * @param s the Scanner used to read user input
      */
     private static void userSavedSchoolListMenu(Scanner s) {
         printHeader("User Saved School List");
-        Map<String, List<String>> schools = ui.getSavedSchools();
+        List<String> schools = ui.getSavedSchools();
         if (schools != null && !schools.isEmpty()) {
+            /*
             for (Map.Entry<String, List<String>> entry : schools.entrySet()) {
                 String username = entry.getKey();
                 List<String> savedSchools = entry.getValue();
@@ -191,7 +192,19 @@ public class Driver {
                 for (String school : savedSchools) {
                     System.out.println("  - " + school);
                 }
+            } */
+            // print out saved schools for the logged in user
+            String username = ui.getLoggedInUser().getUsername();
+
+            System.out.println("User: " + username);
+            if (schools != null && !schools.isEmpty()) {
+                for (String school : schools) {
+                    System.out.println("  - " + school);
+                }
+            } else {
+                System.out.println("No schools saved yet.");
             }
+
         } else {
             System.out.println("No schools saved yet.");
         }

@@ -5,7 +5,6 @@ import cmc.backend.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -282,8 +281,8 @@ public class UserInteraction {
      * @return a map where the key is the username and the value is a list of saved school names
      */
     @SuppressWarnings("unchecked")
-    public Map<String, List<String>> getSavedSchools() {
-        return this.databaseController.getUserSavedSchoolMap();
+    public List<String> getSavedSchools() {
+        return this.databaseController.getUserSavedSchoolMap().get(loggedInUser.getUsername());
     }
 
     /**
