@@ -33,8 +33,10 @@ public class MockDataBaseController extends DatabaseController {
      * @return true if the user was added successfully; false otherwise
      */
     public boolean addUser(String firstname, String lastName, String username, String password, char type) {
-        if(users.contains(username)) {
-            return false; // User already exists
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return false; // Duplicate username
+            }
         }
         User user = new User(firstname, lastName, username, password, type, 'Y');
         users.add(user);
@@ -49,7 +51,7 @@ public class MockDataBaseController extends DatabaseController {
         for (User user : users) {
             if (user.getUsername().equals(username)) {
                 users.remove(user);
-                return true;
+                return true; // User removed
             }
         }
         return false; // User not found
@@ -99,6 +101,11 @@ public class MockDataBaseController extends DatabaseController {
                                  double percentFemale, int satVerbal, int satMath, int expenses, double percentFinancialAid,
                                  int numberApplicants, double acceptanceRate, double enrollmentRate, int academicScale,
                                  int socialScale, int qualityScale) {
+        for (University university : universities) {
+            if (university.getName().equals(name)) {
+                return false; // Duplicate university
+            }
+        }
         University university = new University(name, state, location, control, population,
                 percentFemale, satVerbal, satMath, expenses,
                 percentFinancialAid, numberApplicants,
@@ -189,7 +196,7 @@ public class MockDataBaseController extends DatabaseController {
                 university.setAcademicScale(academicScale);
                 university.setSocialScale(socialScale);
                 university.setQualityScale(qualityScale);
-                return true;
+                return true; // University updated
             }
         }
         return false; // University not found
@@ -284,4 +291,15 @@ public class MockDataBaseController extends DatabaseController {
     public Map<String, List<String>> getUserSavedSchoolMap() {
         return userSavedSchools;
     }
+
+    public boolean deleteAccount(Account acc) throws CMCException {
+        for (User user : users) {
+            if (user.getUsername().equals(acc.getUsername())) {
+                users.remove(user);
+                return true; // User removed
+            }
+        }
+        return false; // User not found
+    }
+
 }

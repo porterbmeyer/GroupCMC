@@ -1,5 +1,6 @@
 package cmc.backend;
 
+import cmc.mocks.MockDataBaseController;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +18,7 @@ public class AccountControllerTest extends AccountController {
 
     private AccountController ac = new AccountController();
     private AccountController testac = new AccountController();
+    private MockDataBaseController controller;
 
     /**
      * Sets up the test environment by creating a test account.
@@ -25,6 +27,9 @@ public class AccountControllerTest extends AccountController {
      */
     @Before
     public void setUp() throws Exception {
+        controller = new MockDataBaseController();
+        testac.injectMock(controller);
+        ac.injectMock(controller);
         testac.createAccount("Test", "User", "testuname", "testpass", 'u');
     }
 
@@ -60,7 +65,9 @@ public class AccountControllerTest extends AccountController {
      */
     @Test
     public void testDeleteAccount() throws CMCException {
-        boolean answer1 = ac.deleteAccount("testuser");
+        // commented out due to incompatability wiht MockDataBaseController
+        //boolean answer1 = ac.deleteAccount("testuser");
+        boolean answer1 = ac.deleteAccount("testuname");
         Assert.assertTrue(answer1);
         
         boolean answer2 = ac.deleteAccount("accountthatdoesntexist");
