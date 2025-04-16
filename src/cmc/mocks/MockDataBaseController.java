@@ -262,23 +262,22 @@ public class MockDataBaseController extends DatabaseController {
         }
         return false; // User not found
     }
+
     /**
-     * Updates a user's information in the mock database.
-     * @param username String representing the user's username
-     * @param firstname String representing the user's first name
-     * @param lastName String representing the user's last name
-     * @param password String representing the user's password
-     * @param type char representing the user's type
-     * @return true if the user was updated successfully; false otherwise
+     * Updates an existing account in the mock database.
+     * @param acc Account object containing updated account details
+     * @return true if the account was updated successfully; false otherwise
+     * @throws CMCException if an error occurs during the update process
      */
-    public boolean updateAccount(String username, String firstname, String lastName, String password, char type) {
+    public boolean updateAccount(Account acc) throws CMCException {
         for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                user.setFirstName(firstname);
-                user.setLastName(lastName);
-                user.setPassword(password);
-                user.setType(type);
-                return true;
+            if (user.getUsername().equals(acc.getUsername())) {
+                user.setFirstName(acc.getFirstName());
+                user.setLastName(acc.getLastName());
+                user.setPassword(acc.getPassword());
+                user.setType(acc.getType());
+                user.setActive(acc.getActive());
+                return true; // User updated
             }
         }
         return false; // User not found
