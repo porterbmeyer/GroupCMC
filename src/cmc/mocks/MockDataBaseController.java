@@ -138,6 +138,7 @@ public class MockDataBaseController extends DatabaseController {
         }
         return false; // University not found
     }
+
     /**
      * Retrieves a university from the mock database.
      * @param name String representing the university's name
@@ -160,6 +161,9 @@ public class MockDataBaseController extends DatabaseController {
     public boolean saveSchool(String username, String schoolName) {
         if (!userSavedSchools.containsKey(username)) {
             userSavedSchools.put(username, new ArrayList<>());
+        }
+        if(userSavedSchools.get(username).contains(schoolName)) {
+            return false; // School already saved
         }
         userSavedSchools.get(username).add(schoolName);
         return true;
@@ -216,15 +220,15 @@ public class MockDataBaseController extends DatabaseController {
      * @param schoolName String representing the school's name
      * @return true if the school was removed successfully; false otherwise
      */
-    public boolean removeSavedSchool(String username, String schoolName) {
-        if (userSavedSchools.containsKey(username)) {
-            List<String> savedSchools = userSavedSchools.get(username);
+    public boolean removeSavedSchool(Account account, String schoolName) {
+        if (userSavedSchools.containsKey(account.getUsername())) {
+            List<String> savedSchools = userSavedSchools.get(account.getUsername());
             if (savedSchools.contains(schoolName)) {
                 savedSchools.remove(schoolName);
-                return true;
+                return true; // School removed
             }
         }
-        return false; // School not found in user's saved schools
+        return false; // School not found
     }
     /**
      * Retrieves a user's saved schools from the mock database.
@@ -238,11 +242,11 @@ public class MockDataBaseController extends DatabaseController {
      * Retrieves all universities from the mock database.
      * @return List of University objects
      */
-    /*
+
     public List<University> getAllUniversities() {
         return universities;
     }
-     */
+
     /**
      * Deactivates a user in the mock database.
      * @param username String representing the user's username
