@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import cmc.mocks.MockDataBaseController;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,8 +30,9 @@ public class UniversityControllerTest {
     @Before
     public void setUp() throws Exception {
         controller = new UniversityController();
-        dbController = new DatabaseController();
-
+        dbController = new MockDataBaseController();
+        //dbController = new DatabaseController();
+        controller.injectMock(dbController);
         // Inject the DatabaseController into the UniversityController using reflection.
         Field dbField = UniversityController.class.getDeclaredField("myDBcontroller");
         dbField.setAccessible(true);
