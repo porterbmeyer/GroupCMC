@@ -1,368 +1,409 @@
 package cmc.backend;
 
+/**
+ * The University class represents a university with various attributes such as name, location, and ratings.
+ * It provides constructors to initialize a university and getter and setter methods for its attributes.
+ */
 public class University {
 
-	private String name;
-	private String location;
-	private String state;
-	private int population;
-	private String control;
-	private double percentFemale;
-	private int satVerbal;
-	private int satMath;
-	private int expenses;
-	private double percentFinancialAid;
-	private int numberApplicants;
-	private double acceptanceRate;
-	private double enrollmentRate;
-	private int academicScale;
-	private int socialScale;
-	private int qualityScale;
-	
-	
-	
-	/**
-	 * @param name
-	 * @param location
-	 * @param state
-	 * @param population
-	 * @param control
-	 * @param percentFemale
-	 * @param satVerbal
-	 * @param satMath
-	 * @param expenses
-	 * @param percentFinancialAid
-	 * @param numberApplicants
-	 * @param acceptanceRate
-	 * @param enrollmentRate
-	 * @param academicScale
-	 * @param socialScale
-	 * @param qualityScale
-	 */
+    private String name;
+    private String location;
+    private String state;
+    private int population;
+    private String control;
+    private double percentFemale;
+    private int satVerbal;
+    private int satMath;
+    private int expenses;
+    private double percentFinancialAid;
+    private int numberApplicants;
+    private double acceptanceRate;
+    private double enrollmentRate;
+    private int academicScale;
+    private int socialScale;
+    private int qualityScale;
+    
+    /**
+     * Constructs a new University with the specified details.
+     *
+     * @param name                the name of the university
+     * @param state               the state where the university is located
+     * @param location            the location of the university
+     * @param control             the control type (for example, public or private)
+     * @param population          the student population
+     * @param percentFemale       the percentage of female students
+     * @param satVerbal           the SAT verbal score
+     * @param satMath             the SAT math score
+     * @param expenses            the expenses for attending the university
+     * @param percentFinancialAid the percentage of financial aid offered
+     * @param numberApplicants    the number of applicants
+     * @param acceptanceRate      the acceptance rate
+     * @param enrollmentRate      the enrollment rate
+     * @param academicScale       the academic quality rating
+     * @param socialScale         the social environment rating
+     * @param qualityScale        the overall quality rating
+     */
+    public University(String name, String state, String location, String control, int population, double percentFemale,
+                      int satVerbal, int satMath, int expenses, double percentFinancialAid, int numberApplicants,
+                      double acceptanceRate, double enrollmentRate, int academicScale, int socialScale, int qualityScale) {
+        this.name = name;
+        this.location = location;
+        this.state = state;
+        this.population = population;
+        this.control = control;
+        this.percentFemale = percentFemale;
+        this.satVerbal = satVerbal;
+        this.satMath = satMath;
+        this.expenses = expenses;
+        this.percentFinancialAid = percentFinancialAid;
+        this.numberApplicants = numberApplicants;
+        this.acceptanceRate = acceptanceRate;
+        this.enrollmentRate = enrollmentRate;
+        this.academicScale = academicScale;
+        this.socialScale = socialScale;
+        this.qualityScale = qualityScale;
+    }
+    
+    /**
+     * Constructs a new University using an array of strings.
+     * The array is expected to hold values in the order required by the main constructor.
+     *
+     * @param university an array of strings containing university details
+     */
+    @SuppressWarnings("unused")
+    private University(String[] university) {
+        new University(university[0], university[1], university[2], university[3], university[4], university[5],
+                       university[6], university[7], university[8], university[9], university[10], university[11],
+                       university[12], university[13], university[14], university[15]);
+    }
+    
+    /**
+     * Constructs a new University with all parameters as strings.
+     * The string values are parsed into the appropriate data types.
+     *
+     * @param name                the name of the university
+     * @param state               the state where the university is located
+     * @param location            the location of the university
+     * @param control             the control type
+     * @param population          the population as a string (parsed to int)
+     * @param percentFemale       the female percentage as a string (parsed to double)
+     * @param satVerbal           the SAT verbal score as a string (parsed to int)
+     * @param satMath             the SAT math score as a string (parsed to int)
+     * @param expenses            the expenses as a string (parsed to int)
+     * @param percentFinancialAid the financial aid percentage as a string (parsed to double)
+     * @param numberApplicants    the number of applicants as a string (parsed to int)
+     * @param acceptanceRate      the acceptance rate as a string (parsed to double)
+     * @param enrollmentRate      the enrollment rate as a string (parsed to double)
+     * @param academicScale       the academic scale as a string (parsed to int)
+     * @param socialScale         the social scale as a string (parsed to int)
+     * @param qualityScale        the quality scale as a string (parsed to int)
+     */
+    public University(String name, String state, String location, String control, String population, String percentFemale,
+                      String satVerbal, String satMath, String expenses, String percentFinancialAid, String numberApplicants,
+                      String acceptanceRate, String enrollmentRate, String academicScale, String socialScale, String qualityScale) {
+        this.name = name;
+        this.location = location;
+        this.state = state;
+        this.population = (int)Double.parseDouble(population);  
+        this.control = control;
+        this.percentFemale = Double.parseDouble(percentFemale);
+        this.satVerbal = (int)Double.parseDouble(satVerbal);
+        this.satMath = (int)Double.parseDouble(satMath);
+        this.expenses = (int)Double.parseDouble(expenses);
+        this.percentFinancialAid = Double.parseDouble(percentFinancialAid);
+        this.numberApplicants = (int)Double.parseDouble(numberApplicants);
+        this.acceptanceRate = Double.parseDouble(acceptanceRate);
+        this.enrollmentRate = Double.parseDouble(enrollmentRate);
+        this.academicScale = (int)Double.parseDouble(academicScale);
+        this.socialScale = (int)Double.parseDouble(socialScale);
+        this.qualityScale = (int)Double.parseDouble(qualityScale);
+    }
+    
+    /**
+     * Returns the overall quality scale rating of the university.
+     *
+     * @return the quality scale rating
+     */
+    public int getQualityScale() {
+        return qualityScale;
+    }
 
-	
-	/** This is a test comment
-	 */
-	public University(String name, String state, String location, String control, int population, double percentFemale, int satVerbal, int satMath, int expenses, double percentFinancialAid, int numberApplicants, double acceptanceRate, double enrollmentRate, int academicScale, int socialScale, int qualityScale) {
-		this.name = name;
-		this.location = location;
-		this.state = state;
-		this.population = population;
-		this.control = control;
-		this.percentFemale = percentFemale;
-		this.satVerbal = satVerbal;
-		this.satMath = satMath;
-		this.expenses = expenses;
-		this.percentFinancialAid = percentFinancialAid;
-		this.numberApplicants = numberApplicants;
-		this.acceptanceRate = acceptanceRate;
-		this.enrollmentRate = enrollmentRate;
-		this.academicScale = academicScale;
-		this.socialScale = socialScale;
-		this.qualityScale = qualityScale;
-	}
-	
-	@SuppressWarnings("unused")
-	private University(String[] university) {
-		 new University(university[0],university[1],university[2],university[3],university[4],university[5],university[6],university[7],university[8],university[9],university[10], university[11], university[12], university[13], university[14], university[15]);
-		
-	}
-	
-	public University(String name, String state, String location, String control, String population, String percentFemale, String satVerbal, String satMath, String expenses, String percentFinancialAid, String numberApplicants, String acceptanceRate, String enrollmentRate, String academicScale, String socialScale, String qualityScale) {
-		// taking all as double, casting what should be int to int from double to handle error cases
-		this.name = name;
-		this.location = location;
-		this.state = state;
-		this.population = (int)Double.parseDouble(population);	
-		this.control = control;
-		this.percentFemale = Double.parseDouble(percentFemale);
-		this.satVerbal = (int)Double.parseDouble(satVerbal);
-		this.satMath = (int)Double.parseDouble(satMath);
-		this.expenses = (int)Double.parseDouble(expenses);
-		this.percentFinancialAid = Double.parseDouble(percentFinancialAid);
-		this.numberApplicants = (int)Double.parseDouble(numberApplicants);
-		this.acceptanceRate = Double.parseDouble(acceptanceRate);
-		this.enrollmentRate = Double.parseDouble(enrollmentRate);
-		this.academicScale = (int)Double.parseDouble(academicScale);
-		this.socialScale = (int)Double.parseDouble(socialScale);
-		this.qualityScale = (int)Double.parseDouble(qualityScale);
-	}
-	/**
-	 * @return the qualityScale
-	 */
-	public int getQualityScale() {
-		return qualityScale;
-	}
+    /**
+     * Sets the overall quality scale rating of the university.
+     *
+     * @param qualityScale the new quality scale rating
+     */
+    public void setQualityScale(int qualityScale) {
+        this.qualityScale = qualityScale;
+    }
 
-	/**
-	 * @param qualityScale the qualityScale to set
-	 */
-	public void setQualityScale(int qualityScale) {
-		this.qualityScale = qualityScale;
-	}
+    /**
+     * Returns the control type of the university.
+     *
+     * @return the control type
+     */
+    public String getControl() {
+        return control;
+    }
 
-	/**
-	 * @return the control
-	public List<Un
-	 */
-	public String getControl() {
-		return control;
-	}
+    /**
+     * Sets the control type of the university.
+     *
+     * @param control the new control type
+     */
+    public void setControl(String control) {
+        this.control = control;
+    }
 
-	/**
-	 * @param control the control to set
-	 */
-	public void setControl(String control) {
-		this.control = control;
-	}
+    /**
+     * Returns the percentage of female students.
+     *
+     * @return the percentage of female students
+     */
+    public double getPercentFemale() {
+        return percentFemale;
+    }
 
-	/**
-	 * @return the percentFemale
-	 */
-	public double getPercentFemale() {
-		return percentFemale;
-	}
+    /**
+     * Sets the percentage of female students.
+     *
+     * @param percentFemale the new percentage of female students
+     */
+    public void setPercentFemale(double percentFemale) {
+        this.percentFemale = percentFemale;
+    }
 
-	/**
-	 * @param percentFemale the percentFemale to set
-	 */
-	public void setPercentFemale(double percentFemale) {
-		this.percentFemale = percentFemale;
-	}
+    /**
+     * Returns the SAT verbal score.
+     *
+     * @return the SAT verbal score
+     */
+    public int getSatVerbal() {
+        return satVerbal;
+    }
 
-	/**
-	 * @return the satVerbal
-	 */
-	public int getSatVerbal() {
-		return satVerbal;
-	}
+    /**
+     * Sets the SAT verbal score.
+     *
+     * @param satVerbal the new SAT verbal score
+     */
+    public void setSatVerbal(int satVerbal) {
+        this.satVerbal = satVerbal;
+    }
 
-	/**
-	 * @param satVerbal the satVerbal to set
-	 */
-	public void setSatVerbal(int satVerbal) {
-		this.satVerbal = satVerbal;
-	}
+    /**
+     * Returns the SAT math score.
+     *
+     * @return the SAT math score
+     */
+    public int getSatMath() {
+        return satMath;
+    }
 
-	/**
-	 * @return the satMath
-	 */
-	public int getSatMath() {
-		return satMath;
-	}
+    /**
+     * Sets the SAT math score.
+     *
+     * @param satMath the new SAT math score
+     */
+    public void setSatMath(int satMath) {
+        this.satMath = satMath;
+    }
 
-	/**
-	 * @param satMath the satMath to set
-	 */
-	public void setSatMath(int satMath) {
-		this.satMath = satMath;
-	}
+    /**
+     * Returns the expenses for attending the university.
+     *
+     * @return the expenses
+     */
+    public double getExpenses() {
+        return expenses;
+    }
 
-	/**
-	 * @return the expenses
-	 */
-	public double getExpenses() {
-		return expenses;
-	}
+    /**
+     * Sets the expenses for attending the university.
+     *
+     * @param expenses the new expenses value
+     */
+    public void setExpenses(int expenses) {
+        this.expenses = expenses;
+    }
 
-	/**
-	 * @param expenses the expenses to set
-	 */
-	public void setExpenses(int expenses) {
-		this.expenses = expenses;
-	}
+    /**
+     * Returns the percentage of financial aid offered.
+     *
+     * @return the financial aid percentage
+     */
+    public double getPercentFinancialAid() {
+        return percentFinancialAid;
+    }
 
-	/**
-	 * @return the percentFinancialAid
-	 */
-	public double getPercentFinancialAid() {
-		return percentFinancialAid;
-	}
+    /**
+     * Sets the percentage of financial aid offered.
+     *
+     * @param percentFinancialAid the new financial aid percentage
+     */
+    public void setPercentFinancialAid(double percentFinancialAid) {
+        this.percentFinancialAid = percentFinancialAid;
+    }
 
-	/**
-	 * @param percentFinancialAid the percentFinancialAid to set
-	 */
-	public void setPercentFinancialAid(double percentFinancialAid) {
-		this.percentFinancialAid = percentFinancialAid;
-	}
+    /**
+     * Returns the number of applicants.
+     *
+     * @return the number of applicants
+     */
+    public int getNumberApplicants() {
+        return numberApplicants;
+    }
 
-	/**
-	 * @return the numberApplicants
-	 */
-	public int getNumberApplicants() {
-		return numberApplicants;
-	}
+    /**
+     * Sets the number of applicants.
+     *
+     * @param numberApplicants the new number of applicants
+     */
+    public void setNumberApplicants(int numberApplicants) {
+        this.numberApplicants = numberApplicants;
+    }
 
-	/**
-	 * @param numberApplicants the numberApplicants to set
-	 */
-	public void setNumberApplicants(int numberApplicants) {
-		this.numberApplicants = numberApplicants;
-	}
+    /**
+     * Returns the acceptance rate of the university.
+     *
+     * @return the acceptance rate
+     */
+    public double getAcceptanceRate() {
+        return acceptanceRate;
+    }
 
-	/**
-	 * @return the acceptanceRate
-	 */
-	public double getAcceptanceRate() {
-		return acceptanceRate;
-	}
+    /**
+     * Sets the acceptance rate of the university.
+     *
+     * @param acceptanceRate the new acceptance rate
+     */
+    public void setAcceptanceRate(double acceptanceRate) {
+        this.acceptanceRate = acceptanceRate;
+    }
 
-	/**
-	 * @param acceptanceRate the acceptanceRate to set
-	 */
-	public void setAcceptanceRate(double acceptanceRate) {
-		this.acceptanceRate = acceptanceRate;
-	}
+    /**
+     * Returns the enrollment rate of the university.
+     *
+     * @return the enrollment rate
+     */
+    public double getEnrollmentRate() {
+        return enrollmentRate;
+    }
 
-	/**
-	 * @return the enrollmentRate
-	 */
-	public double getEnrollmentRate() {
-		return enrollmentRate;
-	}
+    /**
+     * Sets the enrollment rate of the university.
+     *
+     * @param enrollmentRate the new enrollment rate
+     */
+    public void setEnrollmentRate(double enrollmentRate) {
+        this.enrollmentRate = enrollmentRate;
+    }
 
-	/**
-	 * @param enrollmentRate the enrollmentRate to set
-	 */
-	public void setEnrollmentRate(double enrollmentRate) {
-		this.enrollmentRate = enrollmentRate;
-	}
+    /**
+     * Returns the academic quality rating.
+     *
+     * @return the academic scale rating
+     */
+    public int getAcademicScale() {
+        return academicScale;
+    }
 
-	/**
-	 * @return the academicScale
-	 */
-	public int getAcademicScale() {
-		return academicScale;
-	}
+    /**
+     * Sets the academic quality rating.
+     *
+     * @param academicScale the new academic rating
+     */
+    public void setAcademicScale(int academicScale) {
+        this.academicScale = academicScale;
+    }
 
-	/**
-	 * @param academicScale the academicScale to set
-	 */
-	public void setAcademicScale(int academicScale) {
-		this.academicScale = academicScale;
-	}
+    /**
+     * Returns the social environment rating.
+     *
+     * @return the social scale rating
+     */
+    public int getSocialScale() {
+        return socialScale;
+    }
 
-	/**
-	 * @return the socialScale
-	 */
-	public int getSocialScale() {
-		return socialScale;
-	}
+    /**
+     * Sets the social environment rating.
+     *
+     * @param socialScale the new social rating
+     */
+    public void setSocialScale(int socialScale) {
+        this.socialScale = socialScale;
+    }
 
-	/**
-	 * @param socialScale the socialScale to set
-	 */
-	public void setSocialScale(int socialScale) {
-		this.socialScale = socialScale;
-	}
+    /**
+     * Returns the name of the university.
+     *
+     * @return the university's name
+     */
+    public String getName() {
+        return name;
+    }
 
+    /**
+     * Sets the name of the university.
+     *
+     * @param name the new name for the university
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    /**
+     * Returns the location of the university.
+     *
+     * @return the university's location
+     */
+    public String getLocation() {
+        return location;
+    }
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Sets the location of the university.
+     *
+     * @param location the new location for the university
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * Returns the state where the university is located.
+     *
+     * @return the state of the university
+     */
+    public String getState() {
+        return state;
+    }
 
-	/**
-	 * @return the location
-	 */
-	public String getLocation() {
-		return location;
-	}
+    /**
+     * Sets the state where the university is located.
+     *
+     * @param state the new state for the university
+     */
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	/**
-	 * @param location the location to set
-	 */
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    /**
+     * Returns the student population.
+     *
+     * @return the population of the university
+     */
+    public int getPopulation() {
+        return population;
+    }
 
-	/**
-	 * @return the state
-	 */
-	public String getState() {
-		return state;
-	}
-
-	/**
-	 * @param state the state to set
-	 */
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	/**
-	 * @return the population
-	 */
-	public int getPopulation() {
-		return population;
-	}
-
-	/**
-	 * @param population the population to set
-	 */
-	public void setPopulation(int population) {
-		this.population = population;
-	}
-	
-	/*
-	public boolean equal(University university) {
-		if(!this.school.equalsIgnoreCase(university.getSchool()))
-			return false;
-		
-		if(!this.state.equalsIgnoreCase(university.getState()))
-			return false;
-		
-		if(!this.location.equalsIgnoreCase(university.getLocation()))
-			return false;
-		
-		if(!this.control.equalsIgnoreCase(university.getControl()))
-			return false;
-		
-		if(!(this.numberOfStudents==(university.getNumberOfStudents())))
-			return false;
-		
-		if(!(this.percentFemales==(university.getPercentFemales())))
-			return false;
-		
-		if(!(this.SATVerbal==(university.getSATVerbal())))
-			return false;
-
-		if(!(this.expenses==(university.getExpenses())))
-			return false;
-		
-		if(!(this.percentFinancialAid==(university.getPercentFinancialAid())))
-			return false;
-		
-		if(!(this.numberOfApplicants==(university.getNumberOfApplicants())))
-			return false;
-		
-		if(!(this.percentAdmitted==(university.getPercentAdmitted())))
-			return false;
-		
-		if(!(this.percentEnrolled==(university.getPercentEnrolled())))
-			return false;
-		
-		if(!(this.academicsScale==(university.getAcademicsScale())))
-			return false;
-		
-		if(!(this.socialScale==(university.getSocialScale())))
-			return false;
-		
-		if(!(this.qualityOfLifeScale==(university.getQualityOfLifeScale())))
-			return false;
-		 
-		return true;
-	}
-*/
-
+    /**
+     * Sets the student population.
+     *
+     * @param population the new population value
+     */
+    public void setPopulation(int population) {
+        this.population = population;
+    }
 }

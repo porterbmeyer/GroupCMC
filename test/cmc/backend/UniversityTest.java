@@ -3,11 +3,18 @@ package cmc.backend;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+/**
+ * The UniversityTest class provides unit tests for the University class.
+ * It verifies that the constructor initializes all fields correctly and that the setter methods work properly.
+ */
 public class UniversityTest {
 
+    /**
+     * Tests that the University constructor correctly initializes all fields and that the getters return the expected values.
+     */
     @Test
     public void testConstructorAndGetters() {
-        University uni = new University("Test University", "CA", "Urban", "Private","5000", "55.5", "600", "650", "40000", "70.0","8000", "75.0", "40.0", "4", "3", "5");
+        University uni = new University("Test University", "CA", "Urban", "Private", "5000", "55.5", "600", "650", "40000", "70.0", "8000", "75.0", "40.0", "4", "3", "5");
 
         assertEquals("Test University", uni.getName());
         assertEquals("CA", uni.getState());
@@ -27,9 +34,12 @@ public class UniversityTest {
         assertEquals(5, uni.getQualityScale());
     }
 
+    /**
+     * Tests that the setter methods of the University class successfully update the values.
+     */
     @Test
     public void testSetters() {
-        University uni = new University("Old Name", "CA", "Urban", "Private","1000", "50.0", "500", "500", "30000", "60.0","2000", "50.0", "30.0", "2", "2", "2");
+        University uni = new University("Old Name", "CA", "Urban", "Private", "1000", "50.0", "500", "500", "30000", "60.0", "2000", "50.0", "30.0", "2", "2", "2");
 
         uni.setName("New Name");
         uni.setPopulation(3000);
