@@ -1,5 +1,6 @@
 package cmc.backend;
 
+import cmc.mocks.MockDataBaseController;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,10 +21,11 @@ public class DatabaseControllerTest {
     private String username = "kjweewkjejkfwekjckjwekjkjwef";
     private String password = " werwhueroiowrioiowriowiorew";
     private char type = 'u';
-    
-    private DatabaseController controller = new DatabaseController();
+
+    //private DatabaseController controller = new DatabaseController();
+    private MockDataBaseController controller = new MockDataBaseController();
     University fakeUni = new University("fakename", "fakestate", "fakelo", "testCon", 1000, 43.5, 630, 650, 30756, 89.2, 450, 78.9, 92.0, 1, 5, 7);
-    private User newUser = new User("John", "Doe", "differntnamethanjohn", "pass123", 'u', 'Y');
+    private User newUser = new User("John", "Doe", "tempUser25164", "pass123", 'u', 'Y');
     
     /**
      * Sets up the test environment.
@@ -32,7 +34,15 @@ public class DatabaseControllerTest {
      */
     @Before
     public void setUp() throws Exception {
-        // Setup logic if necessary
+        controller.addUser("John", "Doe", "differntnamethanjohn", "pass123", 'u');
+        controller.addUser("Jane", "Doe", "testUser4162025", "pass123", 'u');
+        controller.addUser("heyyy", "Doe", "anotherUser", "pass123", 'u');
+        controller.addUser("Jane", "Doe", "oneLastUserBcItIsEasier", "pass123", 'u');
+        controller.addUniversity(fakeUni.getName(), fakeUni.getState(), fakeUni.getLocation(), fakeUni.getControl(),
+        fakeUni.getPopulation(), fakeUni.getPercentFemale(), fakeUni.getSatVerbal(), fakeUni.getSatMath(),
+                (int)fakeUni.getExpenses(), fakeUni.getPercentFinancialAid(), fakeUni.getNumberApplicants(),
+        fakeUni.getAcceptanceRate(), fakeUni.getEnrollmentRate(), fakeUni.getAcademicScale(),
+        fakeUni.getSocialScale(), fakeUni.getQualityScale());
     }
 
     /**
@@ -42,9 +52,14 @@ public class DatabaseControllerTest {
      */
     @After
     public void tearDown() throws Exception {
-        controller.addUser("first", "last", "uniqueuser", "p", 'a');
-        controller.addUser("firs", "las", "otheruser", "pass", 'u');
+        controller.removeUser("differntnamethanjohn");
         controller.removeUser("heyyy");
+        controller.removeUser("testUser4162025");
+        controller.removeUser("anotherUser");
+        controller.removeUser("oneLastUserBcItIsEasier");
+        controller.removeUser(newUser.getUsername());
+        controller.removeUser(username);
+        controller.removeUniversity(fakeUni);
     }
     
     /**
@@ -77,7 +92,7 @@ public class DatabaseControllerTest {
      */
     @Test 
     public void testRemoveUser() throws CMCException {
-        boolean result = controller.removeUser(username);
+        boolean result = controller.removeUser("oneLastUserBcItIsEasier");
         Assert.assertTrue(result);
         
         boolean result1 = controller.removeUser("Userthatdoesntexist");
@@ -102,7 +117,7 @@ public class DatabaseControllerTest {
      */
     @Test(expected = CMCException.class)
     public void testAddAccountThrowException() throws CMCException {
-        User existingUserr = new User("Jane", "Doe", "johndoe123", "pass123", 'u', 'Y');
+        User existingUserr = new User("Jane", "Doe", "testUser4162025", "pass123", 'u', 'Y');
         controller.addAccount(existingUserr);
     }
     
@@ -113,7 +128,7 @@ public class DatabaseControllerTest {
      */
     @Test 
     public void testDeleteAccount() throws CMCException {
-        boolean idk = controller.deleteAccount(newUser);
+        boolean idk = controller.deleteAccount(controller.getUser("anotherUser"));
         Assert.assertTrue(idk);
     }
     
