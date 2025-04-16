@@ -22,7 +22,7 @@ public class User extends Account {
      */
     public User(String firstname, String lastname, String username, String password, char type, char active) {
         super(firstname, lastname, username, password, type, active);
-        setSavedSchool();
+        //setSavedSchool();
     }
 
     /**
