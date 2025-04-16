@@ -157,4 +157,7 @@ public class AccountController {
         this.myDBcontroller.updateAccount(acc);
         return true;
     }
+    public void injectMock(DatabaseController mockDBController) {
+        this.myDBcontroller = mockDBController;
+    }
 }
