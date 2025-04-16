@@ -2,6 +2,7 @@ package cmc.backend;
 
 import static org.junit.Assert.*;
 
+import cmc.mocks.MockDataBaseController;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,8 @@ import junit.framework.Assert;
  * saved list and that the removal operation behaves as expected.
  */
 public class UserTest {
-
+    //private DatabaseController dbcon = new DatabaseController();
+    private DatabaseController dbcon = new MockDataBaseController();
     /**
      * Sets up the test environment by adding a test user with username "Username1".
      *
@@ -23,7 +25,7 @@ public class UserTest {
      */
     @Before
     public void setUp() throws Exception {
-        DatabaseController dbcon = new DatabaseController();
+
         dbcon.addUser("firstname", "lastname", "Username1", "password", 'U');
     }
 
@@ -34,7 +36,7 @@ public class UserTest {
      */
     @After
     public void tearDown() throws Exception {
-        DatabaseController dbcon = new DatabaseController();
+
         dbcon.removeUser("Username1");
     }
 
@@ -49,7 +51,6 @@ public class UserTest {
     @SuppressWarnings("deprecation")
     @Test
     public void testAddSavedSchool() {
-        DatabaseController dbcon = new DatabaseController();
         // Attempt to add "BARD" to the saved school list for the test user.
         boolean pass = dbcon.saveSchool("Username1", "BARD");
         // Expect the first save to succeed.
@@ -70,15 +71,17 @@ public class UserTest {
     @SuppressWarnings("deprecation")
     @Test
     public void testRemoveSavedSchool() {
-        DatabaseController dbcon = new DatabaseController();
+
         Account acc = new User("firstname", "lastname", "Username1", "password", 'U', 'Y');
         // Attempt to remove "BARD" from the saved school list.
+        dbcon.saveSchool("Username1", "BARD");
         boolean pass = dbcon.removeSavedSchool(acc, "BARD");
         // Expect removal to succeed.
         Assert.assertTrue(pass);
         // Attempt to remove a school ("BAR") that may not be in the list.
         // The expected behavior as per your implementation is that it returns true.
+        // ^ I changed the implementation to only return true if the school was in the list and was removed
         boolean pass1 = dbcon.removeSavedSchool(acc, "BAR");
-        Assert.assertTrue(pass1);
+        Assert.assertFalse(pass1);
     }
 }

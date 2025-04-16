@@ -66,7 +66,10 @@ public class User extends Account {
      * @param school the name of the school to remove
      * @return true if the school was successfully removed; false otherwise
      */
+    /*
     public boolean removeSavedSchool(String school) {
         return DatabaseController.removeSavedSchool(this, school);
     }
+    */
+
 }
