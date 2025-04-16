@@ -42,6 +42,15 @@ public class MockDataBaseController extends DatabaseController {
         users.add(user);
         return true;
     }
+    public boolean addAccount(User user) throws CMCException {
+        for (User existingUser : users) {
+            if (existingUser.getUsername().equals(user.getUsername())) {
+                throw new CMCException("Duplicate Username");
+            }
+        }
+        users.add(user);
+        return true;
+    }
     /**
      * Removes a user from the mock database.
      * @param username String representing the user's username
@@ -117,14 +126,14 @@ public class MockDataBaseController extends DatabaseController {
     }
     /**
      * Removes a university from the mock database.
-     * @param name String representing the university's name
+     * @param university University representing the university's name
      * @return true if the university was removed successfully; false otherwise
      */
-    public boolean removeUniversity(String name) {
-        for (University university : universities) {
-            if (university.getName().equals(name)) {
-                universities.remove(university);
-                return true;
+    public boolean removeUniversity(University university) {
+        for (University uni : universities) {
+            if (uni.getName().equals(university.getName())) {
+                universities.remove(uni);
+                return true; // University removed
             }
         }
         return false; // University not found
@@ -298,7 +307,8 @@ public class MockDataBaseController extends DatabaseController {
                 return true; // User removed
             }
         }
-        return false; // User not found
+        throw new CMCException("User not found");
+        //return false; // User not found
     }
 
 }
