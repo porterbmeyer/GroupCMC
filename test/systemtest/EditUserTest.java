@@ -80,6 +80,7 @@ public class EditUserTest {
     */
     /**
      * Tests that the editAccount method returns false when trying to edit a non-existent user.
+     * @throws CMCException if an error occurs during editing.
      */
     @Test
     public void editUserTestFalse() throws CMCException {
