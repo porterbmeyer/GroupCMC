@@ -5,11 +5,13 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="lib" path="lib/csci230databaselibrary.jar"/>
 	<classpathentry kind="lib" path="lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
 	<classpathentry kind="lib" path="lib/org.junit_4.12.0.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-j-9.1.0-1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
